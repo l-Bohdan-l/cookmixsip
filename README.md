@@ -1,1 +1,1 @@
-# React projects for GoIT courses
+# CookMixSip project

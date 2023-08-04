@@ -1,10 +1,10 @@
 {
-  "name": "bohdan-papushoi-projects",
+  "name": "cookmixsip",
   "version": "0.1.0",
-  "homepage": "https://l-bohdan-l.github.io/bohdan-papushoi-projects",
+  "homepage": "https://l-bohdan-l.github.io/cookmixsip",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bohdan-papushoi-projects"
+    "url": "git+https://github.com/cookmixsip"
   },
   "private": true,
   "dependencies": {
