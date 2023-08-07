@@ -27,8 +27,14 @@ let router = createBrowserRouter(
   [
     {
       path: "/",
-      element: <Main />,
+      element: <SharedLayout />,
       errorElement: <Error />,
+      children: [
+        {
+          index: true,
+          element: <Main />,
+        },
+      ],
     },
     // {
     //   path: "/movie-gallery",

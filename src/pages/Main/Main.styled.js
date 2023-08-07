@@ -9,8 +9,7 @@ export const Section = styled.section`
   height: 100vh;
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: #070606;
-  color: #fff;
+  /* color: #fff; */
 `;
 
 export const List = styled.ul`
