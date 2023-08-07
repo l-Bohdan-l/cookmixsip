@@ -8,6 +8,8 @@ export const HeaderStyled = styled.header`
   padding: 20px 10px;
   width: 100%;
   margin: 0 auto;
+  /* margin-bottom: 60px; */
+
   &::after {
     content: "";
     display: block;
@@ -15,7 +17,7 @@ export const HeaderStyled = styled.header`
     height: 1px;
     background-color: #fffdfa;
     position: absolute;
-    top: 60px;
+    top: 68px;
     left: 0;
   }
 

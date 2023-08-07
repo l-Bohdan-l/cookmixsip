@@ -1,3 +1,4 @@
+import Hero from "../../components/Hero/Hero";
 import { LinkStyled, List, Section, Title } from "./Main.styled";
 
 export default function Main() {
@@ -8,7 +9,7 @@ export default function Main() {
         <LinkStyled to="/movie-gallery">Movies</LinkStyled>
         <LinkStyled to="/phonebook">Phone book</LinkStyled>
       </List> */}
-      <h1> Home </h1>
+      <Hero />
     </Section>
   );
 }
