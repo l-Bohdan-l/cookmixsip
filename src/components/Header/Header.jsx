@@ -1,13 +1,25 @@
+// import { CompanyName, Header } from "./Header.styled";
+import { Modal } from "../Modal/Modal";
+import {
+  HeaderStyled,
+  CompanyName,
+  NavList,
+  CompanyNameSpan,
+} from "./Header.styled";
+
 const Header = () => {
   return (
-    <header>
-      <p>CookMixSip</p>
-      <ul>
+    <HeaderStyled>
+      <CompanyName>
+        Cook<CompanyNameSpan>Mix</CompanyNameSpan>Sip
+      </CompanyName>
+      <NavList>
         <li>Home</li>
         <li>Cocktails</li>
         <li>Recipes</li>
-      </ul>
-    </header>
+      </NavList>
+      <Modal />
+    </HeaderStyled>
   );
 };
 
