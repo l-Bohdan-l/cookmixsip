@@ -1,25 +1,15 @@
 import styled from "styled-components";
 
 export const HeaderStyled = styled.header`
-  display: flex;
+  position: relative;
   /* flex-direction: column; */
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 10px;
+`;
+
+export const Wrapper = styled.div`
+  padding: 20px 15px;
   width: 100%;
   margin: 0 auto;
   /* margin-bottom: 60px; */
-
-  &::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: #fffdfa;
-    position: absolute;
-    top: 68px;
-    left: 0;
-  }
 
   @media screen and (min-width: 320px) {
     width: 320px;
@@ -33,8 +23,20 @@ export const HeaderStyled = styled.header`
   /* @media screen and (min-width: 1920px) {
     width: 1920px;
   } */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #fffdfa;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 `;
-
 export const CompanyName = styled.p`
   font-family: "Titan One", cursive, sans-serif;
   font-size: 24px;

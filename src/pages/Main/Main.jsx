@@ -1,4 +1,5 @@
 import Hero from "../../components/Hero/Hero";
+import Random from "../../components/Random/Random";
 import { LinkStyled, List, Section, Title } from "./Main.styled";
 
 export default function Main() {
@@ -10,6 +11,7 @@ export default function Main() {
         <LinkStyled to="/phonebook">Phone book</LinkStyled>
       </List> */}
       <Hero />
+      <Random />
     </Section>
   );
 }

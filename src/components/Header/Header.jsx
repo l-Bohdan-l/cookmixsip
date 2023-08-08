@@ -5,20 +5,23 @@ import {
   CompanyName,
   NavList,
   CompanyNameSpan,
+  Wrapper,
 } from "./Header.styled";
 
 const Header = () => {
   return (
     <HeaderStyled>
-      <CompanyName>
-        Cook<CompanyNameSpan>Mix</CompanyNameSpan>Sip
-      </CompanyName>
-      <NavList>
-        <li>Home</li>
-        <li>Cocktails</li>
-        <li>Recipes</li>
-      </NavList>
-      <Modal />
+      <Wrapper>
+        <CompanyName>
+          Cook<CompanyNameSpan>Mix</CompanyNameSpan>Sip
+        </CompanyName>
+        <NavList>
+          <li>Home</li>
+          <li>Cocktails</li>
+          <li>Recipes</li>
+        </NavList>
+        <Modal />
+      </Wrapper>
     </HeaderStyled>
   );
 };

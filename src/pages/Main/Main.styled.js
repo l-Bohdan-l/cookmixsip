@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Section = styled.section`
+export const Section = styled.div`
   display: flex;
   flex-direction: column;
   /* align-items: center;
   justify-content: center; */
   /* height: 100vh; */
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-bottom: 30px;
   /* color: #fff; */
 `;
