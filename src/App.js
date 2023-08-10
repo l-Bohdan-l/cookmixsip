@@ -15,6 +15,8 @@ import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 // import { PrivateRoute } from "./components/Contacts/PrivateRoute";
 
 import { persistor } from "./redux/store";
+import Cocktails from "./pages/Cocktails/Cocktails";
+import Recipes from "./pages/Recipes/Recipes";
 // import { useAuth } from "./redux/hooks/useAuth";
 // import {
 //   setRefetchedCredentials,
@@ -34,8 +36,17 @@ let router = createBrowserRouter(
           index: true,
           element: <Main />,
         },
+        {
+          path: "cocktails",
+          element: <Cocktails />,
+        },
+        {
+          path: "recipes",
+          element: <Recipes />,
+        },
       ],
     },
+
     // {
     //   path: "/movie-gallery",
     //   element: <SharedLayout />,

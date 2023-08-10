@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderStyled = styled.header`
@@ -67,7 +68,7 @@ export const NavList = styled.nav`
   gap: 50px;
 `;
 
-export const NavItem = styled.li`
+export const NavItem = styled(NavLink)`
   font-size: 18px;
   color: #fffdfa;
   font-family: "Roboto" sans-serif;
@@ -81,13 +82,17 @@ export const NavItem = styled.li`
   &:hover {
     color: #ff723e;
   }
+  &.active {
+    color: #ff723e;
+  }
 `;
 
 export const LangWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 10px;
+  width: 199px;
   @media screen and (max-width: 1279px) {
     display: none;
   }
