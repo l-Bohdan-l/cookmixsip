@@ -6,8 +6,12 @@ import {
   NavList,
   CompanyNameSpan,
   Wrapper,
+  NavItem,
+  LangWrapper,
+  FlagImg,
+  LangText,
 } from "./Header.styled";
-
+import usaFlag from "../../images/usa-flag.png";
 const Header = () => {
   return (
     <HeaderStyled>
@@ -16,10 +20,14 @@ const Header = () => {
           Cook<CompanyNameSpan>Mix</CompanyNameSpan>Sip
         </CompanyName>
         <NavList>
-          <li>Home</li>
-          <li>Cocktails</li>
-          <li>Recipes</li>
+          <NavItem>Home</NavItem>
+          <NavItem>Cocktails</NavItem>
+          <NavItem>Recipes</NavItem>
         </NavList>
+        <LangWrapper>
+          <FlagImg src={usaFlag} alt="usa flag" />
+          <LangText>ENG</LangText>
+        </LangWrapper>
         <Modal />
       </Wrapper>
     </HeaderStyled>

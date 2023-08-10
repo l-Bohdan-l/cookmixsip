@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
-import heroMobileImg from "../../images/hero/hero-mobile.jpg";
-import heroMedium from "../../images/hero/hero-medium.jpg";
-import { HeroImg, ImgWrapper, MainTitle, Section } from "./Hero.styled";
-import { fetchRandomCocktail } from "../../services/fetchCoctails";
+// import heroMobileImg from "../../images/hero/hero-mobile.jpg";
+// import heroMedium from "../../images/hero/hero-medium.jpg";
+import { ImgWrapper, MainTitle, Section } from "./Hero.styled";
+// import { fetchRandomCocktail } from "../../services/fetchCoctails";
 
 const Hero = () => {
   // const randomCocktail = fetchRandomCocktail();

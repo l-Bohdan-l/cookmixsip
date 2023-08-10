@@ -11,6 +11,7 @@ import {
   MainTitle,
   RandomItemDescriptionWrapper,
   RandomItemWrapper,
+  RandomItemsDiv,
   StyledRandom,
 } from "./Random.styled";
 import data from "../../aaaaa.json";
@@ -28,40 +29,48 @@ const Random = () => {
     <StyledRandom>
       <MainTitle> Random recipes </MainTitle>
       <MainSubTitle>Don't know what to choose ?</MainSubTitle>
-      <RandomItemWrapper>
-        <img src={randomCocktail.strDrinkThumb} alt={randomCocktail.strDrink} />
-        <RandomItemDescriptionWrapper>
-          <CocktailName>{randomCocktail.strDrink}</CocktailName>
-          {randomCocktail.strAlcoholic === "Alcoholic" ? (
-            <AlcoholIconWrapper>
-              <BiDrink color="#e2e2e2" size={20} />
-              <AlcoholIconText>Alcohol</AlcoholIconText>
-            </AlcoholIconWrapper>
-          ) : (
-            <AlcoholIconWrapper>
-              <MdNoDrinks color="#e2e2e2" size={20} />
-              <AlcoholIconText>Non-alcohol</AlcoholIconText>
-            </AlcoholIconWrapper>
-          )}
-        </RandomItemDescriptionWrapper>
-      </RandomItemWrapper>
-      <RandomItemWrapper second>
-        <img src={randomCocktail.strDrinkThumb} alt={randomCocktail.strDrink} />
-        <RandomItemDescriptionWrapper>
-          <CocktailName>{randomCocktail.strDrink}</CocktailName>
-          {randomCocktail.strAlcoholic === "Alcoholic" ? (
-            <AlcoholIconWrapper>
-              <BiDrink color="#e2e2e2" size={20} />
-              <AlcoholIconText>Alcohol</AlcoholIconText>
-            </AlcoholIconWrapper>
-          ) : (
-            <AlcoholIconWrapper>
-              <MdNoDrinks color="#e2e2e2" size={20} />
-              <AlcoholIconText>Non-alcohol</AlcoholIconText>
-            </AlcoholIconWrapper>
-          )}
-        </RandomItemDescriptionWrapper>
-      </RandomItemWrapper>
+      <RandomItemsDiv>
+        <RandomItemWrapper>
+          <img
+            src={randomCocktail.strDrinkThumb}
+            alt={randomCocktail.strDrink}
+          />
+          <RandomItemDescriptionWrapper>
+            <CocktailName>{randomCocktail.strDrink}</CocktailName>
+            {randomCocktail.strAlcoholic === "Alcoholic" ? (
+              <AlcoholIconWrapper>
+                <BiDrink color="#e2e2e2" size={20} />
+                <AlcoholIconText>Alcohol</AlcoholIconText>
+              </AlcoholIconWrapper>
+            ) : (
+              <AlcoholIconWrapper>
+                <MdNoDrinks color="#e2e2e2" size={20} />
+                <AlcoholIconText>Non-alcohol</AlcoholIconText>
+              </AlcoholIconWrapper>
+            )}
+          </RandomItemDescriptionWrapper>
+        </RandomItemWrapper>
+        <RandomItemWrapper second>
+          <img
+            src={randomCocktail.strDrinkThumb}
+            alt={randomCocktail.strDrink}
+          />
+          <RandomItemDescriptionWrapper>
+            <CocktailName>{randomCocktail.strDrink}</CocktailName>
+            {randomCocktail.strAlcoholic === "Alcoholic" ? (
+              <AlcoholIconWrapper>
+                <BiDrink color="#e2e2e2" size={20} />
+                <AlcoholIconText>Alcohol</AlcoholIconText>
+              </AlcoholIconWrapper>
+            ) : (
+              <AlcoholIconWrapper>
+                <MdNoDrinks color="#e2e2e2" size={20} />
+                <AlcoholIconText>Non-alcohol</AlcoholIconText>
+              </AlcoholIconWrapper>
+            )}
+          </RandomItemDescriptionWrapper>
+        </RandomItemWrapper>
+      </RandomItemsDiv>
     </StyledRandom>
   );
 };

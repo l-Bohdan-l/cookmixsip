@@ -2,11 +2,18 @@ import cocktailsmall from "../../images/facts/cocktail-small.jpg";
 import cocktailmedium from "../../images/facts/cocktail-medium.jpg";
 import kitchensmall from "../../images/facts/kitchen-small.jpg";
 import kitchenmedium from "../../images/facts/kitchen-medium.jpg";
-import { FactWrapper, Img, Text, TextWrapper, Title } from "./Facts.styled";
+import {
+  FactWrapper,
+  Img,
+  Section,
+  Text,
+  TextWrapper,
+  Title,
+} from "./Facts.styled";
 
 const Facts = () => {
   return (
-    <section>
+    <Section>
       <Title>Taste of History</Title>
       <FactWrapper>
         <picture>
@@ -47,7 +54,7 @@ const Facts = () => {
           </Text>
         </TextWrapper>
       </FactWrapper>
-    </section>
+    </Section>
   );
 };
 

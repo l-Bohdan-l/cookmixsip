@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { ContactsHeader } from "../Contacts/Header/ContactsHeader";
 import { Container } from "../Container/Container";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 export function SharedLayout() {
   const location = useLocation();
@@ -31,6 +32,7 @@ export function SharedLayout() {
           <Outlet />
         </Suspense>
       </Container>
+      <Footer />
       <ToastContainer
         position="top-right"
         autoClose={5000}

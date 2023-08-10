@@ -19,6 +19,8 @@ export const Wrapper = styled.div`
   } */
   @media screen and (min-width: 1280px) {
     width: 1280px;
+    justify-content: space-between;
+    padding: 25px 15px;
   }
   /* @media screen and (min-width: 1920px) {
     width: 1920px;
@@ -44,6 +46,9 @@ export const CompanyName = styled.p`
   color: #fffdfa;
   text-align: center;
   text-shadow: rgb(255 136 136) 3px 2px 5px;
+  @media screen and (min-width: 1280px) {
+    font-size: 32px;
+  }
 `;
 
 export const CompanyNameSpan = styled.span`
@@ -55,4 +60,51 @@ export const NavList = styled.nav`
   @media screen and (max-width: 1279px) {
     display: none;
   }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  gap: 50px;
+`;
+
+export const NavItem = styled.li`
+  font-size: 18px;
+  color: #fffdfa;
+  font-family: "Roboto" sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: 0.18px;
+  text-transform: capitalize;
+  cursor: pointer;
+
+  &:hover {
+    color: #ff723e;
+  }
+`;
+
+export const LangWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  @media screen and (max-width: 1279px) {
+    display: none;
+  }
+`;
+
+export const FlagImg = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+export const LangText = styled.p`
+  font-size: 18px;
+  color: #fffdfa;
+  font-family: "Roboto" sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: 0.18px;
+  text-transform: uppercase;
 `;

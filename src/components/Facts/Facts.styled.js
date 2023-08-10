@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const Section = styled.section`
+  padding-top: 30px;
+`;
+
 export const FactWrapper = styled.div`
   /* display: flex; */
   /* flex-direction: column;

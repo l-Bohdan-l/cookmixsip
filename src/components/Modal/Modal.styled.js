@@ -20,6 +20,9 @@ export const Overlay = styled.div`
 export const MenuButton = styled.div`
   width: 25px;
   overflow: hidden;
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
 `;
 
 export const MenuCheckbox = styled.input`

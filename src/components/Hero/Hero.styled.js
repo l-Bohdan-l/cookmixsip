@@ -43,4 +43,10 @@ export const MainTitle = styled.h1`
   left: 50%;
   transform: translate(-50%, -50%);
   text-shadow: rgb(0 0 0 / 36%) 0px 4px 4px;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 48px;
+    line-height: 1.2;
+    letter-spacing: 0.48px;
+  }
 `;
