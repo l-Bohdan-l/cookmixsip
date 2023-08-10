@@ -1,17 +1,17 @@
 import { TextField } from "@mui/material";
-import { SearchFieldStyled } from "./Cocktails.styled";
+import { SearchFieldStyled, SectionStyled } from "./Cocktails.styled";
 
 const Cocktails = () => {
   return (
-    <section>
+    <SectionStyled>
       <h1>Cocktails</h1>
       <form>
         <label>
           Name:
-          <input type="text" name="name" />
+          <SearchFieldStyled type="text" name="name" />
         </label>
       </form>
-    </section>
+    </SectionStyled>
   );
 };
 
