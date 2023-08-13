@@ -1,7 +1,13 @@
 import { TextField } from "@mui/material";
 import {
   Form,
+  IngerdientsWrapper,
+  IngredientItem,
+  IngredientsList,
   InputWrapper,
+  Item,
+  ItemIsAlcoholic,
+  ItemTitle,
   LabelSearchStyled,
   List,
   SearchBtn,
@@ -39,13 +45,17 @@ const Cocktails = () => {
             }
           }
           return (
-            <li key={cocktail.idDrink}>
-              <h2>{cocktail.strDrink}</h2>
-              <p>{cocktail.strAlcoholic}</p>
-              {ingredients.map((ingredient, index) => (
-                <p key={index}>{ingredient}</p>
-              ))}
-            </li>
+            <Item key={cocktail.idDrink}>
+              <ItemTitle>{cocktail.strDrink}</ItemTitle>
+              <IngerdientsWrapper>
+                <ItemIsAlcoholic>{cocktail.strAlcoholic}</ItemIsAlcoholic>
+                <IngredientsList>
+                  {ingredients.map((ingredient, index) => (
+                    <IngredientItem key={index}>{ingredient}</IngredientItem>
+                  ))}
+                </IngredientsList>
+              </IngerdientsWrapper>
+            </Item>
           );
         })}
       </List>
