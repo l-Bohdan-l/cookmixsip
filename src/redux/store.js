@@ -1,16 +1,16 @@
 import {
   // combineReducers,
-  configureStore
-} from '@reduxjs/toolkit'
-import {
-  // contactsSlice,
-  // contactsReducer
-} from './contacts/contactsSlice'
-import { filterSlice } from './contacts/filterSlice'
-import { contactsApi } from './contacts/contactsApi'
-import { authApi } from './authSlice'
-import { setupListeners } from '@reduxjs/toolkit/query'
-import { authSlice } from './authSlice'
+  configureStore,
+} from "@reduxjs/toolkit";
+import // contactsSlice,
+// contactsReducer
+"./contacts/contactsSlice";
+import { filterSlice } from "./contacts/filterSlice";
+import { contactsApi } from "./contacts/contactsApi";
+import { authApi } from "./authSlice";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { authSlice } from "./authSlice";
+import { cocktailApi } from "./cocktails/cocktailsSlice";
 
 import {
   persistReducer,
@@ -21,17 +21,19 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
-  key: 'auth',
+  key: "auth",
   storage,
-  whitelist: ['token'],
-}
+  whitelist: ["token"],
+};
 
-export const authCredentialsPersistReducer = persistReducer(persistConfig, authSlice.reducer)
+export const authCredentialsPersistReducer = persistReducer(
+  persistConfig,
+  authSlice.reducer
+);
 
 // const combineReducer = combineReducers({
 //   contacts: contactsSlice.reducer,
@@ -40,34 +42,31 @@ export const authCredentialsPersistReducer = persistReducer(persistConfig, authS
 
 export const store = configureStore({
   reducer: {
-    [authApi.reducerPath]: authApi.reducer,
-    [contactsApi.reducerPath]: contactsApi.reducer,
-    filter: filterSlice.reducer,
+    [cocktailApi.reducerPath]: cocktailApi.reducer,
+    // [authApi.reducerPath]: authApi.reducer,
+    // [contactsApi.reducerPath]: contactsApi.reducer,
+    // filter: filterSlice.reducer,
     credentials: authCredentialsPersistReducer,
-    
   },
-  middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(
-    {
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
     }),
     contactsApi.middleware,
-    authApi.middleware],
-})
+    // authApi.middleware,
+    cocktailApi.middleware,
+  ],
+});
 
+export const persistor = persistStore(store);
 
-export const persistor = persistStore(store); 
-
-setupListeners(store.dispatch)
+setupListeners(store.dispatch);
 // const rootReducer  = combineReducers({
 //   contactsList: contactsSlice.reducer,
 //   filter: filterSlice.reducer,
 // });
-
-
-
-
 
 // export const store = configureStore({
 //   reducer: contactsPersistReducer,
@@ -83,4 +82,3 @@ setupListeners(store.dispatch)
 //         },
 //     }),
 // })
-

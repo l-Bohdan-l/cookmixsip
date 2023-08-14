@@ -48,6 +48,10 @@ export const LogoText = styled.p`
   line-height: normal;
   letter-spacing: -0.928px;
   text-align: center;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 30px;
+  }
 `;
 
 export const CopyRight = styled.p`
@@ -59,4 +63,8 @@ export const CopyRight = styled.p`
   text-align: center;
   margin-top: 15px;
   margin-bottom: 0;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
 `;

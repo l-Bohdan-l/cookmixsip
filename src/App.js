@@ -17,6 +17,7 @@ import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 import { persistor } from "./redux/store";
 import Cocktails from "./pages/Cocktails/Cocktails";
 import Recipes from "./pages/Recipes/Recipes";
+import CocktailDetails from "./components/Cocktails/CocktailDetails/CocktailDetails";
 // import { useAuth } from "./redux/hooks/useAuth";
 // import {
 //   setRefetchedCredentials,
@@ -39,6 +40,10 @@ let router = createBrowserRouter(
         {
           path: "cocktails",
           element: <Cocktails />,
+        },
+        {
+          path: "cocktails/:cocktailId",
+          element: <CocktailDetails />,
         },
         {
           path: "recipes",
