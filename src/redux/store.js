@@ -11,6 +11,7 @@ import { authApi } from "./authSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { authSlice } from "./authSlice";
 import { cocktailApi } from "./cocktails/cocktailsSlice";
+import { recipeApi } from "./recipe/recipeslice";
 
 import {
   persistReducer,
@@ -43,6 +44,7 @@ export const authCredentialsPersistReducer = persistReducer(
 export const store = configureStore({
   reducer: {
     [cocktailApi.reducerPath]: cocktailApi.reducer,
+    [recipeApi.reducerPath]: recipeApi.reducer,
     // [authApi.reducerPath]: authApi.reducer,
     // [contactsApi.reducerPath]: contactsApi.reducer,
     // filter: filterSlice.reducer,
@@ -57,6 +59,7 @@ export const store = configureStore({
     contactsApi.middleware,
     // authApi.middleware,
     cocktailApi.middleware,
+    recipeApi.middleware,
   ],
 });
 

@@ -54,7 +54,7 @@ export const MainSubTitle = styled.p`
   }
 `;
 
-export const CocktailName = styled.h3`
+export const RandomItemName = styled.h3`
   color: #e2e2e2;
   text-shadow: 0px 0px 5px #000000;
   text-align: center;
@@ -131,7 +131,7 @@ export const RandomItemsDiv = styled.div`
   }
 `;
 
-export const AlcoholIconWrapper = styled.div`
+export const ExtraDescrWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,7 +144,7 @@ export const AlcoholIconWrapper = styled.div`
   }
 `;
 
-export const AlcoholIconText = styled.p`
+export const ExtraDescrText = styled.p`
   color: #e2e2e2;
   font-size: 14px;
   font-style: normal;

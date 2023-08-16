@@ -27,9 +27,17 @@ export const cocktailApi = createApi({
       }),
       invalidatesTags: ["Cocktails"],
     }),
+    getRandomCocktail: builder.query({
+      query: () => ({
+        url: `random.php`,
+      }),
+    }),
   }),
 });
 // });
 
-export const { useSearchCocktailsQuery, useSearchCocktailByIdQuery } =
-  cocktailApi;
+export const {
+  useSearchCocktailsQuery,
+  useSearchCocktailByIdQuery,
+  useGetRandomCocktailQuery,
+} = cocktailApi;
