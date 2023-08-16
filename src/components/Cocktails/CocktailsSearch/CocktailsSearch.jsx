@@ -19,17 +19,17 @@ import {
   SectionStyled,
 } from "./CocktailsSearch.styled";
 
-import list from "../../../cocktailList.json";
+// import list from "../../../cocktailList.json";
 import { useEffect, useState } from "react";
-import { useSearchCocktailsQuery } from "../../../redux/cocktails/cocktailsSlice";
 import { toast } from "react-toastify";
 import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchCocktailsQuery } from "../../../redux/cocktails/cocktailsSlice";
 
 const CocktailsSearch = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [cocktails, setCocktails] = useState(null);
   const [searchValue, setSearchValue] = useState("");
   const [cocktailName, setCocktailName] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") ?? "";
 
   const { data: cocktailsList } = useSearchCocktailsQuery(cocktailName, {

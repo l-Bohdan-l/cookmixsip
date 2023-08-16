@@ -21,8 +21,14 @@ export const recipeApi = createApi({
       }),
       invalidatesTags: ["Recipe"],
     }),
+    searchRecipeByName: builder.query({
+      query: (name) => ({
+        url: `search.php?s=${name}`,
+      }),
+    }),
   }),
 });
 // });
 
-export const { useGetRandomRecipeQuery } = recipeApi;
+export const { useGetRandomRecipeQuery, useSearchRecipeByNameQuery } =
+  recipeApi;
