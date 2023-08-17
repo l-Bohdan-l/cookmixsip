@@ -5,6 +5,12 @@ import {
   Form,
   InputWrapper,
   LabelSearchStyled,
+  List,
+  ListItem,
+  ListItemWrapper,
+  RecipeDescriptionWrapper,
+  RecipeImg,
+  RecipeName,
   SearchBtn,
   SearchFieldStyled,
   SectionStyled,
@@ -47,11 +53,12 @@ const RecipesSearch = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    if (form.cocktailName.value.trim() === "") {
+    console.log(form.recipeName.value);
+    if (form.recipeName.value.trim() === "") {
       return toast.error("Please enter cocktail name");
     }
     const nextParams =
-      form.cocktailName.value !== "" ? { search: form.cocktailName.value } : {};
+      form.recipeName.value !== "" ? { search: form.recipeName.value } : {};
     setSearchParams(nextParams);
 
     // console.log(form.cocktailName.value);
@@ -61,10 +68,7 @@ const RecipesSearch = () => {
 
   return (
     <SectionStyled>
-      <Form
-        //   onSubmit={handleSearchSubmit}
-        autoComplete="off"
-      >
+      <Form onSubmit={handleSearchSubmit} autoComplete="off">
         <LabelSearchStyled htmlFor="search-recipe">
           Find your recipe:
         </LabelSearchStyled>
@@ -82,9 +86,22 @@ const RecipesSearch = () => {
         </InputWrapper>
       </Form>
       {recipes && (
-        <ul>
-          <li></li>
-        </ul>
+        <List>
+          {recipes.map((recipe) => (
+            <ListItem
+              key={recipe.idMeal}
+              to={`${recipe.idMeal}`}
+              state={{ from: location }}
+            >
+              <ListItemWrapper>
+                <RecipeImg src={recipe.strMealThumb} alt={recipe.strMeal} />
+                <RecipeDescriptionWrapper>
+                  <RecipeName>{recipe.strMeal}</RecipeName>
+                </RecipeDescriptionWrapper>
+              </ListItemWrapper>
+            </ListItem>
+          ))}
+        </List>
       )}
     </SectionStyled>
   );

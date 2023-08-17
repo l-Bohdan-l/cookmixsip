@@ -26,9 +26,17 @@ export const recipeApi = createApi({
         url: `search.php?s=${name}`,
       }),
     }),
+    getRecipeById: builder.query({
+      query: (id) => ({
+        url: `lookup.php?i=${id}`,
+      }),
+    }),
   }),
 });
 // });
 
-export const { useGetRandomRecipeQuery, useSearchRecipeByNameQuery } =
-  recipeApi;
+export const {
+  useGetRandomRecipeQuery,
+  useSearchRecipeByNameQuery,
+  useGetRecipeByIdQuery,
+} = recipeApi;

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const SectionStyled = styled.section`
@@ -6,14 +7,6 @@ export const SectionStyled = styled.section`
   padding-bottom: 20px;
   padding-top: 20px;
 `;
-
-// export const SearchFieldStyled = styled(TextField)`
-//   width: 100%;
-//   margin: 0 auto;
-//   padding: 0 15px;
-//   /* background-color: antiquewhite; */
-//   border-bottom: 1px solid red;
-// `;
 
 export const SearchFieldStyled = styled.input`
   border: none;
@@ -96,4 +89,71 @@ export const SearchBtn = styled.button`
     font-size: 20px;
     padding: 10px 20px;
   }
+`;
+
+export const List = styled.ul`
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+`;
+
+export const ListItem = styled(Link)`
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 5px #000000;
+  }
+`;
+
+export const ListItemWrapper = styled.div`
+  position: relative;
+  width: 290px;
+  height: 290px;
+`;
+
+export const RecipeName = styled.h3`
+  color: #e2e2e2;
+  text-shadow: 0px 0px 5px #000000;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 24px */
+  letter-spacing: 0.072px;
+  margin-bottom: 5px;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%; /* 24px */
+    letter-spacing: 0.09px;
+    margin-bottom: 10px;
+  }
+`;
+
+export const RecipeDescriptionWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(183 91 0 / 45%);
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 0px 5px #000000;
+  border-radius: 0 0 15px 15px;
+`;
+
+export const RecipeImg = styled.img`
+  border-radius: 15px;
 `;

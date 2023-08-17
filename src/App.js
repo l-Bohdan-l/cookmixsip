@@ -18,6 +18,7 @@ import { persistor } from "./redux/store";
 import Cocktails from "./pages/Cocktails/Cocktails";
 import Recipes from "./pages/Recipes/Recipes";
 import CocktailDetails from "./components/Cocktails/CocktailDetails/CocktailDetails";
+import RecipeDetails from "./components/Recipes/RecipeDetails/RecipeDetails";
 // import { useAuth } from "./redux/hooks/useAuth";
 // import {
 //   setRefetchedCredentials,
@@ -48,6 +49,10 @@ let router = createBrowserRouter(
         {
           path: "recipes",
           element: <Recipes />,
+        },
+        {
+          path: "recipes/:recipeId",
+          element: <RecipeDetails />,
         },
       ],
     },

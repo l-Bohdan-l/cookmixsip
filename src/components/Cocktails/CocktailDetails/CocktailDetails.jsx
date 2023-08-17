@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
-import { useSearchCocktailByIdQuery } from "../../../redux/cocktails/cocktailsSlice";
 import { useEffect, useRef, useState } from "react";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { useSearchCocktailByIdQuery } from "../../../redux/cocktails/cocktailsSlice";
 
 import {
   BtnIcon,
