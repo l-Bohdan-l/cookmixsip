@@ -170,3 +170,44 @@ export const BtnIcon = styled(BsFillArrowLeftCircleFill)`
     display: none;
   }
 `;
+
+export const YoutubeLink = styled.a`
+  position: relative;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.051px;
+  margin-bottom: 10px;
+  color: #e2e2e2;
+  letter-spacing: 0.051px;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    /* background-color: #000;
+    color: #e2e2e2; */
+    /* text-decoration: underline; */
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #e2e2e2;
+    transition: all 250ms ease-in-out;
+  }
+  &:hover::after {
+    width: 100%;
+  }
+`;
+
+export const YoutubeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

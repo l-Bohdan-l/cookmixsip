@@ -13,6 +13,9 @@ import {
   RecipeImage,
   RecipeName,
   SectionStyled,
+  YoutubeLink,
+  YoutubeText,
+  YoutubeWrapper,
 } from "./RecipeDetails.styled";
 import { useGetRecipeByIdQuery } from "../../../redux/recipe/recipeslice";
 
@@ -52,7 +55,7 @@ const RecipeDetails = () => {
       }
       setIngredients(ingredientsArr);
       setMeasures(measuresArr);
-      setYoutube(recipe.meals[0].strYoutube.replace("watch?v=", "embed/"));
+      setYoutube(recipe.meals[0].strYoutube);
     }
   }, [recipe]);
 
@@ -88,10 +91,19 @@ const RecipeDetails = () => {
           </IngredientsList>
           <InstructionTitle>Instruction:</InstructionTitle>
           <Instruction>{recipe.meals[0].strInstructions}</Instruction>
-          <iframe
+          {/* <iframe
             src={`${youtube}?autoplay=0&mute=1`}
             title={recipe.meals[0].strMeal}
-          ></iframe>
+          ></iframe> */}
+          <YoutubeWrapper>
+            <YoutubeLink
+              href={youtube}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Need video Help ?
+            </YoutubeLink>
+          </YoutubeWrapper>
         </>
       )}
     </SectionStyled>
