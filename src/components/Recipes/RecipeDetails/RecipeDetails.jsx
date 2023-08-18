@@ -17,12 +17,12 @@ import {
   YoutubeText,
   YoutubeWrapper,
 } from "./RecipeDetails.styled";
-import { useGetRecipeByIdQuery } from "../../../redux/recipe/recipeslice";
+import { useGetRecipeByIdQuery } from "../../../redux/recipe/mealsSlice";
 
 const RecipeDetails = () => {
-  const { recipeId } = useParams();
-  const { data: recipe, isSuccess } = useGetRecipeByIdQuery(recipeId, {
-    skip: !recipeId,
+  const { mealId } = useParams();
+  const { data: recipe, isSuccess } = useGetRecipeByIdQuery(mealId, {
+    skip: !mealId,
   });
 
   console.log("recipe", recipe, isSuccess);
@@ -95,15 +95,17 @@ const RecipeDetails = () => {
             src={`${youtube}?autoplay=0&mute=1`}
             title={recipe.meals[0].strMeal}
           ></iframe> */}
-          <YoutubeWrapper>
-            <YoutubeLink
-              href={youtube}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Need video Help ?
-            </YoutubeLink>
-          </YoutubeWrapper>
+          {youtube && (
+            <YoutubeWrapper>
+              <YoutubeLink
+                href={youtube}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Need video Help ?
+              </YoutubeLink>
+            </YoutubeWrapper>
+          )}
         </>
       )}
     </SectionStyled>

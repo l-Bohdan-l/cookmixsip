@@ -15,7 +15,7 @@ import {
   SearchFieldStyled,
   SectionStyled,
 } from "./RecipesSearch.styled";
-import { useSearchRecipeByNameQuery } from "../../../redux/recipe/recipeslice";
+import { useSearchRecipeByNameQuery } from "../../../redux/recipe/mealsSlice";
 
 const RecipesSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();

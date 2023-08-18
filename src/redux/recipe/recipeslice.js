@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const recipeApi = createApi({
   reducerPath: "recipeApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://www.themealdb.com/api/json/v1/1/",
+    baseUrl: "https://64df62ca71c3335b258288cf.mockapi.io/api/v1/",
     //     prepareHeaders: (headers, { getState }) => {
     //       const token = getState().credentials.token;
     //       if (token) {
@@ -13,30 +13,24 @@ export const recipeApi = createApi({
     //       return headers;
     //     },
   }),
-  tagTypes: ["Recipe"],
+  tagTypes: ["Recipes"],
   endpoints: (builder) => ({
-    getRandomRecipe: builder.query({
+    getRecipes: builder.query({
       query: () => ({
-        url: `random.php`,
+        url: `recipes`,
       }),
-      invalidatesTags: ["Recipe"],
+      invalidatesTags: ["Recipes"],
     }),
-    searchRecipeByName: builder.query({
-      query: (name) => ({
-        url: `search.php?s=${name}`,
+    addRecipe: builder.mutation({
+      query: (body) => ({
+        url: `recipes`,
+        method: "POST",
+        body,
       }),
-    }),
-    getRecipeById: builder.query({
-      query: (id) => ({
-        url: `lookup.php?i=${id}`,
-      }),
+      invalidatesTags: ["Recipes"],
     }),
   }),
 });
 // });
 
-export const {
-  useGetRandomRecipeQuery,
-  useSearchRecipeByNameQuery,
-  useGetRecipeByIdQuery,
-} = recipeApi;
+export const { useGetRecipesQuery } = recipeApi;

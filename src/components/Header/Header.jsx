@@ -12,7 +12,7 @@ import {
   LangText,
 } from "./Header.styled";
 import usaFlag from "../../images/usa-flag.png";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <HeaderStyled>
@@ -23,10 +23,8 @@ const Header = () => {
         <NavList>
           <NavItem to="/">Home</NavItem>
           <NavItem to="cocktails">Cocktails</NavItem>
-          <NavItem to="recipes">Recipes</NavItem>
-          {/* <NavLink>Home</NavLink>
-          <NavLink>Cocktails</NavLink>
-          <NavLink>Recipes</NavLink> */}
+          <NavItem to="meals">Meals</NavItem>
+          <NavItem to="your-recipes">Your recipes</NavItem>
         </NavList>
         <LangWrapper>
           <FlagImg src={usaFlag} alt="usa flag" />

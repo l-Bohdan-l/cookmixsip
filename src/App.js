@@ -1,8 +1,8 @@
 import "./App.css";
-import { useState, useEffect, lazy } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useState, useEffect, lazy } from "react";
+// import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
@@ -19,6 +19,9 @@ import Cocktails from "./pages/Cocktails/Cocktails";
 import Recipes from "./pages/Recipes/Recipes";
 import CocktailDetails from "./components/Cocktails/CocktailDetails/CocktailDetails";
 import RecipeDetails from "./components/Recipes/RecipeDetails/RecipeDetails";
+import YourRecipes from "./pages/YourRecipes/YourRecipesPage";
+import YourRecipesPage from "./pages/YourRecipes/YourRecipesPage";
+import AddRecipe from "./components/Recipes/AddRecipe/AddRecipe";
 // import { useAuth } from "./redux/hooks/useAuth";
 // import {
 //   setRefetchedCredentials,
@@ -47,12 +50,20 @@ let router = createBrowserRouter(
           element: <CocktailDetails />,
         },
         {
-          path: "recipes",
+          path: "meals",
           element: <Recipes />,
         },
         {
-          path: "recipes/:recipeId",
+          path: "meals/:mealId",
           element: <RecipeDetails />,
+        },
+        {
+          path: "your-recipes",
+          element: <YourRecipesPage />,
+        },
+        {
+          path: "your-recipes/add",
+          element: <AddRecipe />,
         },
       ],
     },

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { ListItem } from "./ModalContent.styled";
 
 const ModalContent = ({ onClose }) => {
@@ -11,7 +11,7 @@ const ModalContent = ({ onClose }) => {
       <ul>
         <ListItem>Home</ListItem>
         <ListItem>Cocktails</ListItem>
-        <ListItem>Recipes</ListItem>
+        <ListItem>Meals</ListItem>
       </ul>
     </div>
   );

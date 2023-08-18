@@ -11,7 +11,7 @@ import { authApi } from "./authSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { authSlice } from "./authSlice";
 import { cocktailApi } from "./cocktails/cocktailsSlice";
-import { recipeApi } from "./recipe/recipeslice";
+import { mealApi } from "./recipe/mealsSlice";
 
 import {
   persistReducer,
@@ -24,6 +24,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { recipeApi } from "./recipe/recipeSlice";
 
 const persistConfig = {
   key: "auth",
@@ -44,6 +45,7 @@ export const authCredentialsPersistReducer = persistReducer(
 export const store = configureStore({
   reducer: {
     [cocktailApi.reducerPath]: cocktailApi.reducer,
+    [mealApi.reducerPath]: mealApi.reducer,
     [recipeApi.reducerPath]: recipeApi.reducer,
     // [authApi.reducerPath]: authApi.reducer,
     // [contactsApi.reducerPath]: contactsApi.reducer,
@@ -59,6 +61,7 @@ export const store = configureStore({
     contactsApi.middleware,
     // authApi.middleware,
     cocktailApi.middleware,
+    mealApi.middleware,
     recipeApi.middleware,
   ],
 });

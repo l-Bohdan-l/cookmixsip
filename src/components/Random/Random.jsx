@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BiDrink } from "react-icons/bi";
 import { MdNoDrinks } from "react-icons/md";
 
-import { fetchRandomCocktail } from "../../services/fetchCoctails";
+// import { fetchRandomCocktail } from "../../services/fetchCoctails";
 import {
   ExtraDescrText,
   ExtraDescrWrapper,
@@ -14,31 +14,36 @@ import {
   RandomItemsDiv,
   StyledRandom,
 } from "./Random.styled";
-import data from "../../aaaaa.json";
+// import data from "../../aaaaa.json";
 import { useGetRandomCocktailQuery } from "../../redux/cocktails/cocktailsSlice";
-import { useGetRandomRecipeQuery } from "../../redux/recipe/recipeslice";
+import { useGetRandomRecipeQuery } from "../../redux/recipe/mealsSlice";
 
 const Random = () => {
   const [randomCocktail, setRandomCocktail] = useState(null);
-  const [randomRecipe, setRandomRecipe] = useState(null);
-  const { data: cocktailData, isFetching } = useGetRandomCocktailQuery();
-  const { data: recipeData, isFetching: isFetchingRecipe } =
-    useGetRandomRecipeQuery();
+  const [randomMeal, setRandomMeal] = useState(null);
+  const {
+    data: cocktailData,
+    // isFetching
+  } = useGetRandomCocktailQuery();
+  const {
+    data: mealData,
+    // isFetching: isFetchingMeal
+  } = useGetRandomRecipeQuery();
 
   useEffect(() => {
-    if (cocktailData && recipeData) {
+    if (cocktailData && mealData) {
       setRandomCocktail(cocktailData.drinks[0]);
-      setRandomRecipe(recipeData.meals[0]);
+      setRandomMeal(mealData.meals[0]);
     }
-  }, [cocktailData, recipeData]);
+  }, [cocktailData, mealData]);
 
-  console.log(randomCocktail, randomRecipe);
+  console.log(randomCocktail, randomMeal);
 
   return (
     <StyledRandom>
       <MainTitle> Random recipes </MainTitle>
       <MainSubTitle>Don't know what to choose ?</MainSubTitle>
-      {randomCocktail && randomRecipe && (
+      {randomCocktail && randomMeal && (
         <RandomItemsDiv>
           <RandomItemWrapper>
             <img
@@ -61,11 +66,11 @@ const Random = () => {
             </RandomItemDescriptionWrapper>
           </RandomItemWrapper>
           <RandomItemWrapper second>
-            <img src={randomRecipe.strMealThumb} alt={randomRecipe.strMeal} />
+            <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} />
             <RandomItemDescriptionWrapper>
-              <RandomItemName>{randomRecipe.strMeal}</RandomItemName>
+              <RandomItemName>{randomMeal.strMeal}</RandomItemName>
               <ExtraDescrWrapper>
-                <ExtraDescrText>{randomRecipe.strArea}</ExtraDescrText>
+                <ExtraDescrText>{randomMeal.strArea}</ExtraDescrText>
               </ExtraDescrWrapper>
             </RandomItemDescriptionWrapper>
           </RandomItemWrapper>
