@@ -10,8 +10,8 @@ import {
   SearchBtn,
   SearchFieldStyled,
 } from "./YourRecipes.styled";
-import { AiFillPlusCircle } from "react-icons/ai";
-import { useGetRecipesQuery } from "../../../redux/recipe/recipeslice";
+// import { AiFillPlusCircle } from "react-icons/ai";
+import { useGetRecipesQuery } from "../../../redux/recipe/recipeSlice";
 
 const YourRecipes = () => {
   const location = useLocation();
