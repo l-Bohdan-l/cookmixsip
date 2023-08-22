@@ -1,14 +1,20 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import {
+  AddIngredientButton,
+  ChooseAlcoholType,
   FormStyled,
   IngredientWrapper,
   InputStyled,
   LabelStyled,
   MealTypeWrapper,
+  RadioField,
+  RecipeTypeTitle,
   Section,
+  SubmitButton,
   Title,
 } from "./AddRecipe.styled";
+import { TextArea } from "../../TextArea/TextArea";
 
 const AddRecipe = () => {
   const initialState = {
@@ -17,8 +23,8 @@ const AddRecipe = () => {
     url: "",
     ingredients: [
       {
-        name: "",
-        amount: "",
+        ingredientsName: "",
+        ingredientsAmount: "",
       },
     ],
   };
@@ -33,11 +39,14 @@ const AddRecipe = () => {
       })
     ),
     mealType: Yup.string(),
-    alcoholType: Yup.string(),
+    alcoholType: Yup.string().oneOf(
+      ["alcohol", "non-alcohol"],
+      "Invalid Job Type"
+    ),
   });
   const handleSubmit = (values) => {
     // e.preventDefault();
-    console.log("submit");
+    console.log("submit", values);
   };
 
   return (
@@ -54,16 +63,23 @@ const AddRecipe = () => {
             <InputStyled id="name" type="text" name="name" placeholder="Cake" />
             <ErrorMessage name="name" component="p" />
           </LabelStyled>
-          <LabelStyled htmlFor="description">
+          {/* <LabelStyled htmlFor="description">
             Description
             <InputStyled
               id="description"
-              type="text"
+              as="textarea"
+              // type="text"
               name="description"
               placeholder="Add sugar"
+              onChange={(e) => console.log(e.target.value)}
             />
-            <ErrorMessage name="name" component="p" />
-          </LabelStyled>
+            <ErrorMessage name="description" component="p" />
+          </LabelStyled> */}
+          <TextArea
+            label="Description"
+            name="description"
+            placeholder="add sugar"
+          />
           <LabelStyled htmlFor="url">
             Url
             <InputStyled
@@ -72,7 +88,7 @@ const AddRecipe = () => {
               name="url"
               placeholder="cookmixsip.com"
             />
-            <ErrorMessage name="name" component="p" />
+            <ErrorMessage name="url" component="p" />
           </LabelStyled>
           <IngredientWrapper>
             <LabelStyled htmlFor="ingredients">
@@ -80,44 +96,52 @@ const AddRecipe = () => {
               <InputStyled
                 id="ingredients"
                 type="text"
-                name="ingredientsName"
+                name="ingredients[0].ingredientsName"
                 placeholder="Sugar"
               />
               <InputStyled
                 id="ingredients"
                 type="text"
-                name="ingredientsAmount"
+                name="ingredients[0].ingredientsAmount"
                 placeholder="1 gram"
               />
-              <ErrorMessage name="name" component="p" />
+              <ErrorMessage name="ingredientsName" component="p" />
+              <ErrorMessage name="ingredientsAmount" component="p" />
             </LabelStyled>
-            <button type="button">Add ingredient</button>
+            <AddIngredientButton type="button">
+              Add ingredient
+            </AddIngredientButton>
           </IngredientWrapper>
           <div>
-            <span>Choose recipe type</span>
+            <RecipeTypeTitle>Choose recipe type</RecipeTypeTitle>
             <MealTypeWrapper>
               <LabelStyled>
                 Meal
-                <Field type="radio" name="mealType" value="Meal" />
-                <ErrorMessage name="name" component="p" />
+                <RadioField type="radio" name="mealType" value="Meal" />
+                <ErrorMessage name="mealType" component="p" />
               </LabelStyled>
               <LabelStyled>
                 Cocktail
-                <Field type="radio" name="mealType" value="Cocktail" />
-                <ErrorMessage name="name" component="p" />
+                <RadioField type="radio" name="mealType" value="Cocktail" />
+                <ErrorMessage name="mealType" component="p" />
               </LabelStyled>
             </MealTypeWrapper>
           </div>
           <LabelStyled htmlFor="alcoholType">
             Choose alcohol type
-            <Field id="alcoholType" name="alcoholType" as="select">
+            <ChooseAlcoholType
+              id="alcoholType"
+              name="alcoholType"
+              component="select"
+              // multiple={true}
+            >
               <option value="alcohol">Alcohol</option>
               <option value="non-alcohol">Non alcohol</option>
-            </Field>
-            <ErrorMessage name="name" component="p" />
+            </ChooseAlcoholType>
+            <ErrorMessage name="alcoholType" component="p" />
           </LabelStyled>
 
-          <button type="submit">Submit</button>
+          <SubmitButton type="submit">Submit</SubmitButton>
         </FormStyled>
       </Formik>
     </Section>
