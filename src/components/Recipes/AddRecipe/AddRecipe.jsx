@@ -15,8 +15,10 @@ import {
   Title,
 } from "./AddRecipe.styled";
 import { TextArea } from "../../TextArea/TextArea";
+import { useState } from "react";
 
 const AddRecipe = () => {
+  const [ingredientCounter, setIngredientCounter] = useState(0);
   const initialState = {
     name: "",
     description: "",
@@ -47,6 +49,40 @@ const AddRecipe = () => {
   const handleSubmit = (values) => {
     // e.preventDefault();
     console.log("submit", values);
+  };
+
+  const addIngredient = () => {
+    const ingredientLabel = document.getElementById("ingredientLabel");
+    console.log(ingredientLabel);
+    setIngredientCounter(ingredientCounter + 1);
+    // const newIngredient = document.createElement(
+    //   <>
+    //     <InputStyled
+    //       id="ingredients"
+    //       type="text"
+    //       name={`ingredients[${ingredientCounter}].ingredientsName`}
+    //       placeholder="Sugar"
+    //     />
+    //     <ErrorMessage name="ingredientsName" component="p" />
+    //     <InputStyled
+    //       id="ingredients"
+    //       type="text"
+    //       name={`ingredients[${ingredientCounter}].ingredientsAmount`}
+    //       placeholder="1 gram"
+    //     />
+    //     <ErrorMessage name="ingredientsAmount" component="p" />
+    //   </>
+    // );
+    const newIngredient = document.createElement("input");
+    newIngredient.setAttribute("type", "text");
+    newIngredient.setAttribute(
+      "name",
+      `ingredients[${ingredientCounter}].ingredientsName`
+    );
+    newIngredient.setAttribute("placeholder", "Sugar");
+
+    ingredientLabel.append(newIngredient);
+    console.log("counter", ingredientCounter);
   };
 
   return (
@@ -91,7 +127,7 @@ const AddRecipe = () => {
             <ErrorMessage name="url" component="p" />
           </LabelStyled>
           <IngredientWrapper>
-            <LabelStyled htmlFor="ingredients">
+            <LabelStyled id="ingredientLabel" htmlFor="ingredients">
               Ingredients
               <InputStyled
                 id="ingredients"
@@ -99,16 +135,16 @@ const AddRecipe = () => {
                 name="ingredients[0].ingredientsName"
                 placeholder="Sugar"
               />
+              <ErrorMessage name="ingredientsName" component="p" />
               <InputStyled
                 id="ingredients"
                 type="text"
                 name="ingredients[0].ingredientsAmount"
                 placeholder="1 gram"
               />
-              <ErrorMessage name="ingredientsName" component="p" />
               <ErrorMessage name="ingredientsAmount" component="p" />
             </LabelStyled>
-            <AddIngredientButton type="button">
+            <AddIngredientButton type="button" onClick={addIngredient}>
               Add ingredient
             </AddIngredientButton>
           </IngredientWrapper>
