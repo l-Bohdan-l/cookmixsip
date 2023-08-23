@@ -174,3 +174,7 @@ export const RecipeTypeTitle = styled.span`
     font-size: 25px;
   }
 `;
+
+export const IngredientsListWrapper = styled.div`
+  margin-bottom: 10px;
+`;

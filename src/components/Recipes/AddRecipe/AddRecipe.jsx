@@ -1,10 +1,11 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik, FieldArray } from "formik";
 import * as Yup from "yup";
 import {
   AddIngredientButton,
   ChooseAlcoholType,
   FormStyled,
   IngredientWrapper,
+  IngredientsListWrapper,
   InputStyled,
   LabelStyled,
   MealTypeWrapper,
@@ -19,6 +20,13 @@ import { useState } from "react";
 
 const AddRecipe = () => {
   const [ingredientCounter, setIngredientCounter] = useState(0);
+  const [ingredients, setIngredients] = useState([
+    {
+      ingredientsName: "",
+      ingredientsAmount: "",
+    },
+  ]);
+
   const initialState = {
     name: "",
     description: "",
@@ -29,7 +37,10 @@ const AddRecipe = () => {
         ingredientsAmount: "",
       },
     ],
+    mealType: "",
+    alcoholType: "",
   };
+  console.log("ingr", ingredients, "state", initialState.ingredients);
   const schema = Yup.object({
     name: Yup.string(),
     description: Yup.string(),
@@ -52,37 +63,12 @@ const AddRecipe = () => {
   };
 
   const addIngredient = () => {
-    const ingredientLabel = document.getElementById("ingredientLabel");
-    console.log(ingredientLabel);
     setIngredientCounter(ingredientCounter + 1);
-    // const newIngredient = document.createElement(
-    //   <>
-    //     <InputStyled
-    //       id="ingredients"
-    //       type="text"
-    //       name={`ingredients[${ingredientCounter}].ingredientsName`}
-    //       placeholder="Sugar"
-    //     />
-    //     <ErrorMessage name="ingredientsName" component="p" />
-    //     <InputStyled
-    //       id="ingredients"
-    //       type="text"
-    //       name={`ingredients[${ingredientCounter}].ingredientsAmount`}
-    //       placeholder="1 gram"
-    //     />
-    //     <ErrorMessage name="ingredientsAmount" component="p" />
-    //   </>
-    // );
-    const newIngredient = document.createElement("input");
-    newIngredient.setAttribute("type", "text");
-    newIngredient.setAttribute(
-      "name",
-      `ingredients[${ingredientCounter}].ingredientsName`
-    );
-    newIngredient.setAttribute("placeholder", "Sugar");
-
-    ingredientLabel.append(newIngredient);
-    console.log("counter", ingredientCounter);
+    const newIngr = {
+      ingredientsName: "",
+      ingredientsAmount: "",
+    };
+    setIngredients((prevState) => [...prevState, newIngr]);
   };
 
   return (
@@ -129,7 +115,93 @@ const AddRecipe = () => {
           <IngredientWrapper>
             <LabelStyled id="ingredientLabel" htmlFor="ingredients">
               Ingredients
-              <InputStyled
+              <FieldArray name="ingredients">
+                {(fieldArrayProps) => {
+                  const { push, remove, form } = fieldArrayProps;
+                  const { values } = form;
+                  const { ingredients } = values;
+                  console.log("fieldArrayProps", fieldArrayProps);
+                  return (
+                    <div>
+                      {ingredients.map((ingredient, index) => {
+                        return (
+                          <IngredientsListWrapper key={index}>
+                            <InputStyled
+                              id="ingredients"
+                              type="text"
+                              name={`ingredients[${index}].ingredientsName`}
+                              // name="ingredients[0].ingredientsName"
+                              placeholder="Sugar"
+                              // value={ingredient.ingredientsName}
+                            />
+
+                            <ErrorMessage
+                              name="ingredientsName"
+                              component="p"
+                            />
+                            <InputStyled
+                              id="ingredients"
+                              type="text"
+                              // name="ingredients[0].ingredientsAmount"
+                              name={`ingredients[${index}].ingredientsAmount`}
+                              placeholder="1 gram"
+                              // value={ingredient.ingredientsAmount}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                remove(index);
+                              }}
+                            >
+                              -
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                push({
+                                  ingredientsName: "",
+                                  ingredientsAmount: "",
+                                });
+                              }}
+                            >
+                              +
+                            </button>
+                            <ErrorMessage
+                              name="ingredientsAmount"
+                              component="p"
+                            />
+                          </IngredientsListWrapper>
+                        );
+                      })}
+                    </div>
+                  );
+                }}
+              </FieldArray>
+              {/* {ingredients.map((ingredient, index) => {
+                return (
+                  <IngredientsListWrapper key={index}>
+                    <InputStyled
+                      id="ingredients"
+                      type="text"
+                      name={`ingredients[${index}].ingredientsName`}
+                      // name="ingredients[0].ingredientsName"
+                      placeholder="Sugar"
+                      // value={ingredient.ingredientsName}
+                    />
+                    <ErrorMessage name="ingredientsName" component="p" />
+                    <InputStyled
+                      id="ingredients"
+                      type="text"
+                      // name="ingredients[0].ingredientsAmount"
+                      name={`ingredients[${index}].ingredientsAmount`}
+                      placeholder="1 gram"
+                      // value={ingredient.ingredientsAmount}
+                    />
+                    <ErrorMessage name="ingredientsAmount" component="p" />
+                  </IngredientsListWrapper>
+                );
+              })} */}
+              {/* <InputStyled
                 id="ingredients"
                 type="text"
                 name="ingredients[0].ingredientsName"
@@ -142,7 +214,7 @@ const AddRecipe = () => {
                 name="ingredients[0].ingredientsAmount"
                 placeholder="1 gram"
               />
-              <ErrorMessage name="ingredientsAmount" component="p" />
+              <ErrorMessage name="ingredientsAmount" component="p" /> */}
             </LabelStyled>
             <AddIngredientButton type="button" onClick={addIngredient}>
               Add ingredient
@@ -163,19 +235,21 @@ const AddRecipe = () => {
               </LabelStyled>
             </MealTypeWrapper>
           </div>
-          <LabelStyled htmlFor="alcoholType">
-            Choose alcohol type
-            <ChooseAlcoholType
-              id="alcoholType"
-              name="alcoholType"
-              component="select"
-              // multiple={true}
-            >
-              <option value="alcohol">Alcohol</option>
-              <option value="non-alcohol">Non alcohol</option>
-            </ChooseAlcoholType>
-            <ErrorMessage name="alcoholType" component="p" />
-          </LabelStyled>
+          {initialState.mealType === "cocktail" && (
+            <LabelStyled htmlFor="alcoholType">
+              Choose alcohol type
+              <ChooseAlcoholType
+                id="alcoholType"
+                name="alcoholType"
+                component="select"
+                // multiple={true}
+              >
+                <option value="alcohol">Alcohol</option>
+                <option value="non-alcohol">Non alcohol</option>
+              </ChooseAlcoholType>
+              <ErrorMessage name="alcoholType" component="p" />
+            </LabelStyled>
+          )}
 
           <SubmitButton type="submit">Submit</SubmitButton>
         </FormStyled>
