@@ -147,25 +147,27 @@ const AddRecipe = () => {
                               placeholder="1 gram"
                               // value={ingredient.ingredientsAmount}
                             />
-                            <button
-                              type="button"
-                              onClick={() => {
-                                remove(index);
-                              }}
-                            >
-                              -
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                push({
-                                  ingredientsName: "",
-                                  ingredientsAmount: "",
-                                });
-                              }}
-                            >
-                              +
-                            </button>
+                            <div>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  push({
+                                    ingredientsName: "",
+                                    ingredientsAmount: "",
+                                  });
+                                }}
+                              >
+                                +
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  remove(index);
+                                }}
+                              >
+                                -
+                              </button>
+                            </div>
                             <ErrorMessage
                               name="ingredientsAmount"
                               component="p"

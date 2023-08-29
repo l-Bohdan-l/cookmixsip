@@ -177,4 +177,15 @@ export const RecipeTypeTitle = styled.span`
 
 export const IngredientsListWrapper = styled.div`
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export const AdditionalIngredientBtn = styled.button`
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+&:not
 `;
