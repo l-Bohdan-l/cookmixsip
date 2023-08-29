@@ -6,8 +6,8 @@ export const Section = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 10px;
   @media screen and (min-width: 1280px) {
-    padding-top: 10px;
     padding-bottom: 10px;
   }
 `;
@@ -187,5 +187,47 @@ export const AdditionalIngredientBtn = styled.button`
   width: 35px;
   height: 35px;
   border-radius: 50%;
-&:not
+  border: 1px solid rgb(255, 114, 62);
+  background-color: rgb(255, 114, 62);
+  color: #000000;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background-color: transparent;
+  }
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+`;
+
+export const AdditionalIngredientBtnWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const IngredientMeasureWrapper = styled.div`
+  position: relative;
+`;
+
+export const MeasureSelect = styled(Field)`
+  font-size: 20px;
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  height: 80%;
+  border: none;
+  border-left: 1px solid rgb(255, 114, 62);
+  background-color: transparent;
+  color: rgb(255, 114, 62);
+  padding: 5px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `;

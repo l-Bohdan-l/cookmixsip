@@ -2,6 +2,11 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+export const SectionStyled = styled.section`
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
+
 export const SearchFieldStyled = styled.input`
   border: none;
   border-bottom: 2px solid #ff723e;

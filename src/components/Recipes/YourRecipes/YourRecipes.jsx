@@ -9,6 +9,7 @@ import {
   LabelSearchStyled,
   SearchBtn,
   SearchFieldStyled,
+  SectionStyled,
 } from "./YourRecipes.styled";
 // import { AiFillPlusCircle } from "react-icons/ai";
 import { useGetRecipesQuery } from "../../../redux/recipe/recipeSlice";
@@ -18,7 +19,7 @@ const YourRecipes = () => {
   const { data } = useGetRecipesQuery();
   console.log(data);
   return (
-    <section>
+    <SectionStyled>
       <Form
         // onSubmit={handleSearchSubmit}
         autoComplete="off"
@@ -44,7 +45,7 @@ const YourRecipes = () => {
           <AddIcon />
         </AddLink>
       </AddBtnWrapper>
-    </section>
+    </SectionStyled>
   );
 };
 
