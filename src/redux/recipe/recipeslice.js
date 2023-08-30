@@ -29,8 +29,18 @@ export const recipeApi = createApi({
       }),
       invalidatesTags: ["Recipes"],
     }),
+    getYourRecipeByid: builder.query({
+      query: (id) => ({
+        url: `recipes/${id}`,
+      }),
+      invalidatesTags: ["Recipes"],
+    }),
   }),
 });
 // });
 
-export const { useGetRecipesQuery } = recipeApi;
+export const {
+  useGetRecipesQuery,
+  useAddRecipeMutation,
+  useGetYourRecipeByidQuery,
+} = recipeApi;

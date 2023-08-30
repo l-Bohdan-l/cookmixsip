@@ -4,8 +4,11 @@ import {
   AddIngredientButton,
   AdditionalIngredientBtn,
   AdditionalIngredientBtnWrapper,
+  BtnIcon,
+  BtnText,
   ChooseAlcoholType,
   FormStyled,
+  GoBackBtn,
   IngredientMeasureWrapper,
   IngredientWrapper,
   IngredientsListWrapper,
@@ -20,7 +23,9 @@ import {
   Title,
 } from "./AddRecipe.styled";
 import { TextArea } from "../../TextArea/TextArea";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useAddRecipeMutation } from "../../../redux/recipe/recipeSlice";
+import { Link, useLocation } from "react-router-dom";
 
 const AddRecipe = () => {
   const [ingredientCounter, setIngredientCounter] = useState(0);
@@ -30,6 +35,12 @@ const AddRecipe = () => {
       ingredientsAmount: "",
     },
   ]);
+
+  const [addRecipe, { data: newRecipe, error, isSuccess }] =
+    useAddRecipeMutation();
+
+  const location = useLocation();
+  const backLinkRef = useRef(location.state?.from ?? "/");
 
   const initialState = {
     name: "",
@@ -48,7 +59,12 @@ const AddRecipe = () => {
   const schema = Yup.object({
     name: Yup.string(),
     description: Yup.string(),
-    url: Yup.string().url(),
+    url: Yup.string().matches(
+      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      "Enter correct url!"
+    ),
+
+    // .required("Please enter website")
     ingredients: Yup.array().of(
       Yup.object({
         ingredientsName: Yup.string(),
@@ -65,6 +81,7 @@ const AddRecipe = () => {
   const handleSubmit = (values) => {
     // e.preventDefault();
     console.log("submit", values);
+    addRecipe(values);
   };
 
   const addIngredient = () => {
@@ -78,6 +95,12 @@ const AddRecipe = () => {
 
   return (
     <Section>
+      <Link to={backLinkRef.current}>
+        <GoBackBtn desktop type="button">
+          <BtnIcon />
+          <BtnText desktop>Go Back</BtnText>
+        </GoBackBtn>
+      </Link>
       <Title>Add Recipe</Title>
       <Formik
         initialValues={initialState}
@@ -163,8 +186,10 @@ const AddRecipe = () => {
                                   component="select"
                                   name={`ingredients[${index}].measure`}
                                   id="ingredients"
+                                  // defaultValue={"DEFAULT"}
+                                  value={"DEFAULT"}
                                 >
-                                  <option value="" disabled>
+                                  <option value="DEFAULT" disabled>
                                     --Select--{" "}
                                   </option>
 
@@ -175,6 +200,7 @@ const AddRecipe = () => {
                                   <option value="cup">cup</option>
                                   <option value="l">l</option>
                                   <option value="kg">kg</option>
+                                  <option value="pcs">pcs</option>
                                 </MeasureSelect>
                                 <ErrorMessage
                                   name={`ingredients[${index}].measure`}

@@ -18,20 +18,30 @@ import {
   YoutubeWrapper,
 } from "./RecipeDetails.styled";
 import { useGetRecipeByIdQuery } from "../../../redux/recipe/mealsSlice";
+import { useGetYourRecipeByidQuery } from "../../../redux/recipe/recipeSlice";
+import mealImg from "../../../images/YourRecipeDetails/meal.jpg";
+import cocktailImg from "../../../images/YourRecipeDetails/cocktails.jpg";
 
 const RecipeDetails = () => {
-  const { mealId } = useParams();
+  const { mealId, recipeId } = useParams();
   const { data: recipe, isSuccess } = useGetRecipeByIdQuery(mealId, {
     skip: !mealId,
   });
 
   console.log("recipe", recipe, isSuccess);
 
+  const { data: yourRecipe, isSuccess: isSuccessYourRecipe } =
+    useGetYourRecipeByidQuery(recipeId, { skip: !recipeId });
+
+  console.log("your recipe", yourRecipe, recipeId);
+
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [youtube, setYoutube] = useState("");
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
+  const goFrom = location.state.from.pathname;
+  console.log("location", goFrom);
 
   useEffect(() => {
     if (recipe) {
@@ -63,7 +73,7 @@ const RecipeDetails = () => {
 
   return (
     <SectionStyled>
-      {recipe && (
+      {recipe && mealId && (
         <>
           <Link to={backLinkRef.current}>
             <GoBackBtn desktop type="button">
@@ -106,6 +116,44 @@ const RecipeDetails = () => {
               </YoutubeLink>
             </YoutubeWrapper>
           )}
+        </>
+      )}
+      {yourRecipe && recipeId && (
+        <>
+          <Link to={backLinkRef.current}>
+            <GoBackBtn desktop type="button">
+              <BtnIcon />
+              <BtnText desktop>Go Back</BtnText>
+            </GoBackBtn>
+          </Link>
+          <RecipeName>{yourRecipe.name}</RecipeName>
+          <IngredientsTitle>{yourRecipe.mealType}</IngredientsTitle>
+
+          {yourRecipe.mealType === "Meal" ? (
+            <RecipeImage src={mealImg} alt="plate of food on a table" />
+          ) : (
+            <RecipeImage src={cocktailImg} alt="a lot of alcohol bottles" />
+          )}
+          <IngredientsTitle> Ingredients: </IngredientsTitle>
+          <IngredientsList>
+            {yourRecipe.ingredients.map((ingredient, index) => (
+              // measures[index] ? (
+              //   <IngredientItem key={index}>
+              //     {ingredient} - {measures[index]}
+              //   </IngredientItem>
+              // ) : (
+              //   <IngredientItem key={index}>{ingredient}</IngredientItem>
+              // )
+              <IngredientItem key={index}>
+                {ingredient.ingredientsName} - {ingredient.ingredientsAmount}{" "}
+                {ingredient.measure}
+              </IngredientItem>
+            ))}
+          </IngredientsList>
+          <InstructionTitle>Description:</InstructionTitle>
+          <Instruction>{yourRecipe.description}</Instruction>
+          <InstructionTitle>Url</InstructionTitle>
+          <InstructionTitle>{yourRecipe.url}</InstructionTitle>
         </>
       )}
     </SectionStyled>

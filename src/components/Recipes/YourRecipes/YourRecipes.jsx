@@ -16,8 +16,8 @@ import { useGetRecipesQuery } from "../../../redux/recipe/recipeSlice";
 
 const YourRecipes = () => {
   const location = useLocation();
-  const { data } = useGetRecipesQuery();
-  console.log(data);
+  const { data: recipes } = useGetRecipesQuery();
+  console.log("your recipes", recipes);
   return (
     <SectionStyled>
       <Form
@@ -45,6 +45,21 @@ const YourRecipes = () => {
           <AddIcon />
         </AddLink>
       </AddBtnWrapper>
+      {recipes &&
+        recipes.length > 0 &&
+        recipes.map((recipe) => {
+          return (
+            <Link
+              key={recipe.id}
+              to={`/your-recipes/${recipe.id}`}
+              state={{ from: location }}
+            >
+              {recipe.name}
+            </Link>
+          );
+        })}
+      {/* // recipes && recipes.length > 0 ? (
+        // recipes.map((recipe) => { }) */}
     </SectionStyled>
   );
 };

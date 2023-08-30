@@ -62,6 +62,10 @@ let router = createBrowserRouter(
           element: <YourRecipesPage />,
         },
         {
+          path: "your-recipes/:recipeId",
+          element: <RecipeDetails />,
+        },
+        {
           path: "your-recipes/add",
           element: <AddRecipe />,
         },
