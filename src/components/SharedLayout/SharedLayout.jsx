@@ -7,6 +7,7 @@ import { ContactsHeader } from "../Contacts/Header/ContactsHeader";
 import { Container } from "../Container/Container";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import { BodyWrapper, Wrapper } from "./SharedLayout.styled";
 
 export function SharedLayout() {
   const location = useLocation();
@@ -15,6 +16,8 @@ export function SharedLayout() {
     <>
       {/* {location.pathname.includes("/movie-gallery") && <MovieHeader />}
       {location.pathname.includes("/phonebook") && <ContactsHeader />} */}
+      {/* <BodyWrapper> */}
+      {/* <Wrapper> */}
       <Header />
       <Container>
         <Suspense
@@ -32,7 +35,9 @@ export function SharedLayout() {
           <Outlet />
         </Suspense>
       </Container>
+      {/* </Wrapper> */}
       <Footer />
+      {/* </BodyWrapper> */}
       <ToastContainer
         position="top-right"
         autoClose={5000}

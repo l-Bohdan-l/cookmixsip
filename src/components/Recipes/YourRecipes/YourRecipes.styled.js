@@ -159,10 +159,11 @@ export const LinkStyled = styled(Link)`
 
   @media screen and (min-width: 1280px) {
     height: 150px;
-    width: 50%;
+    width: 48%;
     flex-direction: row;
     justify-content: center;
     font-size: 25px;
+    flex-wrap: wrap;
   }
 
   font-size: 20px;
