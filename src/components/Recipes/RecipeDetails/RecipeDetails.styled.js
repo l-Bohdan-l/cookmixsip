@@ -16,6 +16,7 @@ export const RecipeName = styled.h2`
   line-height: normal;
   letter-spacing: 0.072px;
   margin-bottom: 10px;
+  text-transform: capitalize;
 
   @media screen and (min-width: 1280px) {
     font-size: 30px;
@@ -65,7 +66,7 @@ export const IngredientsList = styled.ul`
   @media screen and (min-width: 1280px) {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     gap: 15px;
   }
@@ -85,6 +86,9 @@ export const IngredientItem = styled.li`
 
   @media screen and (min-width: 1280px) {
     font-size: 20px;
+    &:not(:last-child) {
+      margin-bottom: 0px;
+    }
   }
 `;
 
@@ -113,6 +117,44 @@ export const InstructionTitle = styled.h3`
   letter-spacing: 0.06px;
   margin-bottom: 10px;
   text-align: center;
+  @media screen and (min-width: 1280px) {
+    font-size: 24px;
+  }
+`;
+
+export const UrlTitle = styled.h3`
+  color: #e2e2e2;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.06px;
+  margin-bottom: 10px;
+  text-align: center;
+  @media screen and (min-width: 1280px) {
+    font-size: 24px;
+  }
+`;
+
+export const Url = styled.a`
+  color: #e2e2e2;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.051px;
+  margin-bottom: 10px;
+  text-align: justify;
+  text-justify: inter-word;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+
+  &:hover {
+    color: rgb(255, 114, 62);
+    text-decoration: underline;
+  }
+
   @media screen and (min-width: 1280px) {
     font-size: 24px;
   }

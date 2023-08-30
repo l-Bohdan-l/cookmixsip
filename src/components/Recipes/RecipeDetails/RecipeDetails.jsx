@@ -13,6 +13,8 @@ import {
   RecipeImage,
   RecipeName,
   SectionStyled,
+  Url,
+  UrlTitle,
   YoutubeLink,
   YoutubeText,
   YoutubeWrapper,
@@ -127,7 +129,7 @@ const RecipeDetails = () => {
             </GoBackBtn>
           </Link>
           <RecipeName>{yourRecipe.name}</RecipeName>
-          <IngredientsTitle>{yourRecipe.mealType}</IngredientsTitle>
+          {/* <IngredientsTitle>{yourRecipe.mealType}</IngredientsTitle> */}
 
           {yourRecipe.mealType === "Meal" ? (
             <RecipeImage src={mealImg} alt="plate of food on a table" />
@@ -137,13 +139,6 @@ const RecipeDetails = () => {
           <IngredientsTitle> Ingredients: </IngredientsTitle>
           <IngredientsList>
             {yourRecipe.ingredients.map((ingredient, index) => (
-              // measures[index] ? (
-              //   <IngredientItem key={index}>
-              //     {ingredient} - {measures[index]}
-              //   </IngredientItem>
-              // ) : (
-              //   <IngredientItem key={index}>{ingredient}</IngredientItem>
-              // )
               <IngredientItem key={index}>
                 {ingredient.ingredientsName} - {ingredient.ingredientsAmount}{" "}
                 {ingredient.measure}
@@ -152,8 +147,10 @@ const RecipeDetails = () => {
           </IngredientsList>
           <InstructionTitle>Description:</InstructionTitle>
           <Instruction>{yourRecipe.description}</Instruction>
-          <InstructionTitle>Url</InstructionTitle>
-          <InstructionTitle>{yourRecipe.url}</InstructionTitle>
+          <UrlTitle>Url</UrlTitle>
+          <Url href={yourRecipe.url} target="_blank" rel="noopener noreferrer">
+            {yourRecipe.url}
+          </Url>
         </>
       )}
     </SectionStyled>

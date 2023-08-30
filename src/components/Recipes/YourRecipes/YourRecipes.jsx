@@ -7,6 +7,9 @@ import {
   Form,
   InputWrapper,
   LabelSearchStyled,
+  LinkStyled,
+  List,
+  ListItem,
   SearchBtn,
   SearchFieldStyled,
   SectionStyled,
@@ -40,26 +43,29 @@ const YourRecipes = () => {
           <SearchBtn type="submit">Search</SearchBtn>
         </InputWrapper>
       </Form>
+
+      <List>
+        {recipes &&
+          recipes.length > 0 &&
+          recipes.map((recipe) => {
+            return (
+              <LinkStyled
+                key={recipe.id}
+                to={`/your-recipes/${recipe.id}`}
+                state={{ from: location }}
+              >
+                {recipe.name}
+              </LinkStyled>
+            );
+          })}
+      </List>
+      {/* // recipes && recipes.length > 0 ? (
+        // recipes.map((recipe) => { }) */}
       <AddBtnWrapper>
         <AddLink to="/your-recipes/add" state={{ from: location }}>
           <AddIcon />
         </AddLink>
       </AddBtnWrapper>
-      {recipes &&
-        recipes.length > 0 &&
-        recipes.map((recipe) => {
-          return (
-            <Link
-              key={recipe.id}
-              to={`/your-recipes/${recipe.id}`}
-              state={{ from: location }}
-            >
-              {recipe.name}
-            </Link>
-          );
-        })}
-      {/* // recipes && recipes.length > 0 ? (
-        // recipes.map((recipe) => { }) */}
     </SectionStyled>
   );
 };

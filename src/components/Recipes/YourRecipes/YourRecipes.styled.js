@@ -124,3 +124,51 @@ export const AddIcon = styled(AiFillPlusCircle)`
     color: #fff;
   }
 `;
+
+export const List = styled.ul`
+  display: flex;
+  gap: 25px;
+  justify-content: space-between;
+  align-items: center;
+
+  /* flex-wrap: wrap; */
+  margin-bottom: 10px;
+`;
+
+export const LinkStyled = styled(Link)`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: 1px solid #ff723e;
+  height: 250px;
+  transition: all 250ms ease-in-out;
+
+  cursor: pointer;
+  /* overflow: scroll; */
+
+  background-color: rgb(57 56 56 / 27%);
+  border-radius: 20px;
+
+  &:hover {
+    box-shadow: 0px 0px 10px 0px #ff723e;
+    transform: scale(1.05);
+  }
+
+  @media screen and (min-width: 1280px) {
+    height: 150px;
+    width: 50%;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  font-size: 20px;
+  font-weight: 500;
+  color: #ff723e;
+  text-align: center;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+`;
