@@ -37,19 +37,14 @@ export const authCredentialsPersistReducer = persistReducer(
   authSlice.reducer
 );
 
-// const combineReducer = combineReducers({
-//   contacts: contactsSlice.reducer,
-//   filter: filterSlice.reducer,
-// })
+
 
 export const store = configureStore({
   reducer: {
     [cocktailApi.reducerPath]: cocktailApi.reducer,
     [mealApi.reducerPath]: mealApi.reducer,
     [recipeApi.reducerPath]: recipeApi.reducer,
-    // [authApi.reducerPath]: authApi.reducer,
-    // [contactsApi.reducerPath]: contactsApi.reducer,
-    // filter: filterSlice.reducer,
+    
     credentials: authCredentialsPersistReducer,
   },
   middleware: (getDefaultMiddleware) => [
@@ -69,22 +64,4 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 
 setupListeners(store.dispatch);
-// const rootReducer  = combineReducers({
-//   contactsList: contactsSlice.reducer,
-//   filter: filterSlice.reducer,
-// });
 
-// export const store = configureStore({
-//   reducer: contactsPersistReducer,
-//   // {
-//   //       contactsList: contactsSlice.reducer,
-//   //       // contactsList: contactsReducer,
-//   //       filter: filterSlice.reducer,
-//   //     },
-//       middleware: (getDefaultMiddleware) =>
-//       getDefaultMiddleware({
-//         serializableCheck: {
-//           ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//         },
-//     }),
-// })
