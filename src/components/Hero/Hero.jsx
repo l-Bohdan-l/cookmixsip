@@ -6,8 +6,6 @@ import { ImgWrapper, MainTitle, Section } from "./Hero.styled";
 // import { fetchRandomCocktail } from "../../services/fetchCoctails";
 
 const Hero = () => {
-  // const randomCocktail = fetchRandomCocktail();
-  // console.log(randomCocktail);
   return (
     <Section>
       <ImgWrapper>

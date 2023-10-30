@@ -80,7 +80,7 @@ const AddRecipe = () => {
   });
   const handleSubmit = (values) => {
     // e.preventDefault();
-    console.log("submit", values);
+    // console.log("submit", values);
     addRecipe(values);
   };
 

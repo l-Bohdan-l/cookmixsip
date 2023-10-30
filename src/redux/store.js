@@ -2,12 +2,9 @@ import {
   // combineReducers,
   configureStore,
 } from "@reduxjs/toolkit";
-import // contactsSlice,
-// contactsReducer
-"./contacts/contactsSlice";
-import { filterSlice } from "./contacts/filterSlice";
-import { contactsApi } from "./contacts/contactsApi";
-import { authApi } from "./authSlice";
+// import { filterSlice } from "./contacts/filterSlice";
+// import { contactsApi } from "./contacts/contactsApi";
+// import { authApi } from "./authSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { authSlice } from "./authSlice";
 import { cocktailApi } from "./cocktails/cocktailsSlice";
@@ -37,14 +34,11 @@ export const authCredentialsPersistReducer = persistReducer(
   authSlice.reducer
 );
 
-
-
 export const store = configureStore({
   reducer: {
     [cocktailApi.reducerPath]: cocktailApi.reducer,
     [mealApi.reducerPath]: mealApi.reducer,
     [recipeApi.reducerPath]: recipeApi.reducer,
-    
     credentials: authCredentialsPersistReducer,
   },
   middleware: (getDefaultMiddleware) => [
@@ -53,7 +47,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-    contactsApi.middleware,
+    // contactsApi.middleware,
     // authApi.middleware,
     cocktailApi.middleware,
     mealApi.middleware,
@@ -64,4 +58,3 @@ export const store = configureStore({
 export const persistor = persistStore(store);
 
 setupListeners(store.dispatch);
-

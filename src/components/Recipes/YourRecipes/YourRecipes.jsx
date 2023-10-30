@@ -20,7 +20,7 @@ import { useGetRecipesQuery } from "../../../redux/recipe/recipeSlice";
 const YourRecipes = () => {
   const location = useLocation();
   const { data: recipes } = useGetRecipesQuery();
-  console.log("your recipes", recipes);
+  // console.log("your recipes", recipes);
   return (
     <SectionStyled>
       <Form

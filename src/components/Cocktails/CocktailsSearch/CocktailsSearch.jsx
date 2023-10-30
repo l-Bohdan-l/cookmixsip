@@ -65,10 +65,6 @@ const CocktailsSearch = () => {
     const nextParams =
       form.cocktailName.value !== "" ? { search: form.cocktailName.value } : {};
     setSearchParams(nextParams);
-
-    // console.log(form.cocktailName.value);
-
-    // setCocktailName(form.cocktailName.value);
   };
 
   return (

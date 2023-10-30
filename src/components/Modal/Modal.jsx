@@ -29,12 +29,12 @@ export const Modal = ({ onClose }) => {
 
   //   };
   const handleCloseModal = () => {
-    console.log("handleCloseModal", showModal);
+    // console.log("handleCloseModal", showModal);
     setShowModal(false);
   };
 
   const buttonCheckbox = (e) => {
-    console.log("e.target.checked", e.target.checked);
+    // console.log("e.target.checked", e.target.checked);
     setChecked(true);
   };
 
@@ -42,7 +42,7 @@ export const Modal = ({ onClose }) => {
     setShowModal(false);
     setChecked(false);
   };
-  console.log("modal", showModal);
+  // console.log("modal", showModal);
   return (
     <>
       {/* <button onClick={() => setShowModal(true)}>

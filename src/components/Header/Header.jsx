@@ -8,12 +8,14 @@ import {
   Wrapper,
   NavItem,
   LangWrapper,
-  FlagImg,
-  LangText,
+  // FlagImg,
+  // LangText,
 } from "./Header.styled";
-import usaFlag from "../../images/usa-flag.png";
+import { useAuth } from "../../redux/hooks/useAuth";
+// import usaFlag from "../../images/usa-flag.png";
 // import { NavLink } from "react-router-dom";
 const Header = () => {
+  const { isLoggedIn } = useAuth;
   return (
     <HeaderStyled>
       <Wrapper>
@@ -24,11 +26,13 @@ const Header = () => {
           <NavItem to="/">Home</NavItem>
           <NavItem to="cocktails">Cocktails</NavItem>
           <NavItem to="meals">Meals</NavItem>
-          <NavItem to="your-recipes">Your recipes</NavItem>
+          {isLoggedIn && <NavItem to="your-recipes">Your recipes</NavItem>}
         </NavList>
         <LangWrapper>
-          <FlagImg src={usaFlag} alt="usa flag" />
-          <LangText>ENG</LangText>
+          {/* <FlagImg src={usaFlag} alt="usa flag" />
+          <LangText>ENG</LangText> */}
+          <NavItem to="login">Login</NavItem>
+          <NavItem to="register">Register</NavItem>
         </LangWrapper>
         <Modal />
       </Wrapper>

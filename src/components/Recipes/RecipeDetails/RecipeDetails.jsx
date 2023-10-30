@@ -30,12 +30,12 @@ const RecipeDetails = () => {
     skip: !mealId,
   });
 
-  console.log("recipe", recipe, isSuccess);
+  // console.log("recipe", recipe, isSuccess);
 
   const { data: yourRecipe, isSuccess: isSuccessYourRecipe } =
     useGetYourRecipeByidQuery(recipeId, { skip: !recipeId });
 
-  console.log("your recipe", yourRecipe, recipeId);
+  // console.log("your recipe", yourRecipe, recipeId);
 
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
@@ -43,7 +43,7 @@ const RecipeDetails = () => {
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
   const goFrom = location.state.from.pathname;
-  console.log("location", goFrom);
+  // console.log("location", goFrom);
 
   useEffect(() => {
     if (recipe) {
@@ -71,7 +71,7 @@ const RecipeDetails = () => {
     }
   }, [recipe]);
 
-  console.log("ingredients", ingredients, measures);
+  // console.log("ingredients", ingredients, measures);
 
   return (
     <SectionStyled>

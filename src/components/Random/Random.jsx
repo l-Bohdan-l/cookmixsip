@@ -37,7 +37,7 @@ const Random = () => {
     }
   }, [cocktailData, mealData]);
 
-  console.log(randomCocktail, randomMeal);
+  // console.log(randomCocktail, randomMeal);
 
   return (
     <StyledRandom>

@@ -11,8 +11,8 @@ import Main from "./pages/Main/Main";
 
 import { SharedLayout } from "./components/SharedLayout/SharedLayout";
 
-// import { PublicRoute } from "./components/Contacts/PublicRoute";
-// import { PrivateRoute } from "./components/Contacts/PrivateRoute";
+import { PublicRoute } from "./components/Routes/PublicRoute";
+import { PrivateRoute } from "./components/Routes/PrivateRoute";
 
 import { persistor } from "./redux/store";
 import Cocktails from "./pages/Cocktails/Cocktails";
@@ -22,6 +22,8 @@ import RecipeDetails from "./components/Recipes/RecipeDetails/RecipeDetails";
 import YourRecipes from "./pages/YourRecipes/YourRecipesPage";
 import YourRecipesPage from "./pages/YourRecipes/YourRecipesPage";
 import AddRecipe from "./components/Recipes/AddRecipe/AddRecipe";
+import { LoginPage } from "./pages/Login/LoginPage.jsx";
+import { RegisterPage } from "./pages/Register/RegisterPage.jsx";
 // import { useAuth } from "./redux/hooks/useAuth";
 // import {
 //   setRefetchedCredentials,
@@ -39,35 +41,52 @@ let router = createBrowserRouter(
       children: [
         {
           index: true,
-          element: <Main />,
+          element: <PublicRoute component={Main} />,
         },
         {
           path: "cocktails",
-          element: <Cocktails />,
+          element: <PublicRoute component={Cocktails} />,
         },
         {
           path: "cocktails/:cocktailId",
-          element: <CocktailDetails />,
+          element: <PublicRoute component={CocktailDetails} />,
         },
         {
           path: "meals",
-          element: <Recipes />,
+          element: <PublicRoute component={Recipes} />,
         },
         {
           path: "meals/:mealId",
-          element: <RecipeDetails />,
+          element: <PublicRoute component={RecipeDetails} />,
+        },
+        {
+          path: "login",
+          element: (
+            <PublicRoute restricted component={LoginPage} redirectTo="/" />
+          ),
+        },
+        {
+          path: "register",
+          element: (
+            <PublicRoute restricted component={RegisterPage} redirectTo="/" />
+          ),
         },
         {
           path: "your-recipes",
-          element: <YourRecipesPage />,
+          element: (
+            <PrivateRoute component={YourRecipesPage} redirectTo="/login" />
+            // <YourRecipesPage />
+          ),
         },
         {
           path: "your-recipes/:recipeId",
-          element: <RecipeDetails />,
+          element: (
+            <PrivateRoute component={RecipeDetails} redirectTo="/login" />
+          ),
         },
         {
           path: "your-recipes/add",
-          element: <AddRecipe />,
+          element: <PrivateRoute component={AddRecipe} redirectTo="/login" />,
         },
       ],
     },

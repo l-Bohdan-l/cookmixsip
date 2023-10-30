@@ -30,7 +30,7 @@ const RecipesSearch = () => {
     skip: !recipeName,
   });
 
-  console.log("recipesList", recipesList);
+  // console.log("recipesList", recipesList);
 
   useEffect(() => {
     if (recipesList) {
@@ -53,7 +53,7 @@ const RecipesSearch = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    console.log(form.recipeName.value);
+    // console.log(form.recipeName.value);
     if (form.recipeName.value.trim() === "") {
       return toast.error("Please enter cocktail name");
     }

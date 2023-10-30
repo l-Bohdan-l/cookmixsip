@@ -59,7 +59,7 @@ const CocktailDetails = () => {
     }
   }, [cocktail]);
 
-  // console.log("ingredients", ingredients);
+
   return (
     <SectionStyled>
       {cocktail && (
