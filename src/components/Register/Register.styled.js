@@ -1,3 +1,4 @@
+import { Field, Form } from "formik";
 import styled from "styled-components";
 
 export const Button = styled.button`
@@ -107,3 +108,58 @@ export const Span = styled.span`
     }
   }
 `;
+
+export const FormStyled = styled(Form)`
+  background-color: #e9e9e963;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  gap: 15px;
+  border: 1px solid #ff723e;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  box-shadow: 0px 0px 10px 0px rgba(255, 114, 62, 0.75);
+  @media screen and (min-width: 1280px) {
+    width: 500px;
+    padding: 20px;
+  }
+`;
+
+export const LabelStyled = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ff723e;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  @media screen and (min-width: 1280px) {
+    font-size: 25px;
+  }
+`;
+
+export const InputStyled = styled(Field)`
+  width: 100%;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 17px;
+  color: #ff723e;
+  border: 1px solid #ff723e;
+  background-color: transparent;
+  margin-bottom: 5px;
+  &:focus {
+    outline: none;
+  }
+  @media (min-width: 1280px) {
+    width: 400px;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+`;
+
+// export const

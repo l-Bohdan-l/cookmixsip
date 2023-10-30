@@ -26,10 +26,9 @@ export const Login = () => {
     email: Yup.string()
       .email("Invalid email")
       .required("This filed is required"),
-    password: Yup.number()
+    password: Yup.string()
       .required("This filed is required")
-      .min(6, "Password should contain at least 6 digits")
-      .max(30, "Password should contain at least 6 digits"),
+      .min(6, "Enter at least 6 symbols"),
   });
 
   const handleSubmit = (values) => {};
