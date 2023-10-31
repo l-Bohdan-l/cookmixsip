@@ -4,6 +4,8 @@ import {
   FormStyled,
   InputStyled,
   LabelStyled,
+  Title,
+  Section,
 } from "./Register.styled";
 import { ErrorMessage, Field, Form, Formik, FieldArray } from "formik";
 import * as Yup from "yup";
@@ -32,8 +34,8 @@ export const Register = () => {
 
   const handleSubmit = (values) => {};
   return (
-    <>
-      <h1>Register</h1>
+    <Section>
+      <Title>Registration</Title>
       {/* <form></form> */}
       <Formik
         initialValues={initialState}
@@ -82,6 +84,6 @@ export const Register = () => {
           </FormStyled>
         )}
       </Formik>
-    </>
+    </Section>
   );
 };

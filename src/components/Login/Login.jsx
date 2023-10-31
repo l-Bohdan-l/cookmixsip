@@ -9,6 +9,8 @@ import {
   InputStyled,
   LabelStyled,
   Span,
+  Title,
+  Section,
 } from "./Login.styled";
 
 export const Login = () => {
@@ -33,8 +35,8 @@ export const Login = () => {
 
   const handleSubmit = (values) => {};
   return (
-    <>
-      <h1>Login</h1>
+    <Section>
+      <Title>Login</Title>
       {/* <form></form> */}
       <Formik
         initialValues={initialState}
@@ -83,6 +85,6 @@ export const Login = () => {
           </FormStyled>
         )}
       </Formik>
-    </>
+    </Section>
   );
 };

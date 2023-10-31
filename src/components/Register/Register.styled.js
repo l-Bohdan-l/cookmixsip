@@ -110,7 +110,7 @@ export const Span = styled.span`
 `;
 
 export const FormStyled = styled(Form)`
-  background-color: #e9e9e963;
+  background-color: #2033654a;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -162,4 +162,26 @@ export const InputStyled = styled(Field)`
   }
 `;
 
-// export const
+export const Title = styled.h1`
+  color: #e2e2e2;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.072px;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: 1280px) {
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+`;
+
+export const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+`;
