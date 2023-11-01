@@ -12,6 +12,8 @@ import {
   Title,
   Section,
 } from "./Login.styled";
+import { useDispatch } from "react-redux";
+import { authSignIn } from "../../redux/auth/authOperations";
 
 export const Login = () => {
   const location = useLocation();
@@ -23,6 +25,8 @@ export const Login = () => {
     password: "",
   };
 
+  const dispatch = useDispatch();
+
   const schema = Yup.object({
     name: Yup.string(),
     email: Yup.string()
@@ -33,7 +37,11 @@ export const Login = () => {
       .min(6, "Enter at least 6 symbols"),
   });
 
-  const handleSubmit = (values) => {};
+  const handleSubmit = (values) => {
+    dispatch(authSignIn(values));
+    console.log("values", values);
+  };
+
   return (
     <Section>
       <Title>Login</Title>
@@ -45,7 +53,7 @@ export const Login = () => {
       >
         {(props) => (
           <FormStyled autoComplete="off">
-            <LabelStyled htmlFor="name">
+            {/* <LabelStyled htmlFor="name">
               Name
               <InputStyled
                 id="name"
@@ -54,7 +62,7 @@ export const Login = () => {
                 placeholder="Bohdan"
               />
               <ErrorMessage name="name" component="p" />
-            </LabelStyled>
+            </LabelStyled> */}
             <LabelStyled htmlFor="email">
               Email
               <InputStyled

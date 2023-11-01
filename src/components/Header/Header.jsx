@@ -15,7 +15,7 @@ import { useAuth } from "../../redux/hooks/useAuth";
 // import usaFlag from "../../images/usa-flag.png";
 // import { NavLink } from "react-router-dom";
 const Header = () => {
-  const { isLoggedIn } = useAuth;
+  const { isLoggedIn } = useAuth();
   return (
     <HeaderStyled>
       <Wrapper>

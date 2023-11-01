@@ -4,6 +4,7 @@ const initialState = {
   name: null,
   email: null,
   isLoggedIn: false,
+  userId: null,
   // isRefreshing: false,
 };
 
@@ -12,8 +13,9 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setCredentials: (state, action) => {
-      state.name = action.payload.user.name;
-      state.email = action.payload.user.email;
+      state.name = action.payload.name;
+      state.email = action.payload.email;
+      state.userId = action.payload.userId;
       state.isLoggedIn = true;
     },
     setIsLoggedIn: (state, action) => {
@@ -27,6 +29,7 @@ export const authSlice = createSlice({
     clearCredentials: (state) => {
       state.name = null;
       state.email = null;
+      state.userId = null;
       state.isLoggedIn = false;
     },
   },

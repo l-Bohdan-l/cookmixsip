@@ -1,3 +1,10 @@
+import { useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { ErrorMessage, Field, Form, Formik, FieldArray } from "formik";
+import * as Yup from "yup";
+
 import {
   Button,
   Span,
@@ -6,24 +13,27 @@ import {
   LabelStyled,
   Title,
   Section,
+  ShowPassBtn,
+  PasswordWrapper,
 } from "./Register.styled";
-import { ErrorMessage, Field, Form, Formik, FieldArray } from "formik";
-import * as Yup from "yup";
-import { useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { authSignUp } from "../../redux/auth/authOperations";
 
 export const Register = () => {
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
 
+  const [passwordInputType, setPasswordInputType] = useState("password");
+
   const initialState = {
-    name: "",
+    login: "",
     email: "",
     password: "",
   };
 
+  const dispatch = useDispatch();
+
   const schema = Yup.object({
-    name: Yup.string(),
+    login: Yup.string(),
     email: Yup.string()
       .email("Invalid email")
       .required("This filed is required"),
@@ -32,11 +42,20 @@ export const Register = () => {
       .min(6, "Enter at least 6 symbols"),
   });
 
-  const handleSubmit = (values) => {};
+  const handleSubmit = (values) => {
+    dispatch(authSignUp(values));
+    console.log("values", values);
+  };
+
+  const changePasswordInputType = () => {
+    passwordInputType === "password"
+      ? setPasswordInputType("text")
+      : setPasswordInputType("password");
+  };
+
   return (
     <Section>
       <Title>Registration</Title>
-      {/* <form></form> */}
       <Formik
         initialValues={initialState}
         validationSchema={schema}
@@ -44,15 +63,15 @@ export const Register = () => {
       >
         {(props) => (
           <FormStyled autoComplete="off">
-            <LabelStyled htmlFor="name">
+            <LabelStyled htmlFor="login">
               Name
               <InputStyled
-                id="name"
+                id="login"
                 type="text"
-                name="name"
+                name="login"
                 placeholder="Bohdan"
               />
-              <ErrorMessage name="name" component="p" />
+              <ErrorMessage name="login" component="p" />
             </LabelStyled>
             <LabelStyled htmlFor="email">
               Email
@@ -64,16 +83,21 @@ export const Register = () => {
               />
               <ErrorMessage name="email" component="p" />
             </LabelStyled>
-            <LabelStyled htmlFor="password">
-              Password
-              <InputStyled
-                id="password"
-                type="password"
-                name="password"
-                placeholder="111111"
-              />
-              <ErrorMessage name="password" component="p" />
-            </LabelStyled>
+            <PasswordWrapper>
+              <LabelStyled htmlFor="password">
+                Password
+                <InputStyled
+                  id="password"
+                  type={passwordInputType}
+                  name="password"
+                  placeholder="111111"
+                />
+                <ErrorMessage name="password" component="p" />
+              </LabelStyled>
+              <ShowPassBtn onClick={changePasswordInputType} type="button">
+                <AiFillEyeInvisible color="#ff723e" size={20} />
+              </ShowPassBtn>
+            </PasswordWrapper>
             <Button type="submit">
               <Span></Span>
               <Span></Span>

@@ -185,3 +185,27 @@ export const Section = styled.section`
   justify-content: center;
   padding-top: 20px;
 `;
+
+export const ShowPassBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 31px;
+  right: 0px;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+
+  &:hover {
+    background-color: #69606091;
+  }
+
+  @media screen and (min-width: 1280px) {
+    top: 40px;
+    padding: 10px;
+  }
+`;
+
+export const PasswordWrapper = styled.div`
+  position: relative;
+`;

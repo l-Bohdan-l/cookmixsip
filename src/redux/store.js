@@ -6,7 +6,7 @@ import {
 // import { contactsApi } from "./contacts/contactsApi";
 // import { authApi } from "./authSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { authSlice } from "./authSlice";
+import { authSlice } from "./auth/authSlice";
 import { cocktailApi } from "./cocktails/cocktailsSlice";
 import { mealApi } from "./recipe/mealsSlice";
 
