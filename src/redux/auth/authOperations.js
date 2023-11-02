@@ -52,8 +52,8 @@ export const authSignUp =
       await createUserWithEmailAndPassword(auth, email, password).then(
         (userCredential) => {
           // Signed in
-          const user = userCredential.user;
-          console.log("user", user);
+          // const user = userCredential.user;
+          // console.log("user", user);
           // dispatch(updateUserProfile({ userId: user.uid }));
         }
       );
@@ -91,7 +91,7 @@ export const authStateChangeUser = () => async (dispatch, getState) => {
         //   updateUserProfile({ userId: user.uid, nickname: user.displayName })
         // );
         // dispatch(authStateChange({ stateChange: true }));
-        console.log(user);
+        // console.log(user);
         dispatch(
           setCredentials({
             userId: user.uid,

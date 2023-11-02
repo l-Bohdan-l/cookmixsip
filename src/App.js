@@ -27,6 +27,7 @@ import { RegisterPage } from "./pages/Register/RegisterPage.jsx";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { authStateChangeUser } from "./redux/auth/authOperations";
+
 // import { useAuth } from "./redux/hooks/useAuth";
 // import {
 //   setRefetchedCredentials,
@@ -104,9 +105,9 @@ let router = createBrowserRouter(
 function App() {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(authStateChangeUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(authStateChangeUser());
+  }, [dispatch]);
 
   return (
     <>

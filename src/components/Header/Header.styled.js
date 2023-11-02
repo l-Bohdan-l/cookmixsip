@@ -91,8 +91,8 @@ export const LangWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 10px;
-  width: 199px;
+  gap: 20px;
+  /* width: 199px; */
   @media screen and (max-width: 1279px) {
     display: none;
   }
@@ -112,4 +112,46 @@ export const LangText = styled.p`
   line-height: 24px; /* 133.333% */
   letter-spacing: 0.18px;
   text-transform: uppercase;
+`;
+
+export const LogoutBtn = styled.button`
+  border: 1px solid transparent;
+  border-radius: 25px;
+  background-color: #ff723e;
+  color: #fff;
+  font-size: 17px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+  &:hover {
+    background-color: #fff;
+    color: #ff723e;
+    border: 1px solid #ff723e;
+    /* margin-left: 13px; */
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+`;
+
+export const UserName = styled.p`
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 700;
+  pointer-events: none;
+`;
+
+export const UserEmail = styled.p`
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 400;
+  pointer-events: none;
+`;
+
+export const UserInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

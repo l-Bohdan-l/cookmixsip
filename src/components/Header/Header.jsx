@@ -8,14 +8,25 @@ import {
   Wrapper,
   NavItem,
   LangWrapper,
+  LogoutBtn,
+  UserName,
+  UserEmail,
+  UserInfoWrapper,
   // FlagImg,
   // LangText,
 } from "./Header.styled";
 import { useAuth } from "../../redux/hooks/useAuth";
 // import usaFlag from "../../images/usa-flag.png";
 // import { NavLink } from "react-router-dom";
+import { authSignOut } from "../../redux/auth/authOperations";
+import { useDispatch } from "react-redux";
 const Header = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, authEmail, authName } = useAuth();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(authSignOut());
+  };
   return (
     <HeaderStyled>
       <Wrapper>
@@ -31,8 +42,23 @@ const Header = () => {
         <LangWrapper>
           {/* <FlagImg src={usaFlag} alt="usa flag" />
           <LangText>ENG</LangText> */}
-          <NavItem to="login">Login</NavItem>
-          <NavItem to="register">Register</NavItem>
+          {!isLoggedIn && (
+            <>
+              <NavItem to="login">Login</NavItem>
+              <NavItem to="register">Register</NavItem>
+            </>
+          )}
+          {isLoggedIn && (
+            <>
+              <UserInfoWrapper>
+                <UserName>{authName}</UserName>
+                <UserEmail>{authEmail}</UserEmail>
+              </UserInfoWrapper>
+              <LogoutBtn onClick={handleLogout} type="button">
+                Logout
+              </LogoutBtn>
+            </>
+          )}
         </LangWrapper>
         <Modal />
       </Wrapper>
