@@ -24,6 +24,9 @@ import YourRecipesPage from "./pages/YourRecipes/YourRecipesPage";
 import AddRecipe from "./components/Recipes/AddRecipe/AddRecipe";
 import { LoginPage } from "./pages/Login/LoginPage.jsx";
 import { RegisterPage } from "./pages/Register/RegisterPage.jsx";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { authStateChangeUser } from "./redux/auth/authOperations";
 // import { useAuth } from "./redux/hooks/useAuth";
 // import {
 //   setRefetchedCredentials,
@@ -99,6 +102,12 @@ let router = createBrowserRouter(
 );
 
 function App() {
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(authStateChangeUser());
+  // }, [dispatch]);
+
   return (
     <>
       <PersistGate loading={null} persistor={persistor}>

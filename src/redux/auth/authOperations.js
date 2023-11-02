@@ -91,6 +91,7 @@ export const authStateChangeUser = () => async (dispatch, getState) => {
         //   updateUserProfile({ userId: user.uid, nickname: user.displayName })
         // );
         // dispatch(authStateChange({ stateChange: true }));
+        console.log(user);
         dispatch(
           setCredentials({
             userId: user.uid,
