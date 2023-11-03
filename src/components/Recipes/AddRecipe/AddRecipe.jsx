@@ -1,5 +1,6 @@
 import { ErrorMessage, Field, Form, Formik, FieldArray } from "formik";
 import * as Yup from "yup";
+import { collection, addDoc } from "firebase/firestore";
 import {
   AddIngredientButton,
   AdditionalIngredientBtn,
@@ -26,6 +27,8 @@ import { TextArea } from "../../TextArea/TextArea";
 import { useRef, useState } from "react";
 import { useAddRecipeMutation } from "../../../redux/recipe/recipeSlice";
 import { Link, useLocation } from "react-router-dom";
+import { db } from "../../../firebase/config";
+import { useAuth } from "../../../redux/hooks/useAuth";
 
 const AddRecipe = () => {
   const [ingredientCounter, setIngredientCounter] = useState(0);
@@ -33,11 +36,14 @@ const AddRecipe = () => {
     {
       ingredientsName: "",
       ingredientsAmount: "",
+      measure: "",
     },
   ]);
 
-  const [addRecipe, { data: newRecipe, error, isSuccess }] =
-    useAddRecipeMutation();
+  const { authId, authName } = useAuth();
+
+  // const [addRecipe, { data: newRecipe, error, isSuccess }] =
+  //   useAddRecipeMutation();
 
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
@@ -50,6 +56,7 @@ const AddRecipe = () => {
       {
         ingredientsName: "",
         ingredientsAmount: "",
+        measure: "",
       },
     ],
     mealType: "",
@@ -78,6 +85,15 @@ const AddRecipe = () => {
     mealType: Yup.string(),
     alcoholType: Yup.string().oneOf(["alcohol", "non-alcohol"], "Invalid Type"),
   });
+
+  const addRecipe = async (values) => {
+    await addDoc(collection(db, "recipes"), {
+      ...values,
+      userName: authName,
+      userId: authId,
+    });
+  };
+
   const handleSubmit = (values) => {
     // e.preventDefault();
     // console.log("submit", values);
@@ -107,7 +123,7 @@ const AddRecipe = () => {
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        {(props) => (
+        {({ values, handleChange }) => (
           <FormStyled autoComplete="off">
             <LabelStyled htmlFor="name">
               Name
@@ -187,9 +203,11 @@ const AddRecipe = () => {
                                   name={`ingredients[${index}].measure`}
                                   id="ingredients"
                                   // defaultValue={"DEFAULT"}
-                                  value={"DEFAULT"}
+                                  // value={"DEFAULT"}
+                                  value={ingredient.measure}
+                                  onChange={handleChange}
                                 >
-                                  <option value="DEFAULT" disabled>
+                                  <option value="" disabled>
                                     --Select--{" "}
                                   </option>
 
@@ -300,7 +318,7 @@ const AddRecipe = () => {
                 </LabelStyled>
               </MealTypeWrapper>
             </div>
-            {props.values.mealType === "Cocktail" && (
+            {values.mealType === "Cocktail" && (
               <LabelStyled htmlFor="alcoholType">
                 Choose alcohol type
                 <ChooseAlcoholType
