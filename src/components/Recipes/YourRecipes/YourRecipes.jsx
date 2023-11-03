@@ -16,24 +16,36 @@ import {
 } from "./YourRecipes.styled";
 // import { AiFillPlusCircle } from "react-icons/ai";
 import { useGetRecipesQuery } from "../../../redux/recipe/recipeSlice";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../../firebase/config";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../../redux/hooks/useAuth";
 
 const YourRecipes = () => {
   const location = useLocation();
-  const [allRecipes, setallRecipes] = useState([]);
+  const [allRecipes, setAllRecipes] = useState([]);
+
+  const { isLoggedIn, authEmail, authName, authId } = useAuth();
   // const { data: recipes } = useGetRecipesQuery();
   // console.log("your recipes", recipes);
-  const getAllPosts = async () => {
-    const allPosts = await onSnapshot(collection(db, "recipes"), (data) => {
-      setallRecipes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    });
-  };
+  // const getAllPosts = async () => {
+  //   const allPosts = await onSnapshot(collection(db, "recipes"), (data) => {
+  //     setallRecipes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //   });
+  // };
 
   useEffect(() => {
-    getAllPosts();
-  }, []);
+    const getUserRecipes = async () => {
+      const ref = query(
+        collection(db, "recipes"),
+        where("userId", "==", authId)
+      );
+      await onSnapshot(ref, (data) => {
+        setAllRecipes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      });
+    };
+    getUserRecipes();
+  }, [authId]);
   console.log(allRecipes);
   return (
     <SectionStyled>

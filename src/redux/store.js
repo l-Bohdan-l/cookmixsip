@@ -26,7 +26,7 @@ import { recipeApi } from "./recipe/recipeSlice";
 const persistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token"],
+  whitelist: ["isLoggedIn"],
 };
 
 export const authCredentialsPersistReducer = persistReducer(
