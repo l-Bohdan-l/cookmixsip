@@ -23,8 +23,11 @@ import { useGetRecipeByIdQuery } from "../../../redux/recipe/mealsSlice";
 import { useGetYourRecipeByidQuery } from "../../../redux/recipe/recipeSlice";
 import mealImg from "../../../images/YourRecipeDetails/meal.jpg";
 import cocktailImg from "../../../images/YourRecipeDetails/cocktails.jpg";
+import { db } from "../../../firebase/config";
+import { collection, onSnapshot, query, where, doc } from "firebase/firestore";
 
 const RecipeDetails = () => {
+  const [yourRecipe, setYourRecipe] = useState(null);
   const { mealId, recipeId } = useParams();
   const { data: recipe, isSuccess } = useGetRecipeByIdQuery(mealId, {
     skip: !mealId,
@@ -32,11 +35,19 @@ const RecipeDetails = () => {
 
   // console.log("recipe", recipe, isSuccess);
 
-  const { data: yourRecipe, isSuccess: isSuccessYourRecipe } =
-    useGetYourRecipeByidQuery(recipeId, { skip: !recipeId });
+  // const { data: yourRecipe, isSuccess: isSuccessYourRecipe } =
+  //   useGetYourRecipeByidQuery(recipeId, { skip: !recipeId });
 
   // console.log("your recipe", yourRecipe, recipeId);
-
+  const getYouRecipe = async () => {
+    const commentRef = doc(db, "recipes", recipeId);
+    await onSnapshot(commentRef, (data) => {
+      console.log("aaaaaaaa", data.docs);
+      // const res = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      // setYourRecipe(res);
+    });
+  };
+  getYouRecipe();
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [youtube, setYoutube] = useState("");

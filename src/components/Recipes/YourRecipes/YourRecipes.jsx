@@ -70,10 +70,10 @@ const YourRecipes = () => {
         </InputWrapper>
       </Form>
 
-      {/* <List>
-        {recipes &&
-          recipes.length > 0 &&
-          recipes.map((recipe) => {
+      <List>
+        {allRecipes &&
+          allRecipes.length > 0 &&
+          allRecipes.map((recipe) => {
             return (
               <LinkStyled
                 key={recipe.id}
@@ -84,7 +84,7 @@ const YourRecipes = () => {
               </LinkStyled>
             );
           })}
-      </List> */}
+      </List>
       {/* // recipes && recipes.length > 0 ? (
         // recipes.map((recipe) => { }) */}
       <AddBtnWrapper>
