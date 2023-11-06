@@ -24,37 +24,49 @@ import { useGetYourRecipeByidQuery } from "../../../redux/recipe/recipeSlice";
 import mealImg from "../../../images/YourRecipeDetails/meal.jpg";
 import cocktailImg from "../../../images/YourRecipeDetails/cocktails.jpg";
 import { db } from "../../../firebase/config";
-import { collection, onSnapshot, query, where, doc } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 
 const RecipeDetails = () => {
-  const [yourRecipe, setYourRecipe] = useState(null);
   const { mealId, recipeId } = useParams();
   const { data: recipe, isSuccess } = useGetRecipeByIdQuery(mealId, {
     skip: !mealId,
   });
 
-  // console.log("recipe", recipe, isSuccess);
-
   // const { data: yourRecipe, isSuccess: isSuccessYourRecipe } =
   //   useGetYourRecipeByidQuery(recipeId, { skip: !recipeId });
 
   // console.log("your recipe", yourRecipe, recipeId);
-  const getYouRecipe = async () => {
-    const commentRef = doc(db, "recipes", recipeId);
-    await onSnapshot(commentRef, (data) => {
-      console.log("aaaaaaaa", data.docs);
-      // const res = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      // setYourRecipe(res);
-    });
-  };
-  getYouRecipe();
+
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [youtube, setYoutube] = useState("");
+  const [yourRecipe, setYourRecipe] = useState(null);
+
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
   const goFrom = location.state.from.pathname;
   // console.log("location", goFrom);
+
+  useEffect(() => {
+    const getYouRecipe = async () => {
+      const commentRef = doc(db, "recipes", recipeId);
+      const a = await getDoc(commentRef);
+      // , (data) => {
+      // console.log("aaaaaaaa", data);
+      // const res = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      // setYourRecipe(res);
+      // });
+      setYourRecipe(a.data());
+    };
+    getYouRecipe();
+  }, [recipeId]);
 
   useEffect(() => {
     if (recipe) {

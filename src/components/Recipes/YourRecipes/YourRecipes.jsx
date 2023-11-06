@@ -1,5 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
-
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   AddBtnWrapper,
   AddIcon,
@@ -18,12 +18,14 @@ import {
 import { useGetRecipesQuery } from "../../../redux/recipe/recipeSlice";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../../firebase/config";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "../../../redux/hooks/useAuth";
 
 const YourRecipes = () => {
   const location = useLocation();
   const [allRecipes, setAllRecipes] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search") ?? "";
 
   const { isLoggedIn, authEmail, authName, authId } = useAuth();
   // const { data: recipes } = useGetRecipesQuery();
@@ -34,33 +36,65 @@ const YourRecipes = () => {
   //   });
   // };
 
-  useEffect(() => {
-    const getUserRecipes = async () => {
-      const ref = query(
-        collection(db, "recipes"),
-        where("userId", "==", authId)
-      );
-      await onSnapshot(ref, (data) => {
-        setAllRecipes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      });
-    };
-    getUserRecipes();
+  const getUserRecipes = useCallback(async () => {
+    const ref = query(collection(db, "recipes"), where("userId", "==", authId));
+    await onSnapshot(ref, (data) => {
+      setAllRecipes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
   }, [authId]);
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const userRecipes = [...allRecipes];
+    console.log("before", userRecipes);
+
+    if (form.recipeName.value.trim() === "") {
+      getUserRecipes();
+    }
+    const nextParams =
+      form.recipeName.value !== "" ? { search: form.recipeName.value } : {};
+    setSearchParams(nextParams);
+    setAllRecipes(
+      allRecipes.filter((recipe) =>
+        recipe.name.toLowerCase().includes(form.recipeName.value.toLowerCase())
+      )
+    );
+  };
+
+  const filterRecipesFromSearchQuery = useCallback(() => {
+    if (searchQuery) {
+      console.log("sssssssssss");
+      const newArr = allRecipes.filter((recipe) =>
+        recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      // setAllRecipes(newArr);
+      return newArr;
+    }
+  }, [allRecipes, searchQuery]);
+
+  useEffect(() => {
+    if (!searchQuery) setAllRecipes([]);
+  }, []);
+
+  useEffect(() => {
+    getUserRecipes();
+    // if (filteredArr) setAllRecipes(filteredArr);
+  }, [getUserRecipes]);
+  console.log("dsdasd", filterRecipesFromSearchQuery());
+
   console.log(allRecipes);
   return (
     <SectionStyled>
-      <Form
-        // onSubmit={handleSearchSubmit}
-        autoComplete="off"
-      >
-        <LabelSearchStyled htmlFor="search-cocktail">
+      <Form onSubmit={handleSearchSubmit} autoComplete="off">
+        <LabelSearchStyled htmlFor="search-recipe">
           Your Recipes:
         </LabelSearchStyled>
         <InputWrapper>
           <SearchFieldStyled
-            id="search-cocktail"
+            id="search-recipe"
             type="search"
-            name="cocktailName"
+            name="recipeName"
             placeholder="-- Mojito --"
             // onChange={handleSearchChange}
             // value={searchValue}
