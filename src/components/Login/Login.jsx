@@ -1,7 +1,8 @@
-import { ErrorMessage, Field, Form, Formik, FieldArray } from "formik";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
-import { useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 import {
   Button,
@@ -11,13 +12,13 @@ import {
   Span,
   Title,
   Section,
+  PasswordWrapper,
+  ShowPassBtn,
 } from "./Login.styled";
-import { useDispatch } from "react-redux";
 import { authSignIn } from "../../redux/auth/authOperations";
 
 export const Login = () => {
-  const location = useLocation();
-  const backLinkRef = useRef(location.state?.from ?? "/");
+  const [passwordInputType, setPasswordInputType] = useState("password");
 
   const initialState = {
     name: "",
@@ -42,10 +43,15 @@ export const Login = () => {
     console.log("values", values);
   };
 
+  const changePasswordInputType = () => {
+    passwordInputType === "password"
+      ? setPasswordInputType("text")
+      : setPasswordInputType("password");
+  };
+
   return (
     <Section>
       <Title>Login</Title>
-      {/* <form></form> */}
       <Formik
         initialValues={initialState}
         validationSchema={schema}
@@ -53,16 +59,6 @@ export const Login = () => {
       >
         {(props) => (
           <FormStyled autoComplete="off">
-            {/* <LabelStyled htmlFor="name">
-              Name
-              <InputStyled
-                id="name"
-                type="text"
-                name="name"
-                placeholder="Bohdan"
-              />
-              <ErrorMessage name="name" component="p" />
-            </LabelStyled> */}
             <LabelStyled htmlFor="email">
               Email
               <InputStyled
@@ -73,16 +69,25 @@ export const Login = () => {
               />
               <ErrorMessage name="email" component="p" />
             </LabelStyled>
-            <LabelStyled htmlFor="password">
-              Password
-              <InputStyled
-                id="password"
-                type="password"
-                name="password"
-                placeholder="111111"
-              />
-              <ErrorMessage name="password" component="p" />
-            </LabelStyled>
+            <PasswordWrapper>
+              <LabelStyled htmlFor="password">
+                Password
+                <InputStyled
+                  id="password"
+                  type={passwordInputType}
+                  name="password"
+                  placeholder="111111"
+                />
+                <ErrorMessage name="password" component="p" />
+              </LabelStyled>
+              <ShowPassBtn onClick={changePasswordInputType} type="button">
+                {passwordInputType === "password" ? (
+                  <AiFillEyeInvisible color="#ff723e" size={20} />
+                ) : (
+                  <AiFillEye color="#ff723e" size={20} />
+                )}
+              </ShowPassBtn>
+            </PasswordWrapper>
             <Button type="submit">
               <Span></Span>
               <Span></Span>

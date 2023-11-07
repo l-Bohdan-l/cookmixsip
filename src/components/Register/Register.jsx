@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { ErrorMessage, Field, Form, Formik, FieldArray } from "formik";
+import { ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 
 import {
@@ -19,9 +18,6 @@ import {
 import { authSignUp } from "../../redux/auth/authOperations";
 
 export const Register = () => {
-  const location = useLocation();
-  const backLinkRef = useRef(location.state?.from ?? "/");
-
   const [passwordInputType, setPasswordInputType] = useState("password");
 
   const initialState = {
@@ -95,7 +91,11 @@ export const Register = () => {
                 <ErrorMessage name="password" component="p" />
               </LabelStyled>
               <ShowPassBtn onClick={changePasswordInputType} type="button">
-                <AiFillEyeInvisible color="#ff723e" size={20} />
+                {passwordInputType === "password" ? (
+                  <AiFillEyeInvisible color="#ff723e" size={20} />
+                ) : (
+                  <AiFillEye color="#ff723e" size={20} />
+                )}
               </ShowPassBtn>
             </PasswordWrapper>
             <Button type="submit">

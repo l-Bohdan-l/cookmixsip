@@ -9,7 +9,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
   background-color: #070606;
-  /* background-image: linear-gradient(to right, #434343 0%, black 100%); */
 }
 
 code {

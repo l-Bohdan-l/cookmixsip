@@ -4,14 +4,6 @@ export const cocktailApi = createApi({
   reducerPath: "cocktailApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://www.thecocktaildb.com/api/json/v1/1/",
-    //     prepareHeaders: (headers, { getState }) => {
-    //       const token = getState().credentials.token;
-    //       if (token) {
-    //         headers.set("authorization", `Bearer ${token}`);
-    //       }
-
-    //       return headers;
-    //     },
   }),
   tagTypes: ["Cocktails"],
   endpoints: (builder) => ({

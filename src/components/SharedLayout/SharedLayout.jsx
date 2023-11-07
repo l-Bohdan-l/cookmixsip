@@ -1,14 +1,12 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
 import { ColorRing } from "react-loader-spinner";
 import { ToastContainer } from "react-toastify";
 import { Container } from "../Container/Container";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { BodyWrapper, Wrapper } from "./SharedLayout.styled";
 
 export function SharedLayout() {
-  const location = useLocation();
   return (
     <>
       <Header />

@@ -19,7 +19,6 @@ import {
   SectionStyled,
 } from "./CocktailsSearch.styled";
 
-// import list from "../../../cocktailList.json";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useLocation, useSearchParams } from "react-router-dom";

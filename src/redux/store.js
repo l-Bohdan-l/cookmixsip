@@ -1,15 +1,5 @@
-import {
-  // combineReducers,
-  configureStore,
-} from "@reduxjs/toolkit";
-// import { filterSlice } from "./contacts/filterSlice";
-// import { contactsApi } from "./contacts/contactsApi";
-// import { authApi } from "./authSlice";
+import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { authSlice } from "./auth/authSlice";
-import { cocktailApi } from "./cocktails/cocktailsSlice";
-import { mealApi } from "./recipe/mealsSlice";
-
 import {
   persistReducer,
   persistStore,
@@ -21,6 +11,10 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+
+import { authSlice } from "./auth/authSlice";
+import { cocktailApi } from "./cocktails/cocktailsSlice";
+import { mealApi } from "./recipe/mealsSlice";
 import { recipeApi } from "./recipe/recipeSlice";
 
 const persistConfig = {
@@ -47,8 +41,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-    // contactsApi.middleware,
-    // authApi.middleware,
     cocktailApi.middleware,
     mealApi.middleware,
     recipeApi.middleware,

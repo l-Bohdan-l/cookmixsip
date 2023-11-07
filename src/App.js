@@ -1,39 +1,28 @@
-import "./App.css";
-// import { useState, useEffect, lazy } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-import "react-toastify/dist/ReactToastify.css";
-// import { nanoid } from "nanoid";
-
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
-import { Error } from "./components/Error";
-import Main from "./pages/Main/Main";
-
-import { SharedLayout } from "./components/SharedLayout/SharedLayout";
-
-import { PublicRoute } from "./components/Routes/PublicRoute";
-import { PrivateRoute } from "./components/Routes/PrivateRoute";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 
 import { persistor } from "./redux/store";
-import Cocktails from "./pages/Cocktails/Cocktails";
-import Recipes from "./pages/Recipes/Recipes";
-import CocktailDetails from "./components/Cocktails/CocktailDetails/CocktailDetails";
-import RecipeDetails from "./components/Recipes/RecipeDetails/RecipeDetails";
-import YourRecipes from "./pages/YourRecipes/YourRecipesPage";
-import YourRecipesPage from "./pages/YourRecipes/YourRecipesPage";
-import AddRecipe from "./components/Recipes/AddRecipe/AddRecipe";
-import { LoginPage } from "./pages/Login/LoginPage.jsx";
-import { RegisterPage } from "./pages/Register/RegisterPage.jsx";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { authStateChangeUser } from "./redux/auth/authOperations";
 
-// import { useAuth } from "./redux/hooks/useAuth";
-// import {
-//   setRefetchedCredentials,
-//   useGetCurrentUserQuery,
-// } from "./redux/authSlice";
-// import CurrencyConverter from "./components/Currency/CurrencyConverter";
+import Main from "./pages/Main/Main";
+import Cocktails from "./pages/Cocktails/Cocktails";
+import Recipes from "./pages/Recipes/Recipes";
+import YourRecipesPage from "./pages/YourRecipes/YourRecipesPage";
+import { LoginPage } from "./pages/Login/LoginPage.jsx";
+import { RegisterPage } from "./pages/Register/RegisterPage.jsx";
+
+import { Error } from "./components/Error";
+import { SharedLayout } from "./components/SharedLayout/SharedLayout";
+import { PublicRoute } from "./components/Routes/PublicRoute";
+import { PrivateRoute } from "./components/Routes/PrivateRoute";
+import CocktailDetails from "./components/Cocktails/CocktailDetails/CocktailDetails";
+import RecipeDetails from "./components/Recipes/RecipeDetails/RecipeDetails";
+import AddRecipe from "./components/Recipes/AddRecipe/AddRecipe";
+
 // const Home = lazy(() => import("./pages/Home"));
 
 let router = createBrowserRouter(
@@ -79,7 +68,6 @@ let router = createBrowserRouter(
           path: "your-recipes",
           element: (
             <PrivateRoute component={YourRecipesPage} redirectTo="/login" />
-            // <YourRecipesPage />
           ),
         },
         {

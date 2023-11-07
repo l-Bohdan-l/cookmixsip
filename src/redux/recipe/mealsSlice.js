@@ -3,15 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const mealApi = createApi({
   reducerPath: "mealApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://www.themealdb.com/api/json/v1/1/",
-    //     prepareHeaders: (headers, { getState }) => {
-    //       const token = getState().credentials.token;
-    //       if (token) {
-    //         headers.set("authorization", `Bearer ${token}`);
-    //       }
-
-    //       return headers;
-    //     },
+    baseUrl: "https://www.themealdb.com/api/json/v1/1/",   
   }),
   tagTypes: ["Meal"],
   endpoints: (builder) => ({
@@ -35,7 +27,6 @@ export const mealApi = createApi({
     }),
   }),
 });
-// });
 
 export const {
   useGetRandomRecipeQuery,
