@@ -1,5 +1,6 @@
 import { AiFillPlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 import styled from "styled-components";
 
 export const SectionStyled = styled.section`
@@ -130,9 +131,13 @@ export const List = styled.ul`
   gap: 25px;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
 
   /* flex-wrap: wrap; */
   margin-bottom: 10px;
+  @media screen and (min-width: 1280px) {
+    flex-direction: row;
+  }
 `;
 
 export const LinkStyled = styled(Link)`
@@ -141,14 +146,48 @@ export const LinkStyled = styled(Link)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15px 10px;
-  border-bottom: 1px solid #ff723e;
-  height: 250px;
-  transition: all 250ms ease-in-out;
+  /* padding: 15px 10px; */
+  /* border-bottom: 1px solid #ff723e; */
+  /* height: 100%; */
+  /* transition: all 250ms ease-in-out; */
 
-  cursor: pointer;
+  /* cursor: pointer; */
   /* overflow: scroll; */
 
+  /* background-color: rgb(57 56 56 / 27%);
+  border-radius: 20px; */
+
+  /* &:hover {
+    box-shadow: 0px 0px 10px 0px #ff723e;
+    transform: scale(1.05);
+  } */
+
+  /* @media screen and (min-width: 1280px) {
+    height: 150px;
+    width: 48%;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 25px;
+    flex-wrap: wrap;
+  } */
+
+  font-size: 20px;
+  font-weight: 500;
+  color: #ff723e;
+  text-align: center;
+  /* margin-bottom: 5px; */
+  text-transform: capitalize;
+`;
+
+export const ListItem = styled.li`
+  display: flex;
+  position: relative;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 15px 10px;
+  border-bottom: 1px solid #ff723e;
+  transition: all 250ms ease-in-out;
+  cursor: pointer;
   background-color: rgb(57 56 56 / 27%);
   border-radius: 20px;
 
@@ -165,11 +204,30 @@ export const LinkStyled = styled(Link)`
     font-size: 25px;
     flex-wrap: wrap;
   }
+`;
 
-  font-size: 20px;
-  font-weight: 500;
-  color: #ff723e;
-  text-align: center;
-  margin-bottom: 5px;
-  text-transform: capitalize;
+export const DeleteBtn = styled.button`
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+  padding: 5px;
+  border-radius: 50%;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px #ff723e;
+  }
+`;
+
+export const DeleteIcon = styled(RiDeleteBin2Fill)`
+  color: #c10808eb;
+  font-size: 18px;
+  @media screen and (min-width: 1280px) {
+    font-size: 22px;
+  }
 `;

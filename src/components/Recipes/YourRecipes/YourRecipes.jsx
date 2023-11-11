@@ -4,6 +4,8 @@ import {
   AddBtnWrapper,
   AddIcon,
   AddLink,
+  DeleteBtn,
+  DeleteIcon,
   Form,
   InputWrapper,
   LabelSearchStyled,
@@ -14,6 +16,7 @@ import {
   SearchFieldStyled,
   SectionStyled,
 } from "./YourRecipes.styled";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 // import { AiFillPlusCircle } from "react-icons/ai";
 import { useGetRecipesQuery } from "../../../redux/recipe/recipeSlice";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
@@ -109,13 +112,18 @@ const YourRecipes = () => {
           allRecipes.length > 0 &&
           allRecipes.map((recipe) => {
             return (
-              <LinkStyled
-                key={recipe.id}
-                to={`/your-recipes/${recipe.id}`}
-                state={{ from: location }}
-              >
-                {recipe.name}
-              </LinkStyled>
+              <ListItem>
+                <LinkStyled
+                  key={recipe.id}
+                  to={`/your-recipes/${recipe.id}`}
+                  state={{ from: location }}
+                >
+                  {recipe.name}
+                </LinkStyled>
+                <DeleteBtn>
+                  <DeleteIcon />
+                </DeleteBtn>
+              </ListItem>
             );
           })}
       </List>
