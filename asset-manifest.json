@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/cookmixsip/static/css/main.2ed27da9.css",
+    "main.js": "/cookmixsip/static/js/main.b70b2552.js",
+    "static/js/787.44fcc470.chunk.js": "/cookmixsip/static/js/787.44fcc470.chunk.js",
+    "static/media/meal.jpg": "/cookmixsip/static/media/meal.f3e564b8142e3146f79e.jpg",
+    "static/media/cocktails.jpg": "/cookmixsip/static/media/cocktails.61e547474abd955c62d0.jpg",
+    "static/media/kitchen-medium.jpg": "/cookmixsip/static/media/kitchen-medium.2d17f2f3fcc49bbb626e.jpg",
+    "static/media/cocktail-medium.jpg": "/cookmixsip/static/media/cocktail-medium.f993661be0acc430da14.jpg",
+    "static/media/hero-medium.jpg": "/cookmixsip/static/media/hero-medium.1764f62f21e57ea6dd29.jpg",
+    "static/media/kitchen-small.jpg": "/cookmixsip/static/media/kitchen-small.71180489934a39359f13.jpg",
+    "static/media/cocktail-small.jpg": "/cookmixsip/static/media/cocktail-small.c82d9df1caf7f1453f5e.jpg",
+    "static/media/hero-mobile.jpg": "/cookmixsip/static/media/hero-mobile.6cfec994ce9454a457d7.jpg",
+    "index.html": "/cookmixsip/index.html",
+    "main.2ed27da9.css.map": "/cookmixsip/static/css/main.2ed27da9.css.map",
+    "main.b70b2552.js.map": "/cookmixsip/static/js/main.b70b2552.js.map",
+    "787.44fcc470.chunk.js.map": "/cookmixsip/static/js/787.44fcc470.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2ed27da9.css",
+    "static/js/main.b70b2552.js"
+  ]
+}
