@@ -189,6 +189,7 @@ export const AdditionalIngredientBtn = styled.button`
   width: 35px;
   height: 35px;
   border-radius: 50%;
+  padding: 0;
   border: 1px solid rgb(255, 114, 62);
   background-color: rgb(255, 114, 62);
   color: #000000;
@@ -199,6 +200,7 @@ export const AdditionalIngredientBtn = styled.button`
   cursor: pointer;
   &:hover {
     background-color: transparent;
+    color: #ffffff;
   }
   &:not(:last-child) {
     margin-right: 5px;

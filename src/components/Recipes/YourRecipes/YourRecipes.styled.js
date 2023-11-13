@@ -147,6 +147,8 @@ export const LinkStyled = styled(Link)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 15px 10px;
+  width: 100%;
   /* padding: 15px 10px; */
   /* border-bottom: 1px solid #ff723e; */
   /* height: 100%; */
@@ -185,7 +187,7 @@ export const ListItem = styled.li`
   position: relative;
   width: 100%;
   margin-bottom: 5px;
-  padding: 15px 10px;
+
   border-bottom: 1px solid #ff723e;
   transition: all 250ms ease-in-out;
   cursor: pointer;

@@ -68,12 +68,10 @@ const AddRecipe = () => {
   const schema = Yup.object({
     name: Yup.string().required("Please enter name"),
     description: Yup.string(),
-    url: Yup.string()
-      .matches(
-        /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-        "Enter correct url!"
-      )
-      .required("Please enter website"),
+    url: Yup.string().matches(
+      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      "Enter correct url!"
+    ),
 
     ingredients: Yup.array().of(
       Yup.object({
@@ -155,6 +153,8 @@ const AddRecipe = () => {
               label="Description"
               name="description"
               placeholder="add sugar"
+              // wrap="soft"
+              // cols="12"
             />
             <LabelStyled htmlFor="url">
               Url
@@ -303,9 +303,9 @@ const AddRecipe = () => {
               />
               <ErrorMessage name="ingredientsAmount" component="p" /> */}
               </LabelStyled>
-              <AddIngredientButton type="button" onClick={addIngredient}>
+              {/* <AddIngredientButton type="button" onClick={addIngredient}>
                 Add ingredient
-              </AddIngredientButton>
+              </AddIngredientButton> */}
             </IngredientWrapper>
             <div>
               <RecipeTypeTitle>Choose recipe type</RecipeTypeTitle>
