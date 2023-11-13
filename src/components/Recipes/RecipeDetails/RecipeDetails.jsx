@@ -95,8 +95,6 @@ const RecipeDetails = () => {
     }
   }, [recipe]);
 
-  // console.log("ingredients", ingredients, measures);
-
   return (
     <SectionStyled>
       {recipe && mealId && (

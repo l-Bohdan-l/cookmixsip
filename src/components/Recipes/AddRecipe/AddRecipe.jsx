@@ -27,7 +27,7 @@ import {
 import { TextArea } from "../../TextArea/TextArea";
 import { useRef, useState } from "react";
 import { useAddRecipeMutation } from "../../../redux/recipe/recipeSlice";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../../firebase/config";
 import { useAuth } from "../../../redux/hooks/useAuth";
 
@@ -48,6 +48,7 @@ const AddRecipe = () => {
 
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
+  const navigate = useNavigate();
 
   const initialState = {
     name: "",
@@ -84,7 +85,7 @@ const AddRecipe = () => {
         ),
       })
     ),
-    mealType: Yup.string(),
+    mealType: Yup.string().required("Please select type"),
     alcoholType: Yup.string().oneOf(["alcohol", "non-alcohol"], "Invalid Type"),
   });
 
@@ -100,6 +101,7 @@ const AddRecipe = () => {
     // e.preventDefault();
     // console.log("submit", values);
     addRecipe(values);
+    navigate("/your-recipes");
   };
 
   const addIngredient = () => {

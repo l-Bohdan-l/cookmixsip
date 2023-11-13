@@ -137,6 +137,7 @@ export const List = styled.ul`
   margin-bottom: 10px;
   @media screen and (min-width: 1280px) {
     flex-direction: row;
+    flex-wrap: wrap;
   }
 `;
 

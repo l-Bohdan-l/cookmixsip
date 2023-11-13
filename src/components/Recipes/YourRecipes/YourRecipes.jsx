@@ -19,7 +19,14 @@ import {
 import { RiDeleteBin2Fill } from "react-icons/ri";
 // import { AiFillPlusCircle } from "react-icons/ai";
 import { useGetRecipesQuery } from "../../../redux/recipe/recipeSlice";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "../../../firebase/config";
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "../../../redux/hooks/useAuth";
@@ -65,14 +72,14 @@ const YourRecipes = () => {
     );
   };
 
-  const filterRecipesFromSearchQuery = () => {
+  const filterRecipesFromSearchQuery = async () => {
     if (searchQuery) {
       // console.log("sssssssssss");
-      const newArr = allRecipes.filter((recipe) =>
+      const newArr = await allRecipes.filter((recipe) =>
         recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      setAllRecipes(newArr);
-      // return newArr;
+      // setAllRecipes(newArr);
+      console.log("arr", newArr);
     }
   };
 
@@ -88,7 +95,10 @@ const YourRecipes = () => {
   }, [getUserRecipes]);
   // console.log("dsdasd", filterRecipesFromSearchQuery());
 
-  console.log(allRecipes);
+  const handleDelete = async (id) => {
+    await deleteDoc(doc(db, "recipes", id));
+  };
+
   return (
     <SectionStyled>
       <Form onSubmit={handleSearchSubmit} autoComplete="off">
@@ -121,7 +131,7 @@ const YourRecipes = () => {
                 >
                   {recipe.name}
                 </LinkStyled>
-                <DeleteBtn>
+                <DeleteBtn onClick={() => handleDelete(recipe.id)}>
                   <DeleteIcon />
                 </DeleteBtn>
               </ListItem>
