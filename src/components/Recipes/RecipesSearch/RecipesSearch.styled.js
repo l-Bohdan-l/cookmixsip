@@ -92,11 +92,14 @@ export const SearchBtn = styled.button`
 `;
 
 export const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   @media screen and (min-width: 1280px) {
-    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     gap: 20px;
   }
 `;

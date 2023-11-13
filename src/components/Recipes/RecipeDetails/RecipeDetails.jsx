@@ -18,6 +18,7 @@ import {
   YoutubeLink,
   YoutubeText,
   YoutubeWrapper,
+  UrlNone,
 } from "./RecipeDetails.styled";
 import { useGetRecipeByIdQuery } from "../../../redux/recipe/mealsSlice";
 import { useGetYourRecipeByidQuery } from "../../../redux/recipe/recipeSlice";
@@ -153,7 +154,6 @@ const RecipeDetails = () => {
           </Link>
           <RecipeName>{yourRecipe.name}</RecipeName>
           {/* <IngredientsTitle>{yourRecipe.mealType}</IngredientsTitle> */}
-
           {yourRecipe.mealType === "Meal" ? (
             <RecipeImage src={mealImg} alt="plate of food on a table" />
           ) : (
@@ -170,10 +170,18 @@ const RecipeDetails = () => {
           </IngredientsList>
           <InstructionTitle>Description:</InstructionTitle>
           <Instruction>{yourRecipe.description}</Instruction>
-          <UrlTitle>Url</UrlTitle>
-          <Url href={yourRecipe.url} target="_blank" rel="noopener noreferrer">
-            {yourRecipe.url}
-          </Url>
+          <UrlTitle>Url:</UrlTitle>
+          {yourRecipe.url ? (
+            <Url
+              href={yourRecipe.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {yourRecipe.url}
+            </Url>
+          ) : (
+            <UrlNone>None</UrlNone>
+          )}
         </>
       )}
     </SectionStyled>

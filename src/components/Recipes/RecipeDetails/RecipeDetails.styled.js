@@ -160,6 +160,19 @@ export const Url = styled.a`
   }
 `;
 
+export const UrlNone = styled.p`
+  color: #e2e2e2;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.051px;
+  text-align: center;
+  @media screen and (min-width: 1280px) {
+    font-size: 24px;
+  }
+`;
+
 export const GoBackBtn = styled.button`
   display: block;
   position: absolute;

@@ -1,4 +1,4 @@
-import { Field, Form } from "formik";
+import { ErrorMessage, Field, Form } from "formik";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import styled from "styled-components";
 
@@ -31,7 +31,7 @@ export const Title = styled.h2`
 `;
 
 export const FormStyled = styled(Form)`
-  background-color: wheat;
+  /* background-color: wheat; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -285,4 +285,8 @@ export const BtnIcon = styled(BsFillArrowLeftCircleFill)`
   @media screen and (min-width: 1280px) {
     display: none;
   }
+`;
+
+export const ErrorMsgStyled = styled(ErrorMessage)`
+  color: red;
 `;

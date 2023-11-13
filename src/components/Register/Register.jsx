@@ -14,6 +14,8 @@ import {
   Section,
   ShowPassBtn,
   PasswordWrapper,
+  RedirectWrapper,
+  RedirectLink,
 } from "./Register.styled";
 import { authSignUp } from "../../redux/auth/authOperations";
 
@@ -40,7 +42,7 @@ export const Register = () => {
 
   const handleSubmit = (values) => {
     dispatch(authSignUp(values));
-    console.log("values", values);
+    // console.log("values", values);
   };
 
   const changePasswordInputType = () => {
@@ -105,6 +107,10 @@ export const Register = () => {
               <Span></Span>
               Sign up
             </Button>
+            <RedirectWrapper>
+              <p>Already have an account ?</p>
+              <RedirectLink to="/login">Log in</RedirectLink>
+            </RedirectWrapper>
           </FormStyled>
         )}
       </Formik>

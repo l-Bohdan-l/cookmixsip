@@ -1,5 +1,6 @@
 import { Field, Form } from "formik";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Button = styled.button`
   position: relative;
@@ -208,4 +209,14 @@ export const ShowPassBtn = styled.button`
     top: 40px;
     padding: 10px;
   }
+`;
+
+export const RedirectWrapper = styled.div`
+  color: #ff723e;
+  display: flex;
+  gap: 5px;
+`;
+
+export const RedirectLink = styled(Link)`
+  text-decoration: underline;
 `;

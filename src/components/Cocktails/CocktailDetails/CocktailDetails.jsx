@@ -29,7 +29,7 @@ const CocktailDetails = () => {
   const [measures, setMeasures] = useState([]);
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
-  console.log("cocktail", cocktail, isSuccess);
+  // console.log("cocktail", cocktail, isSuccess);
   // let ingredients = [];
   //  let measures = [];
   // useEffect(() => {

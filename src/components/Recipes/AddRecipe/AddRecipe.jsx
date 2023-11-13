@@ -8,6 +8,7 @@ import {
   BtnIcon,
   BtnText,
   ChooseAlcoholType,
+  ErrorMsgStyled,
   FormStyled,
   GoBackBtn,
   IngredientMeasureWrapper,
@@ -64,14 +65,15 @@ const AddRecipe = () => {
   };
 
   const schema = Yup.object({
-    name: Yup.string(),
+    name: Yup.string().required("Please enter name"),
     description: Yup.string(),
-    url: Yup.string().matches(
-      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-      "Enter correct url!"
-    ),
+    url: Yup.string()
+      .matches(
+        /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+        "Enter correct url!"
+      )
+      .required("Please enter website"),
 
-    // .required("Please enter website")
     ingredients: Yup.array().of(
       Yup.object({
         ingredientsName: Yup.string(),
@@ -133,7 +135,7 @@ const AddRecipe = () => {
                 name="name"
                 placeholder="Cake"
               />
-              <ErrorMessage name="name" component="p" />
+              <ErrorMsgStyled name="name" component="p" />
             </LabelStyled>
             {/* <LabelStyled htmlFor="description">
             Description
@@ -160,7 +162,7 @@ const AddRecipe = () => {
                 name="url"
                 placeholder="cookmixsip.com"
               />
-              <ErrorMessage name="url" component="p" />
+              <ErrorMsgStyled name="url" component="p" />
             </LabelStyled>
             <IngredientWrapper>
               <LabelStyled id="ingredientLabel" htmlFor="ingredients">
@@ -185,7 +187,7 @@ const AddRecipe = () => {
                                 // value={ingredient.ingredientsName}
                               />
 
-                              <ErrorMessage
+                              <ErrorMsgStyled
                                 name="ingredientsName"
                                 component="p"
                               />
@@ -220,7 +222,7 @@ const AddRecipe = () => {
                                   <option value="kg">kg</option>
                                   <option value="pcs">pcs</option>
                                 </MeasureSelect>
-                                <ErrorMessage
+                                <ErrorMsgStyled
                                   name={`ingredients[${index}].measure`}
                                   component="p"
                                 />
@@ -249,7 +251,7 @@ const AddRecipe = () => {
                                   </AdditionalIngredientBtn>
                                 )}
                               </AdditionalIngredientBtnWrapper>
-                              <ErrorMessage
+                              <ErrorMsgStyled
                                 name="ingredientsAmount"
                                 component="p"
                               />
@@ -309,12 +311,12 @@ const AddRecipe = () => {
                 <LabelStyled>
                   Meal
                   <RadioField type="radio" name="mealType" value="Meal" />
-                  <ErrorMessage name="mealType" component="p" />
+                  <ErrorMsgStyled name="mealType" component="p" />
                 </LabelStyled>
                 <LabelStyled>
                   Cocktail
                   <RadioField type="radio" name="mealType" value="Cocktail" />
-                  <ErrorMessage name="mealType" component="p" />
+                  <ErrorMsgStyled name="mealType" component="p" />
                 </LabelStyled>
               </MealTypeWrapper>
             </div>
@@ -333,7 +335,7 @@ const AddRecipe = () => {
                   <option value="alcohol">Alcohol</option>
                   <option value="non-alcohol">Non alcohol</option>
                 </ChooseAlcoholType>
-                <ErrorMessage name="alcoholType" component="p" />
+                <ErrorMsgStyled name="alcoholType" component="p" />
               </LabelStyled>
             )}
 

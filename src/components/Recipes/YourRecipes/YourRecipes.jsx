@@ -50,7 +50,7 @@ const YourRecipes = () => {
     e.preventDefault();
     const form = e.target;
     const userRecipes = [...allRecipes];
-    console.log("before", userRecipes);
+    // console.log("before", userRecipes);
 
     if (form.recipeName.value.trim() === "") {
       getUserRecipes();
@@ -65,26 +65,28 @@ const YourRecipes = () => {
     );
   };
 
-  const filterRecipesFromSearchQuery = useCallback(() => {
+  const filterRecipesFromSearchQuery = () => {
     if (searchQuery) {
-      console.log("sssssssssss");
+      // console.log("sssssssssss");
       const newArr = allRecipes.filter((recipe) =>
         recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      // setAllRecipes(newArr);
-      return newArr;
+      setAllRecipes(newArr);
+      // return newArr;
     }
-  }, [allRecipes, searchQuery]);
+  };
 
   useEffect(() => {
-    if (!searchQuery) setAllRecipes([]);
+    if (!searchQuery) return;
+    filterRecipesFromSearchQuery();
   }, []);
+  console.log("searchQuery", searchQuery);
 
   useEffect(() => {
     getUserRecipes();
     // if (filteredArr) setAllRecipes(filteredArr);
   }, [getUserRecipes]);
-  console.log("dsdasd", filterRecipesFromSearchQuery());
+  // console.log("dsdasd", filterRecipesFromSearchQuery());
 
   console.log(allRecipes);
   return (
@@ -112,9 +114,8 @@ const YourRecipes = () => {
           allRecipes.length > 0 &&
           allRecipes.map((recipe) => {
             return (
-              <ListItem>
+              <ListItem key={`${recipe.id}${recipe.name}`}>
                 <LinkStyled
-                  key={recipe.id}
                   to={`/your-recipes/${recipe.id}`}
                   state={{ from: location }}
                 >
