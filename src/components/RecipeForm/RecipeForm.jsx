@@ -1,9 +1,67 @@
-export const RecipeForm = () => {
+import { Formik, FieldArray } from "formik";
+import * as Yup from "yup";
+
+import {
+  AdditionalIngredientBtn,
+  AdditionalIngredientBtnWrapper,
+  ChooseAlcoholType,
+  ErrorMsgStyled,
+  FormStyled,
+  IngredientMeasureWrapper,
+  IngredientWrapper,
+  IngredientsListWrapper,
+  InputStyled,
+  LabelStyled,
+  MealTypeWrapper,
+  MeasureSelect,
+  RadioField,
+  RecipeTypeTitle,
+  SubmitButton,
+} from "./RecipeForm.styled";
+import { TextArea } from "../TextArea/TextArea";
+
+export const RecipeForm = ({ onSubmit }) => {
+  const initialState = {
+    name: "",
+    description: "",
+    url: "",
+    ingredients: [
+      {
+        ingredientsName: "",
+        ingredientsAmount: "",
+        measure: "",
+      },
+    ],
+    mealType: "",
+    alcoholType: "",
+  };
+
+  const schema = Yup.object({
+    name: Yup.string().required("Please enter name"),
+    description: Yup.string(),
+    url: Yup.string().matches(
+      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      "Enter correct url!"
+    ),
+
+    ingredients: Yup.array().of(
+      Yup.object({
+        ingredientsName: Yup.string(),
+        ingredientsAmount: Yup.number(),
+        measure: Yup.string().oneOf(
+          ["g", "tsp", "ml", "tbsp", "cup", "l", "kg", "pcs"],
+          "Invalid Type"
+        ),
+      })
+    ),
+    mealType: Yup.string().required("Please select type"),
+    alcoholType: Yup.string().oneOf(["alcohol", "non-alcohol"], "Invalid Type"),
+  });
   return (
     <Formik
       initialValues={initialState}
       validationSchema={schema}
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
     >
       {({ values, handleChange }) => (
         <FormStyled autoComplete="off">

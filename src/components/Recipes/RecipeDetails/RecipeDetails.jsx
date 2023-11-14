@@ -19,6 +19,9 @@ import {
   YoutubeText,
   YoutubeWrapper,
   UrlNone,
+  DeleteButton,
+  EditButton,
+  ButtonWrapper,
 } from "./RecipeDetails.styled";
 import { useGetRecipeByIdQuery } from "../../../redux/recipe/mealsSlice";
 import { useGetYourRecipeByidQuery } from "../../../redux/recipe/recipeSlice";
@@ -53,7 +56,7 @@ const RecipeDetails = () => {
 
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
-  const goFrom = location.state.from.pathname;
+  // const goFrom = location.state.from.pathname;
   // console.log("location", goFrom);
 
   useEffect(() => {
@@ -187,12 +190,14 @@ const RecipeDetails = () => {
           )}
         </>
       )}
-      <div>
-        <button type="button">Edit</button>
-        <button onClick={handleDelete} type="button">
+      <ButtonWrapper>
+        <EditButton to="edit" state={{ from: location }}>
+          Edit
+        </EditButton>
+        <DeleteButton onClick={handleDelete} type="button">
           Delete
-        </button>
-      </div>
+        </DeleteButton>
+      </ButtonWrapper>
     </SectionStyled>
   );
 };

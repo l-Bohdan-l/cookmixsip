@@ -22,6 +22,7 @@ import { PrivateRoute } from "./components/Routes/PrivateRoute";
 import CocktailDetails from "./components/Cocktails/CocktailDetails/CocktailDetails";
 import RecipeDetails from "./components/Recipes/RecipeDetails/RecipeDetails";
 import AddRecipe from "./components/Recipes/AddRecipe/AddRecipe";
+import { EditRecipe } from "./pages/Edit/EditRecipe.jsx";
 
 // const Home = lazy(() => import("./pages/Home"));
 
@@ -75,6 +76,10 @@ let router = createBrowserRouter(
           element: (
             <PrivateRoute component={RecipeDetails} redirectTo="/login" />
           ),
+        },
+        {
+          path: "your-recipes/:recipeId/edit",
+          element: <PrivateRoute component={EditRecipe} redirectTo="/login" />,
         },
         {
           path: "your-recipes/add",

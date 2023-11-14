@@ -30,6 +30,7 @@ import { useAddRecipeMutation } from "../../../redux/recipe/recipeSlice";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../../firebase/config";
 import { useAuth } from "../../../redux/hooks/useAuth";
+import { RecipeForm } from "../../RecipeForm/RecipeForm";
 
 const AddRecipe = () => {
   const [ingredientCounter, setIngredientCounter] = useState(0);
@@ -120,7 +121,8 @@ const AddRecipe = () => {
         </GoBackBtn>
       </Link>
       <Title>Add Recipe</Title>
-      <Formik
+      <RecipeForm onSubmit={handleSubmit} />
+      {/* <Formik
         initialValues={initialState}
         validationSchema={schema}
         onSubmit={handleSubmit}
@@ -291,7 +293,7 @@ const AddRecipe = () => {
             <SubmitButton type="submit">Submit</SubmitButton>
           </FormStyled>
         )}
-      </Formik>
+      </Formik> */}
     </Section>
   );
 };

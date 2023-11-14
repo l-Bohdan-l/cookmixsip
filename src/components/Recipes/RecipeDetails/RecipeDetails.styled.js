@@ -1,8 +1,9 @@
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const SectionStyled = styled.section`
-  padding-top: 20px;
+  padding-top: 30px;
   padding-bottom: 20px;
   position: relative;
 `;
@@ -267,4 +268,46 @@ export const YoutubeWrapper = styled.div`
   align-items: center;
 `;
 
-export const EditButton = styled.button;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const DeleteButton = styled.button`
+  width: 60px;
+  background-color: #c91212c4;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #c91212c4;
+  }
+`;
+
+export const EditButton = styled(Link)`
+  width: 60px;
+  height: 35px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #666666;
+  color: #000000;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    background-color: #714f1e;
+    color: #ffffff;
+  }
+`;
