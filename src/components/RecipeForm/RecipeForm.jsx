@@ -37,7 +37,7 @@ export const RecipeForm = ({ onSubmit }) => {
   };
 
   const schema = Yup.object({
-    name: Yup.string().required("Please enter name"),
+    name: Yup.string(),
     description: Yup.string(),
     url: Yup.string().matches(
       /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
@@ -54,9 +54,11 @@ export const RecipeForm = ({ onSubmit }) => {
         ),
       })
     ),
-    mealType: Yup.string().required("Please select type"),
+    mealType: Yup.string(),
+    // .required("Please select type")
     alcoholType: Yup.string().oneOf(["alcohol", "non-alcohol"], "Invalid Type"),
   });
+
   return (
     <Formik
       initialValues={initialState}

@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
@@ -56,6 +56,7 @@ const RecipeDetails = () => {
 
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
+  const navigate = useNavigate();
   // const goFrom = location.state.from.pathname;
   // console.log("location", goFrom);
 
@@ -101,6 +102,7 @@ const RecipeDetails = () => {
 
   const handleDelete = async () => {
     await deleteDoc(doc(db, "recipes", recipeId));
+    navigate(`/your-recipes`);
   };
 
   return (
