@@ -266,3 +266,5 @@ export const YoutubeWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const EditButton = styled.button;

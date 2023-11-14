@@ -32,6 +32,7 @@ import {
   where,
   doc,
   getDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 const RecipeDetails = () => {
@@ -94,6 +95,10 @@ const RecipeDetails = () => {
       setYoutube(recipe.meals[0].strYoutube);
     }
   }, [recipe]);
+
+  const handleDelete = async () => {
+    await deleteDoc(doc(db, "recipes", recipeId));
+  };
 
   return (
     <SectionStyled>
@@ -182,6 +187,12 @@ const RecipeDetails = () => {
           )}
         </>
       )}
+      <div>
+        <button type="button">Edit</button>
+        <button onClick={handleDelete} type="button">
+          Delete
+        </button>
+      </div>
     </SectionStyled>
   );
 };

@@ -137,18 +137,6 @@ const AddRecipe = () => {
               />
               <ErrorMsgStyled name="name" component="p" />
             </LabelStyled>
-            {/* <LabelStyled htmlFor="description">
-            Description
-            <InputStyled
-              id="description"
-              as="textarea"
-              // type="text"
-              name="description"
-              placeholder="Add sugar"
-              onChange={(e) => console.log(e.target.value)}
-            />
-            <ErrorMessage name="description" component="p" />
-          </LabelStyled> */}
             <TextArea
               label="Description"
               name="description"
@@ -264,48 +252,7 @@ const AddRecipe = () => {
                     );
                   }}
                 </FieldArray>
-                {/* {ingredients.map((ingredient, index) => {
-                return (
-                  <IngredientsListWrapper key={index}>
-                    <InputStyled
-                      id="ingredients"
-                      type="text"
-                      name={`ingredients[${index}].ingredientsName`}
-                      // name="ingredients[0].ingredientsName"
-                      placeholder="Sugar"
-                      // value={ingredient.ingredientsName}
-                    />
-                    <ErrorMessage name="ingredientsName" component="p" />
-                    <InputStyled
-                      id="ingredients"
-                      type="text"
-                      // name="ingredients[0].ingredientsAmount"
-                      name={`ingredients[${index}].ingredientsAmount`}
-                      placeholder="1 gram"
-                      // value={ingredient.ingredientsAmount}
-                    />
-                    <ErrorMessage name="ingredientsAmount" component="p" />
-                  </IngredientsListWrapper>
-                );
-              })} */}
-                {/* <InputStyled
-                id="ingredients"
-                type="text"
-                name="ingredients[0].ingredientsName"
-                placeholder="Sugar"
-              />
-              <ErrorMessage name="ingredientsName" component="p" />
-              <InputStyled
-                id="ingredients"
-                type="text"
-                name="ingredients[0].ingredientsAmount"
-                placeholder="1 gram"
-              />
-              <ErrorMessage name="ingredientsAmount" component="p" /> */}
               </LabelStyled>
-              {/* <AddIngredientButton type="button" onClick={addIngredient}>
-                Add ingredient
-              </AddIngredientButton> */}
             </IngredientWrapper>
             <div>
               <RecipeTypeTitle>Choose recipe type</RecipeTypeTitle>
