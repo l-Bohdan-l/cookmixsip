@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/cookmixsip/static/css/main.2ed27da9.css",
-    "main.js": "/cookmixsip/static/js/main.bbc15cd3.js",
+    "main.js": "/cookmixsip/static/js/main.4936c6f5.js",
     "static/js/787.44fcc470.chunk.js": "/cookmixsip/static/js/787.44fcc470.chunk.js",
     "static/media/meal.jpg": "/cookmixsip/static/media/meal.f3e564b8142e3146f79e.jpg",
     "static/media/cocktails.jpg": "/cookmixsip/static/media/cocktails.61e547474abd955c62d0.jpg",
@@ -13,11 +13,11 @@
     "static/media/hero-mobile.jpg": "/cookmixsip/static/media/hero-mobile.6cfec994ce9454a457d7.jpg",
     "index.html": "/cookmixsip/index.html",
     "main.2ed27da9.css.map": "/cookmixsip/static/css/main.2ed27da9.css.map",
-    "main.bbc15cd3.js.map": "/cookmixsip/static/js/main.bbc15cd3.js.map",
+    "main.4936c6f5.js.map": "/cookmixsip/static/js/main.4936c6f5.js.map",
     "787.44fcc470.chunk.js.map": "/cookmixsip/static/js/787.44fcc470.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2ed27da9.css",
-    "static/js/main.bbc15cd3.js"
+    "static/js/main.4936c6f5.js"
   ]
 }
