@@ -1,12 +1,11 @@
+import { LinkStyled, Wrapper } from "./Error.styled";
+
 export const Error = () => {
   return (
-    <div
-      style={{
-        textAlign: "center",
-      }}
-    >
+    <Wrapper>
       <h1>404</h1>
       <p>Page not found</p>
-    </div>
+      <LinkStyled to="/">Go on Main Page</LinkStyled>
+    </Wrapper>
   );
 };

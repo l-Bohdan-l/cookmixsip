@@ -40,50 +40,60 @@ let router = createBrowserRouter(
         {
           path: "cocktails",
           element: <PublicRoute component={Cocktails} />,
+          errorElement: <Error />,
         },
         {
           path: "cocktails/:cocktailId",
           element: <PublicRoute component={CocktailDetails} />,
+          errorElement: <Error />,
         },
         {
           path: "meals",
           element: <PublicRoute component={Recipes} />,
+          errorElement: <Error />,
         },
         {
           path: "meals/:mealId",
           element: <PublicRoute component={RecipeDetails} />,
+          errorElement: <Error />,
         },
         {
           path: "login",
           element: (
             <PublicRoute restricted component={LoginPage} redirectTo="/" />
           ),
+          errorElement: <Error />,
         },
         {
           path: "register",
           element: (
             <PublicRoute restricted component={RegisterPage} redirectTo="/" />
           ),
+          errorElement: <Error />,
         },
         {
           path: "your-recipes",
           element: (
             <PrivateRoute component={YourRecipesPage} redirectTo="/login" />
           ),
+          errorElement: <Error />,
         },
         {
           path: "your-recipes/:recipeId",
           element: (
             <PrivateRoute component={RecipeDetails} redirectTo="/login" />
           ),
+          errorElement: <Error />,
         },
         {
           path: "your-recipes/:recipeId/edit",
           element: <PrivateRoute component={EditRecipe} redirectTo="/login" />,
+          errorElement: <Error />,
         },
         {
           path: "your-recipes/add",
           element: <PrivateRoute component={AddRecipe} redirectTo="/login" />,
+          errorElement: <Error />,
         },
       ],
     },
