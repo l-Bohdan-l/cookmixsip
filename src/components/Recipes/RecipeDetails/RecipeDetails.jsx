@@ -22,6 +22,11 @@ import {
   DeleteButton,
   EditButton,
   ButtonWrapper,
+  ConfirmDeleteWrapper,
+  DeleteTitle,
+  ConfirmDeleteButtonsWrapper,
+  DeclineButton,
+  ConfirmDeleteButton,
 } from "./RecipeDetails.styled";
 import { useGetRecipeByIdQuery } from "../../../redux/recipe/mealsSlice";
 import { useGetYourRecipeByidQuery } from "../../../redux/recipe/recipeSlice";
@@ -37,6 +42,7 @@ import {
   getDoc,
   deleteDoc,
 } from "firebase/firestore";
+import Overlay from "../../Modal/Overlay";
 
 const RecipeDetails = () => {
   const { mealId, recipeId } = useParams();
@@ -53,6 +59,7 @@ const RecipeDetails = () => {
   const [measures, setMeasures] = useState([]);
   const [youtube, setYoutube] = useState("");
   const [yourRecipe, setYourRecipe] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
@@ -103,6 +110,14 @@ const RecipeDetails = () => {
   const handleDelete = async () => {
     await deleteDoc(doc(db, "recipes", recipeId));
     navigate(`/your-recipes`);
+  };
+
+  const overlayClick = () => {
+    setModalOpen(false);
+  };
+
+  const handleModalOpen = () => {
+    setModalOpen(true);
   };
 
   return (
@@ -196,10 +211,21 @@ const RecipeDetails = () => {
         <EditButton to="edit" state={{ from: location }}>
           Edit
         </EditButton>
-        <DeleteButton onClick={handleDelete} type="button">
+        <DeleteButton onClick={handleModalOpen} type="button">
           Delete
         </DeleteButton>
       </ButtonWrapper>
+      {modalOpen && (
+        <Overlay overlayClick={overlayClick}>
+          <ConfirmDeleteWrapper>
+            <DeleteTitle>Do you want to delete this recipe ?</DeleteTitle>
+            <ConfirmDeleteButtonsWrapper>
+              <DeclineButton onClick={overlayClick}>No</DeclineButton>
+              <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
+            </ConfirmDeleteButtonsWrapper>
+          </ConfirmDeleteWrapper>
+        </Overlay>
+      )}
     </SectionStyled>
   );
 };

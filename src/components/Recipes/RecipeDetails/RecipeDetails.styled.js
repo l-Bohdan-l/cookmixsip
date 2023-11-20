@@ -311,3 +311,47 @@ export const EditButton = styled(Link)`
     color: #ffffff;
   }
 `;
+
+export const DeleteTitle = styled.h3`
+  font-size: 20px;
+  font-weight: 500;
+  color: #ff723e;
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+`;
+
+export const ConfirmDeleteWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const ConfirmDeleteButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const DeclineButton = styled.button`
+  width: 60px;
+  height: 35px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #666666;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    background-color: #714f1e;
+    color: #ffffff;
+  }
+`;
