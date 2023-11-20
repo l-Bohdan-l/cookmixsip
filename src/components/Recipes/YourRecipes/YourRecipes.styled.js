@@ -234,3 +234,63 @@ export const DeleteIcon = styled(RiDeleteBin2Fill)`
     font-size: 22px;
   }
 `;
+
+export const DeleteTitle = styled.h3`
+  font-size: 20px;
+  font-weight: 500;
+  color: #ff723e;
+  text-align: center;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+`;
+
+export const ConfirmDeleteWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const ConfirmDeleteButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const ConfirmDeleteButton = styled.button`
+  width: 60px;
+  background-color: #c91212c4;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #c91212c4;
+  }
+`;
+
+export const DeclineButton = styled.button`
+  width: 60px;
+  height: 35px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #666666;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    background-color: #714f1e;
+    color: #ffffff;
+  }
+`;

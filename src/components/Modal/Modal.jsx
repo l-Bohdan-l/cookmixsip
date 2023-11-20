@@ -1,40 +1,21 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-
-import {
-  MenuButton,
-  MenuCheckbox,
-  MenuLabel,
-  MenuTextBar,
-  Overlay,
-} from "./Modal.styled";
 import ModalContent from "./ModalContent";
+import BurgerMenuIcon from "../BurgerMenuIcon/BurgerMenuIcon";
+import Overlay from "./Overlay";
 export const Modal = ({ onClose }) => {
   const [showModal, setShowModal] = useState(false);
   const [checked, setChecked] = useState(false);
 
-  //     const handleKeyDown = (e) => {
-  //     if (e.code === "Escape") {
-  //       onClose();
-  //     }
-  //     return;
-  //   };
-
-  //   window.addEventListener("keydown", handleKeyDown);
-
-  //   const handleBackdropClick = (e) => {
-  //     if (e.currentTarget === e.target) {
-  //       onClose();
-  //     }
-
-  //   };
   const handleCloseModal = () => {
-    // console.log("handleCloseModal", showModal);
     setShowModal(false);
   };
 
-  const buttonCheckbox = (e) => {
-    // console.log("e.target.checked", e.target.checked);
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleButtonChecked = () => {
     setChecked(true);
   };
 
@@ -42,29 +23,16 @@ export const Modal = ({ onClose }) => {
     setShowModal(false);
     setChecked(false);
   };
-  // console.log("modal", showModal);
   return (
     <>
-      {/* <button onClick={() => setShowModal(true)}>
-        Show modal using a portal
-      </button> */}
-      {/* <Overlay onClick={handleBackdropClick}>
-          <div>{children}</div>
-        </Overlay> */}
-
-      <MenuButton checked onClick={() => setShowModal(true)}>
-        <MenuCheckbox
-          type="checkbox"
-          id="menu_checkbox"
-          onClick={buttonCheckbox}
-        />
-        <MenuLabel htmlFor="menu_checkbox" id="menu_label" isChecked={checked}>
-          <MenuTextBar></MenuTextBar>
-        </MenuLabel>
-      </MenuButton>
+      <BurgerMenuIcon
+        handleOpenModal={handleOpenModal}
+        handleButtonChecked={handleButtonChecked}
+        checked={checked}
+      />
       {showModal &&
         createPortal(
-          <Overlay onClick={overlayClick}>
+          <Overlay overlayClick={overlayClick}>
             <ModalContent onClose={handleCloseModal} />
           </Overlay>,
           document.body

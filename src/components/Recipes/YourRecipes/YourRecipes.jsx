@@ -4,8 +4,14 @@ import {
   AddBtnWrapper,
   AddIcon,
   AddLink,
+  ButtonWrapper,
+  ConfirmDeleteButton,
+  ConfirmDeleteButtonsWrapper,
+  ConfirmDeleteWrapper,
+  DeclineButton,
   DeleteBtn,
   DeleteIcon,
+  DeleteTitle,
   Form,
   InputWrapper,
   LabelSearchStyled,
@@ -30,11 +36,14 @@ import {
 import { db } from "../../../firebase/config";
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "../../../redux/hooks/useAuth";
+import { Modal } from "../../Modal/Modal";
+import Overlay from "../../Modal/Overlay";
 
 const YourRecipes = () => {
   const location = useLocation();
   const [allRecipes, setAllRecipes] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [deletedRecipeId, setDeletedRecipeId] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") ?? "";
 
@@ -84,11 +93,10 @@ const YourRecipes = () => {
     }
   };
 
-  useEffect(() => {
-    if (!searchQuery) return;
-    filterRecipesFromSearchQuery();
-  }, []);
-  console.log("searchQuery", searchQuery);
+  // useEffect(() => {
+  //   if (!searchQuery) return;
+  //   filterRecipesFromSearchQuery();
+  // }, []);
 
   useEffect(() => {
     getUserRecipes();
@@ -96,16 +104,21 @@ const YourRecipes = () => {
   }, [getUserRecipes]);
   // console.log("dsdasd", filterRecipesFromSearchQuery());
 
-  const handleDelete = async (id) => {
-    await deleteDoc(doc(db, "recipes", id));
+  const handleDelete = async () => {
+    await deleteDoc(doc(db, "recipes", deletedRecipeId));
   };
 
-  const handleModalOpen = () => {
-    setModalOpen(!modalOpen);
-    
+  const handleModalOpen = (id) => {
+    setModalOpen(true);
+    setDeletedRecipeId(id);
   };
 
-  // console.log(allRecipes);
+  const overlayClick = () => {
+    setModalOpen(false);
+    setDeletedRecipeId(null);
+  };
+
+  // console.log(deletedRecipeId);
 
   return (
     <SectionStyled>
@@ -139,7 +152,10 @@ const YourRecipes = () => {
                 >
                   {recipe.name}
                 </LinkStyled>
-                <DeleteBtn onClick={() => handleDelete(recipe.id)}>
+                <DeleteBtn
+                  // onClick={() => handleDelete(recipe.id)}
+                  onClick={() => handleModalOpen(recipe.id)}
+                >
                   <DeleteIcon />
                 </DeleteBtn>
               </ListItem>
@@ -153,6 +169,19 @@ const YourRecipes = () => {
           <AddIcon />
         </AddLink>
       </AddBtnWrapper>
+      {modalOpen && (
+        <Overlay overlayClick={overlayClick}>
+          <ConfirmDeleteWrapper>
+            <DeleteTitle>Do you want to delete this recipe ?</DeleteTitle>
+            <ConfirmDeleteButtonsWrapper>
+              <DeclineButton onClick={overlayClick}>No</DeclineButton>
+              <ConfirmDeleteButton onClick={handleDelete}>
+                Delete
+              </ConfirmDeleteButton>
+            </ConfirmDeleteButtonsWrapper>
+          </ConfirmDeleteWrapper>
+        </Overlay>
+      )}
     </SectionStyled>
   );
 };
