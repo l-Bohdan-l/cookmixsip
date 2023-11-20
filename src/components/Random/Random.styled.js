@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledRandom = styled.section`
@@ -89,7 +90,7 @@ export const RandomItemDescriptionWrapper = styled.div`
   }
 `;
 
-export const RandomItemWrapper = styled.div`
+export const RandomItemWrapper = styled(Link)`
   /* display: flex;
   flex-direction: column;
   align-items: center;

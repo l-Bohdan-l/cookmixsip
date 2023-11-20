@@ -117,6 +117,7 @@ export const InstructionTitle = styled.h3`
   line-height: normal;
   letter-spacing: 0.06px;
   margin-bottom: 10px;
+  margin-top: 20px;
   text-align: center;
   @media screen and (min-width: 1280px) {
     font-size: 24px;
@@ -131,6 +132,7 @@ export const UrlTitle = styled.h3`
   line-height: normal;
   letter-spacing: 0.06px;
   margin-bottom: 10px;
+  margin-top: 20px;
   text-align: center;
   @media screen and (min-width: 1280px) {
     font-size: 24px;
@@ -144,7 +146,7 @@ export const Url = styled.a`
   font-weight: 500;
   line-height: normal;
   letter-spacing: 0.051px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-align: justify;
   text-justify: inter-word;
   cursor: pointer;

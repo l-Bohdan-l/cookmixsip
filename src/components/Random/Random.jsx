@@ -17,6 +17,7 @@ import {
 // import data from "../../aaaaa.json";
 import { useGetRandomCocktailQuery } from "../../redux/cocktails/cocktailsSlice";
 import { useGetRandomRecipeQuery } from "../../redux/recipe/mealsSlice";
+import { useLocation } from "react-router-dom";
 
 const Random = () => {
   const [randomCocktail, setRandomCocktail] = useState(null);
@@ -29,6 +30,8 @@ const Random = () => {
     data: mealData,
     // isFetching: isFetchingMeal
   } = useGetRandomRecipeQuery();
+
+  const location = useLocation();
 
   useEffect(() => {
     if (cocktailData && mealData) {
@@ -45,7 +48,10 @@ const Random = () => {
       <MainSubTitle>Don't know what to choose ?</MainSubTitle>
       {randomCocktail && randomMeal && (
         <RandomItemsDiv>
-          <RandomItemWrapper>
+          <RandomItemWrapper
+            to={`/cocktails/${randomCocktail.idDrink}`}
+            state={{ from: location }}
+          >
             <img
               src={randomCocktail.strDrinkThumb}
               alt={randomCocktail.strDrink}
@@ -65,7 +71,11 @@ const Random = () => {
               )}
             </RandomItemDescriptionWrapper>
           </RandomItemWrapper>
-          <RandomItemWrapper second>
+          <RandomItemWrapper
+            to={`/meals/${randomMeal.idMeal}`}
+            state={{ from: location }}
+            second
+          >
             <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} />
             <RandomItemDescriptionWrapper>
               <RandomItemName>{randomMeal.strMeal}</RandomItemName>

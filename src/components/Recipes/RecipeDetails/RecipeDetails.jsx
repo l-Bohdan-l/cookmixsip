@@ -78,7 +78,9 @@ const RecipeDetails = () => {
       // });
       setYourRecipe(a.data());
     };
-    getYouRecipe();
+    if (recipeId) {
+      getYouRecipe();
+    }
   }, [recipeId]);
 
   useEffect(() => {
@@ -119,6 +121,7 @@ const RecipeDetails = () => {
   const handleModalOpen = () => {
     setModalOpen(true);
   };
+  console.log(yourRecipe);
 
   return (
     <SectionStyled>
@@ -183,16 +186,27 @@ const RecipeDetails = () => {
             <RecipeImage src={cocktailImg} alt="a lot of alcohol bottles" />
           )}
           <IngredientsTitle> Ingredients: </IngredientsTitle>
-          <IngredientsList>
-            {yourRecipe.ingredients.map((ingredient, index) => (
-              <IngredientItem key={index}>
-                {ingredient.ingredientsName} - {ingredient.ingredientsAmount}{" "}
-                {ingredient.measure}
-              </IngredientItem>
-            ))}
-          </IngredientsList>
-          <InstructionTitle>Description:</InstructionTitle>
-          <Instruction>{yourRecipe.description}</Instruction>
+          {yourRecipe.ingredients.length === 1 &&
+          yourRecipe.ingredients[0].ingredientsAmount === "" &&
+          yourRecipe.ingredients[0].ingredientsName === "" &&
+          yourRecipe.ingredients[0].measure === "" ? (
+            <UrlNone>You didn't add any ingredient</UrlNone>
+          ) : (
+            <IngredientsList>
+              {yourRecipe.ingredients.map((ingredient, index) => (
+                <IngredientItem key={index}>
+                  {ingredient.ingredientsName} - {ingredient.ingredientsAmount}{" "}
+                  {ingredient.measure}
+                </IngredientItem>
+              ))}
+            </IngredientsList>
+          )}
+          <InstructionTitle>Instruction:</InstructionTitle>
+          {yourRecipe.description ? (
+            <Instruction>{yourRecipe.description}</Instruction>
+          ) : (
+            <UrlNone>You didn't add any instructions</UrlNone>
+          )}
           <UrlTitle>Url:</UrlTitle>
           {yourRecipe.url ? (
             <Url
@@ -205,16 +219,16 @@ const RecipeDetails = () => {
           ) : (
             <UrlNone>None</UrlNone>
           )}
+          <ButtonWrapper>
+            <EditButton to="edit" state={{ from: location }}>
+              Edit
+            </EditButton>
+            <DeleteButton onClick={handleModalOpen} type="button">
+              Delete
+            </DeleteButton>
+          </ButtonWrapper>
         </>
       )}
-      <ButtonWrapper>
-        <EditButton to="edit" state={{ from: location }}>
-          Edit
-        </EditButton>
-        <DeleteButton onClick={handleModalOpen} type="button">
-          Delete
-        </DeleteButton>
-      </ButtonWrapper>
       {modalOpen && (
         <Overlay overlayClick={overlayClick}>
           <ConfirmDeleteWrapper>
