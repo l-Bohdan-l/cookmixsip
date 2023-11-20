@@ -118,7 +118,7 @@ const YourRecipes = () => {
     setDeletedRecipeId(null);
   };
 
-  // console.log(deletedRecipeId);
+  console.log(allRecipes);
 
   return (
     <SectionStyled>

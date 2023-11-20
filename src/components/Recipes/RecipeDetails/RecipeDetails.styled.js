@@ -275,6 +275,7 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin-top: 20px;
 `;
 
 export const DeleteButton = styled.button`
