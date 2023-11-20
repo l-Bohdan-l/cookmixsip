@@ -34,6 +34,7 @@ import { useAuth } from "../../../redux/hooks/useAuth";
 const YourRecipes = () => {
   const location = useLocation();
   const [allRecipes, setAllRecipes] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") ?? "";
 
@@ -98,6 +99,13 @@ const YourRecipes = () => {
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "recipes", id));
   };
+
+  const handleModalOpen = () => {
+    setModalOpen(!modalOpen);
+    
+  };
+
+  // console.log(allRecipes);
 
   return (
     <SectionStyled>
