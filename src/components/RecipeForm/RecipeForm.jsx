@@ -20,27 +20,29 @@ import {
 } from "./RecipeForm.styled";
 import { TextArea } from "../TextArea/TextArea";
 
-export const RecipeForm = ({ onSubmit }) => {
+export const RecipeForm = ({ onSubmit, recipeInfo }) => {
+  console.log("recipeInfo", recipeInfo);
+
   const initialState = {
-    name: "",
-    description: "",
-    url: "",
-    ingredients: [
+    name: recipeInfo?.name ?? "",
+    description: recipeInfo?.description ?? "",
+    url: recipeInfo?.url ?? "",
+    ingredients: recipeInfo?.ingredients ?? [
       {
         ingredientsName: "",
         ingredientsAmount: "",
         measure: "",
       },
     ],
-    mealType: "",
-    alcoholType: "",
+    mealType: recipeInfo?.mealType ?? "",
+    alcoholType: recipeInfo?.alcoholType ?? "",
   };
 
   const schema = Yup.object({
     name: Yup.string(),
     description: Yup.string(),
     url: Yup.string().matches(
-      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      /((https?):\/\/)?(www.)?[a-z0-9-]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9-]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
       "Enter correct url!"
     ),
 
@@ -59,11 +61,13 @@ export const RecipeForm = ({ onSubmit }) => {
     alcoholType: Yup.string().oneOf(["alcohol", "non-alcohol"], "Invalid Type"),
   });
 
+  console.log("initialState", initialState);
   return (
     <Formik
       initialValues={initialState}
       validationSchema={schema}
       onSubmit={onSubmit}
+      enableReinitialize
     >
       {({ values, handleChange }) => (
         <FormStyled autoComplete="off">
