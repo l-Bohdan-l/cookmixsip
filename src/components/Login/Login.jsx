@@ -42,7 +42,6 @@ export const Login = () => {
 
   const handleSubmit = (values) => {
     dispatch(authSignIn(values));
-    // console.log("values", values);
   };
 
   const changePasswordInputType = () => {

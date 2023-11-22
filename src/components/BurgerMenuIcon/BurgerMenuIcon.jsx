@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   MenuButton,
   MenuCheckbox,
@@ -7,11 +6,7 @@ import {
 } from "./BurgerMenuIcon.styled";
 
 const BurgerMenuIcon = ({ handleOpenModal, handleButtonChecked, checked }) => {
-  //   const [checked, setChecked] = useState(false);
-
   const buttonCheckbox = (e) => {
-    // console.log("e.target.checked", e.target.checked);
-    // setChecked(true);
     handleButtonChecked();
   };
 

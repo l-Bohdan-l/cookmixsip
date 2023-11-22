@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { BiDrink } from "react-icons/bi";
 import { MdNoDrinks } from "react-icons/md";
 
-// import { fetchRandomCocktail } from "../../services/fetchCoctails";
 import {
   ExtraDescrText,
   ExtraDescrWrapper,
@@ -14,7 +13,6 @@ import {
   RandomItemsDiv,
   StyledRandom,
 } from "./Random.styled";
-// import data from "../../aaaaa.json";
 import { useGetRandomCocktailQuery } from "../../redux/cocktails/cocktailsSlice";
 import { useGetRandomRecipeQuery } from "../../redux/recipe/mealsSlice";
 import { useLocation } from "react-router-dom";
@@ -22,14 +20,8 @@ import { useLocation } from "react-router-dom";
 const Random = () => {
   const [randomCocktail, setRandomCocktail] = useState(null);
   const [randomMeal, setRandomMeal] = useState(null);
-  const {
-    data: cocktailData,
-    // isFetching
-  } = useGetRandomCocktailQuery();
-  const {
-    data: mealData,
-    // isFetching: isFetchingMeal
-  } = useGetRandomRecipeQuery();
+  const { data: cocktailData } = useGetRandomCocktailQuery();
+  const { data: mealData } = useGetRandomRecipeQuery();
 
   const location = useLocation();
 
@@ -39,8 +31,6 @@ const Random = () => {
       setRandomMeal(mealData.meals[0]);
     }
   }, [cocktailData, mealData]);
-
-  // console.log(randomCocktail, randomMeal);
 
   return (
     <StyledRandom>

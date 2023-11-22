@@ -1,7 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useSearchCocktailByIdQuery } from "../../../redux/cocktails/cocktailsSlice";
 
 import {
@@ -24,21 +23,11 @@ const CocktailDetails = () => {
   const { data: cocktail, isSuccess } = useSearchCocktailByIdQuery(cocktailId, {
     skip: !cocktailId,
   });
-  // const [cocktail.drinks[0], setcocktail.drinks[0]] = useState(cocktail.drinks[0]);
+
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
-  // console.log("cocktail", cocktail, isSuccess);
-  // let ingredients = [];
-  //  let measures = [];
-  // useEffect(() => {
-  //   if (!isSuccess || !cocktail.drinks) {
-  //     setcocktail.drinks[0]([]);
-  //     return;
-  //   }
-  //   setcocktail.drinks[0](cocktail.drinks[0]);
-  // }, [cocktail.drinks, isSuccess]);
 
   useEffect(() => {
     if (cocktail) {
@@ -58,7 +47,6 @@ const CocktailDetails = () => {
       setMeasures(measuresArr);
     }
   }, [cocktail]);
-
 
   return (
     <SectionStyled>

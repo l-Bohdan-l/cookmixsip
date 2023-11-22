@@ -16,7 +16,6 @@ import {
   Url,
   UrlTitle,
   YoutubeLink,
-  YoutubeText,
   YoutubeWrapper,
   UrlNone,
   DeleteButton,
@@ -26,22 +25,12 @@ import {
   DeleteTitle,
   ConfirmDeleteButtonsWrapper,
   DeclineButton,
-  ConfirmDeleteButton,
 } from "./RecipeDetails.styled";
 import { useGetRecipeByIdQuery } from "../../../redux/recipe/mealsSlice";
-import { useGetYourRecipeByidQuery } from "../../../redux/recipe/recipeSlice";
 import mealImg from "../../../images/YourRecipeDetails/meal.jpg";
 import cocktailImg from "../../../images/YourRecipeDetails/cocktails.jpg";
 import { db } from "../../../firebase/config";
-import {
-  collection,
-  onSnapshot,
-  query,
-  where,
-  doc,
-  getDoc,
-  deleteDoc,
-} from "firebase/firestore";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
 import Overlay from "../../Modal/Overlay";
 
 const RecipeDetails = () => {
@@ -49,11 +38,6 @@ const RecipeDetails = () => {
   const { data: recipe, isSuccess } = useGetRecipeByIdQuery(mealId, {
     skip: !mealId,
   });
-
-  // const { data: yourRecipe, isSuccess: isSuccessYourRecipe } =
-  //   useGetYourRecipeByidQuery(recipeId, { skip: !recipeId });
-
-  // console.log("your recipe", yourRecipe, recipeId);
 
   const [ingredients, setIngredients] = useState([]);
   const [measures, setMeasures] = useState([]);
@@ -64,19 +48,12 @@ const RecipeDetails = () => {
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/");
   const navigate = useNavigate();
-  // const goFrom = location.state.from.pathname;
-  // console.log("location", goFrom);
 
   useEffect(() => {
     const getYouRecipe = async () => {
       const commentRef = doc(db, "recipes", recipeId);
-      const a = await getDoc(commentRef);
-      // , (data) => {
-      // console.log("aaaaaaaa", data);
-      // const res = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      // setYourRecipe(res);
-      // });
-      setYourRecipe(a.data());
+      const ref = await getDoc(commentRef);
+      setYourRecipe(ref.data());
     };
     if (recipeId) {
       getYouRecipe();
@@ -121,7 +98,6 @@ const RecipeDetails = () => {
   const handleModalOpen = () => {
     setModalOpen(true);
   };
-  console.log(yourRecipe);
 
   return (
     <SectionStyled>
@@ -153,10 +129,6 @@ const RecipeDetails = () => {
           </IngredientsList>
           <InstructionTitle>Instruction:</InstructionTitle>
           <Instruction>{recipe.meals[0].strInstructions}</Instruction>
-          {/* <iframe
-            src={`${youtube}?autoplay=0&mute=1`}
-            title={recipe.meals[0].strMeal}
-          ></iframe> */}
           {youtube && (
             <YoutubeWrapper>
               <YoutubeLink
@@ -179,7 +151,7 @@ const RecipeDetails = () => {
             </GoBackBtn>
           </Link>
           <RecipeName>{yourRecipe.name}</RecipeName>
-          {/* <IngredientsTitle>{yourRecipe.mealType}</IngredientsTitle> */}
+
           {yourRecipe.mealType === "Meal" ? (
             <RecipeImage src={mealImg} alt="plate of food on a table" />
           ) : (

@@ -1,10 +1,8 @@
-import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useLocation, useSearchParams } from "react-router-dom";
 import {
   AddBtnWrapper,
   AddIcon,
   AddLink,
-  ButtonWrapper,
   ConfirmDeleteButton,
   ConfirmDeleteButtonsWrapper,
   ConfirmDeleteWrapper,
@@ -22,9 +20,6 @@ import {
   SearchFieldStyled,
   SectionStyled,
 } from "./YourRecipes.styled";
-import { RiDeleteBin2Fill } from "react-icons/ri";
-// import { AiFillPlusCircle } from "react-icons/ai";
-import { useGetRecipesQuery } from "../../../redux/recipe/recipeSlice";
 import {
   collection,
   onSnapshot,
@@ -36,7 +31,6 @@ import {
 import { db } from "../../../firebase/config";
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "../../../redux/hooks/useAuth";
-import { Modal } from "../../Modal/Modal";
 import Overlay from "../../Modal/Overlay";
 
 const YourRecipes = () => {
@@ -48,13 +42,6 @@ const YourRecipes = () => {
   const searchQuery = searchParams.get("search") ?? "";
 
   const { isLoggedIn, authEmail, authName, authId } = useAuth();
-  // const { data: recipes } = useGetRecipesQuery();
-  // console.log("your recipes", recipes);
-  // const getAllPosts = async () => {
-  //   const allPosts = await onSnapshot(collection(db, "recipes"), (data) => {
-  //     setallRecipes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //   });
-  // };
 
   const getUserRecipes = useCallback(async () => {
     const ref = query(collection(db, "recipes"), where("userId", "==", authId));
@@ -67,7 +54,6 @@ const YourRecipes = () => {
     e.preventDefault();
     const form = e.target;
     const userRecipes = [...allRecipes];
-    // console.log("before", userRecipes);
 
     if (form.recipeName.value.trim() === "") {
       getUserRecipes();
@@ -84,11 +70,10 @@ const YourRecipes = () => {
 
   const filterRecipesFromSearchQuery = async () => {
     if (searchQuery) {
-      // console.log("sssssssssss");
       const newArr = await allRecipes.filter((recipe) =>
         recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      // setAllRecipes(newArr);
+
       console.log("arr", newArr);
     }
   };
@@ -100,9 +85,7 @@ const YourRecipes = () => {
 
   useEffect(() => {
     getUserRecipes();
-    // if (filteredArr) setAllRecipes(filteredArr);
   }, [getUserRecipes]);
-  // console.log("dsdasd", filterRecipesFromSearchQuery());
 
   const handleDelete = async () => {
     await deleteDoc(doc(db, "recipes", deletedRecipeId));
@@ -118,7 +101,7 @@ const YourRecipes = () => {
     setDeletedRecipeId(null);
   };
 
-  console.log(allRecipes);
+  // console.log(allRecipes);
 
   return (
     <SectionStyled>
@@ -132,8 +115,6 @@ const YourRecipes = () => {
             type="search"
             name="recipeName"
             placeholder="-- Mojito --"
-            // onChange={handleSearchChange}
-            // value={searchValue}
             autoComplete="off"
           />
           <SearchBtn type="submit">Search</SearchBtn>
@@ -152,18 +133,13 @@ const YourRecipes = () => {
                 >
                   {recipe.name}
                 </LinkStyled>
-                <DeleteBtn
-                  // onClick={() => handleDelete(recipe.id)}
-                  onClick={() => handleModalOpen(recipe.id)}
-                >
+                <DeleteBtn onClick={() => handleModalOpen(recipe.id)}>
                   <DeleteIcon />
                 </DeleteBtn>
               </ListItem>
             );
           })}
       </List>
-      {/* // recipes && recipes.length > 0 ? (
-        // recipes.map((recipe) => { }) */}
       <AddBtnWrapper>
         <AddLink to="/your-recipes/add" state={{ from: location }}>
           <AddIcon />

@@ -1,5 +1,7 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
+
 import { RecipeForm } from "../../components/RecipeForm/RecipeForm";
 import {
   GoBackBtn,
@@ -8,7 +10,6 @@ import {
   Wrapper,
   Title,
 } from "./EditRecipe.styled.js";
-import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/config.js";
 
 export const EditRecipe = () => {
@@ -28,21 +29,14 @@ export const EditRecipe = () => {
   useEffect(() => {
     const getYouRecipe = async () => {
       const commentRef = doc(db, "recipes", recipeId);
-      const a = await getDoc(commentRef);
-      // , (data) => {
-      // console.log("aaaaaaaa", data);
-      // const res = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      // setYourRecipe(res);
-      // });
-      setYourRecipe(a.data());
+      const ref = await getDoc(commentRef);
+      setYourRecipe(ref.data());
     };
     if (recipeId) {
       getYouRecipe();
     }
   }, [recipeId]);
 
-  console.log("111", yourRecipe);
-  // const { name, alcoholType, description, ingredients, mealType, url} = yourRecipe;
   return (
     <Wrapper>
       <Link to={backLinkRef.current}>
@@ -52,11 +46,7 @@ export const EditRecipe = () => {
         </GoBackBtn>
       </Link>
       <Title>Edit your recipe</Title>
-      <RecipeForm
-        onSubmit={handleSubmit}
-        // name={yourRecipe?.name}
-        recipeInfo={yourRecipe}
-      />
+      <RecipeForm onSubmit={handleSubmit} recipeInfo={yourRecipe} />
     </Wrapper>
   );
 };

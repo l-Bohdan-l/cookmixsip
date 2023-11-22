@@ -21,8 +21,6 @@ import {
 import { TextArea } from "../TextArea/TextArea";
 
 export const RecipeForm = ({ onSubmit, recipeInfo }) => {
-  console.log("recipeInfo", recipeInfo);
-
   const initialState = {
     name: recipeInfo?.name ?? "",
     description: recipeInfo?.description ?? "",
@@ -61,7 +59,6 @@ export const RecipeForm = ({ onSubmit, recipeInfo }) => {
     alcoholType: Yup.string().oneOf(["alcohol", "non-alcohol"], "Invalid Type"),
   });
 
-  console.log("initialState", initialState);
   return (
     <Formik
       initialValues={initialState}
@@ -80,8 +77,6 @@ export const RecipeForm = ({ onSubmit, recipeInfo }) => {
             label="Description"
             name="description"
             placeholder="add sugar"
-            // wrap="soft"
-            // cols="12"
           />
           <LabelStyled htmlFor="url">
             Url
@@ -111,9 +106,7 @@ export const RecipeForm = ({ onSubmit, recipeInfo }) => {
                               id="ingredients"
                               type="text"
                               name={`ingredients[${index}].ingredientsName`}
-                              // name="ingredients[0].ingredientsName"
                               placeholder="Sugar"
-                              // value={ingredient.ingredientsName}
                             />
 
                             <ErrorMsgStyled
@@ -124,17 +117,13 @@ export const RecipeForm = ({ onSubmit, recipeInfo }) => {
                               <InputStyled
                                 id="ingredients"
                                 type="text"
-                                // name="ingredients[0].ingredientsAmount"
                                 name={`ingredients[${index}].ingredientsAmount`}
                                 placeholder="1"
-                                // value={ingredient.ingredientsAmount}
                               />
                               <MeasureSelect
                                 component="select"
                                 name={`ingredients[${index}].measure`}
                                 id="ingredients"
-                                // defaultValue={"DEFAULT"}
-                                // value={"DEFAULT"}
                                 value={ingredient.measure}
                                 onChange={handleChange}
                               >
@@ -215,7 +204,6 @@ export const RecipeForm = ({ onSubmit, recipeInfo }) => {
                 id="alcoholType"
                 name="alcoholType"
                 component="select"
-                // multiple={true}
               >
                 <option value="" disabled>
                   --Select--

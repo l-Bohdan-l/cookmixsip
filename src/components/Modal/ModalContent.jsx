@@ -1,4 +1,5 @@
-// import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import {
   ListItem,
   LogoutBtn,
@@ -8,14 +9,10 @@ import {
   LoginWrapper,
   LoginLink,
 } from "./ModalContent.styled";
-import { NavLink } from "react-router-dom";
 import { useAuth } from "../../redux/hooks/useAuth";
-import { useDispatch } from "react-redux";
 import { authSignOut } from "../../redux/auth/authOperations";
 const ModalContent = ({ onClose }) => {
-  // useEffect(() => {
-  //   return onClose();
-  // }, [onClose]);
+  
   const { isLoggedIn, authEmail, authName } = useAuth();
 
   const dispatch = useDispatch();
@@ -26,10 +23,7 @@ const ModalContent = ({ onClose }) => {
 
   return (
     <div>
-      <ul>
-        {/* <NavItem to="/">Home</NavItem>
-        <NavItem to="cocktails">Cocktails</NavItem>
-        <NavItem to="meals">Meals</NavItem> */}
+      <ul>       
         <ListItem>
           <NavLink to="/">Home</NavLink>
         </ListItem>

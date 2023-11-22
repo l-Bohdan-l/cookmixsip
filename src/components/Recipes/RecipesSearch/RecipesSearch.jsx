@@ -30,8 +30,6 @@ const RecipesSearch = () => {
     skip: !recipeName,
   });
 
-  // console.log("recipesList", recipesList);
-
   useEffect(() => {
     if (recipesList) {
       setRecipes(recipesList.meals);
@@ -53,17 +51,12 @@ const RecipesSearch = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    // console.log(form.recipeName.value);
     if (form.recipeName.value.trim() === "") {
       return toast.error("Please enter cocktail name");
     }
     const nextParams =
       form.recipeName.value !== "" ? { search: form.recipeName.value } : {};
     setSearchParams(nextParams);
-
-    // console.log(form.cocktailName.value);
-
-    // setCocktailName(form.cocktailName.value);
   };
 
   return (

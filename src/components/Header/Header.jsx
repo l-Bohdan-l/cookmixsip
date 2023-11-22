@@ -1,4 +1,4 @@
-// import { CompanyName, Header } from "./Header.styled";
+import { useDispatch } from "react-redux";
 import { Modal } from "../Modal/Modal";
 import {
   HeaderStyled,
@@ -12,14 +12,9 @@ import {
   UserName,
   UserEmail,
   UserInfoWrapper,
-  // FlagImg,
-  // LangText,
 } from "./Header.styled";
 import { useAuth } from "../../redux/hooks/useAuth";
-// import usaFlag from "../../images/usa-flag.png";
-// import { NavLink } from "react-router-dom";
 import { authSignOut } from "../../redux/auth/authOperations";
-import { useDispatch } from "react-redux";
 const Header = () => {
   const { isLoggedIn, authEmail, authName } = useAuth();
   const dispatch = useDispatch();
@@ -40,8 +35,6 @@ const Header = () => {
           {isLoggedIn && <NavItem to="your-recipes">Your recipes</NavItem>}
         </NavList>
         <LangWrapper>
-          {/* <FlagImg src={usaFlag} alt="usa flag" />
-          <LangText>ENG</LangText> */}
           {!isLoggedIn && (
             <>
               <NavItem to="login">Login</NavItem>
