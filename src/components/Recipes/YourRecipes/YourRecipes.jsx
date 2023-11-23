@@ -27,6 +27,7 @@ import {
   where,
   deleteDoc,
   doc,
+  orderBy,
 } from "firebase/firestore";
 import { db } from "../../../firebase/config";
 import { useEffect, useState, useCallback } from "react";
@@ -44,7 +45,11 @@ const YourRecipes = () => {
   const { isLoggedIn, authEmail, authName, authId } = useAuth();
 
   const getUserRecipes = useCallback(async () => {
-    const ref = query(collection(db, "recipes"), where("userId", "==", authId));
+    const ref = query(
+      collection(db, "recipes"),
+      where("userId", "==", authId)
+      // orderBy("updatedAt", "desc")
+    );
     await onSnapshot(ref, (data) => {
       const recipesArray = data.docs.map((doc) => ({
         ...doc.data(),
@@ -134,6 +139,7 @@ const YourRecipes = () => {
         {allRecipes &&
           allRecipes.length > 0 &&
           allRecipes.map((recipe) => {
+            console.log(recipe.updatedAt?.toDate());
             return (
               <ListItem key={`${recipe.id}${recipe.name}`}>
                 <LinkStyled

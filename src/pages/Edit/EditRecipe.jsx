@@ -23,7 +23,7 @@ export const EditRecipe = () => {
 
   const handleSubmit = async (values) => {
     const recipeRef = doc(db, "recipes", recipeId);
-    const updatedAt = Date.now();
+    const updatedAt = new Date().getTime();
     console.log("1111111111111", updatedAt);
     await updateDoc(recipeRef, { ...values, updatedAt });
     navigate(`/${backLinkRef.current.pathname}`);
