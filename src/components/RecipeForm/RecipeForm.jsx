@@ -34,6 +34,8 @@ export const RecipeForm = ({ onSubmit, recipeInfo }) => {
     ],
     mealType: recipeInfo?.mealType ?? "",
     alcoholType: recipeInfo?.alcoholType ?? "",
+    createdAt: recipeInfo?.createdAt || Date.now(),
+    updatedAt: recipeInfo?.updatedAt || Date.now(),
   };
 
   const schema = Yup.object({
@@ -57,13 +59,18 @@ export const RecipeForm = ({ onSubmit, recipeInfo }) => {
     mealType: Yup.string(),
     // .required("Please select type")
     alcoholType: Yup.string().oneOf(["alcohol", "non-alcohol"], "Invalid Type"),
+    createdAt: Yup.date(),
+    updatedAt: Yup.date(),
   });
-
+  console.log("initialState", initialState);
   return (
     <Formik
       initialValues={initialState}
       validationSchema={schema}
-      onSubmit={onSubmit}
+      onSubmit={() => {
+        console.log("submit");
+        onSubmit();
+      }}
       enableReinitialize
     >
       {({ values, handleChange }) => (

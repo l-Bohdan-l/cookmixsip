@@ -46,7 +46,16 @@ const YourRecipes = () => {
   const getUserRecipes = useCallback(async () => {
     const ref = query(collection(db, "recipes"), where("userId", "==", authId));
     await onSnapshot(ref, (data) => {
-      setAllRecipes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      const recipesArray = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      console.log("recipesArray", recipesArray);
+      const copy = [...recipesArray].sort((a, b) => {
+        return new Date(b.updatedAt) - new Date(a.updatedAt);
+      });
+      console.log("copy", copy);
+      setAllRecipes(copy);
     });
   }, [authId]);
 
@@ -101,7 +110,7 @@ const YourRecipes = () => {
     setDeletedRecipeId(null);
   };
 
-  // console.log(allRecipes);
+  console.log(allRecipes);
 
   return (
     <SectionStyled>

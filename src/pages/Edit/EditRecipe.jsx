@@ -19,10 +19,13 @@ export const EditRecipe = () => {
   const backLinkRef = useRef(location.state?.from ?? "/");
   const { recipeId } = useParams();
   const navigate = useNavigate();
+  console.log("аааааааааа");
 
   const handleSubmit = async (values) => {
     const recipeRef = doc(db, "recipes", recipeId);
-    await updateDoc(recipeRef, { ...values });
+    const updatedAt = Date.now();
+    console.log("1111111111111", updatedAt);
+    await updateDoc(recipeRef, { ...values, updatedAt });
     navigate(`/${backLinkRef.current.pathname}`);
   };
 

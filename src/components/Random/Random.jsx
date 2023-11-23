@@ -64,7 +64,7 @@ const Random = () => {
           <RandomItemWrapper
             to={`/meals/${randomMeal.idMeal}`}
             state={{ from: location }}
-            second
+            second="true"
           >
             <img src={randomMeal.strMealThumb} alt={randomMeal.strMeal} />
             <RandomItemDescriptionWrapper>
