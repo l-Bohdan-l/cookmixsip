@@ -45,22 +45,19 @@ const YourRecipes = () => {
   const { isLoggedIn, authEmail, authName, authId } = useAuth();
 
   const getUserRecipes = useCallback(async () => {
-    const ref = query(
-      collection(db, "recipes"),
-      where("userId", "==", authId)
-      // orderBy("updatedAt", "desc")
-    );
-    await onSnapshot(ref, (data) => {
+    const ref = query(collection(db, "recipes"), where("userId", "==", authId));
+    // orderBy("updatedAt", "desc");
+    await onSnapshot(ref, orderBy("updatedAt", "desc"), (data) => {
       const recipesArray = data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
       }));
-      console.log("recipesArray", recipesArray);
-      const copy = [...recipesArray].sort((a, b) => {
-        return new Date(b.updatedAt) - new Date(a.updatedAt);
-      });
-      console.log("copy", copy);
-      setAllRecipes(copy);
+      // console.log("recipesArray", recipesArray);
+      // const copy = [...recipesArray].sort((a, b) => {
+      //   return new Date(b.updatedAt) - new Date(a.updatedAt);
+      // });
+      // console.log("copy", copy);
+      setAllRecipes(recipesArray);
     });
   }, [authId]);
 
@@ -139,7 +136,6 @@ const YourRecipes = () => {
         {allRecipes &&
           allRecipes.length > 0 &&
           allRecipes.map((recipe) => {
-            console.log(recipe.updatedAt?.toDate());
             return (
               <ListItem key={`${recipe.id}${recipe.name}`}>
                 <LinkStyled

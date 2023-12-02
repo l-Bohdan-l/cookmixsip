@@ -30,6 +30,7 @@ const AddRecipe = () => {
   const handleSubmit = (values) => {
     addRecipe(values);
     navigate("/your-recipes");
+    console.log("handleSubmit", values);
   };
 
   return (
