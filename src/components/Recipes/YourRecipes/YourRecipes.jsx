@@ -33,6 +33,7 @@ import { db } from "../../../firebase/config";
 import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "../../../redux/hooks/useAuth";
 import Overlay from "../../Modal/Overlay";
+import ScrollUpBtn from "../../ScrollUpBtn/ScrollUpBtn";
 
 const YourRecipes = () => {
   const location = useLocation();
@@ -156,6 +157,7 @@ const YourRecipes = () => {
           <AddIcon />
         </AddLink>
       </AddBtnWrapper>
+      <ScrollUpBtn />
       {modalOpen && (
         <Overlay overlayClick={overlayClick}>
           <ConfirmDeleteWrapper>
